@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "qpyI1PiNdUE=",
+  "dgSpecHash": "9f+BBHAxsW0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Harvie\\source\\repos\\TFG V0.01\\TFG V0.01\\TFG V0.01.csproj",
+  "projectFilePath": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\TFG V0.01.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Harvie\\.nuget\\packages\\fluentwpf\\0.10.2\\fluentwpf.0.10.2.nupkg.sha512",
     "C:\\Users\\Harvie\\.nuget\\packages\\fontawesome.wpf\\4.7.0.9\\fontawesome.wpf.4.7.0.9.nupkg.sha512",
-    "C:\\Users\\Harvie\\.nuget\\packages\\materialdesigncolors\\5.2.1\\materialdesigncolors.5.2.1.nupkg.sha512"
+    "C:\\Users\\Harvie\\.nuget\\packages\\materialdesigncolors\\5.2.1\\materialdesigncolors.5.2.1.nupkg.sha512",
+    "C:\\Users\\Harvie\\.nuget\\packages\\microsoft.web.webview2\\1.0.3179.45\\microsoft.web.webview2.1.0.3179.45.nupkg.sha512"
   ],
   "logs": [
     {

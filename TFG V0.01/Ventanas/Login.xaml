@@ -6,7 +6,7 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:faWpf="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
         mc:Ignorable="d"
-        Title="Login" Height="600" Width="500"
+        Title="Login" Height="650" Width="450"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
@@ -18,7 +18,7 @@
                         <Grid Width="50" Height="25">
                             <!-- Background redondeado -->
                             <Border x:Name="SwitchBackground" 
-                                Background="LightGray" 
+                                Background="#6b67d8" 
                                 CornerRadius="12.5" 
                                 BorderBrush="DarkGray"
                                 BorderThickness="1"/>
@@ -36,7 +36,7 @@
                         <ControlTemplate.Triggers>
                             <!-- Cuando está activado -->
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="SwitchBackground" Property="Background" Value="DarkGray"/>
+                                <Setter TargetName="SwitchBackground" Property="Background" Value="#32438b"/>
                                 <Setter TargetName="SwitchThumb" Property="HorizontalAlignment" Value="Right"/>
                                 <Setter TargetName="LightIcon" Property="Visibility" Value="Collapsed"/>
                                 <Setter TargetName="DarkIcon" Property="Visibility" Value="Visible"/>
@@ -67,10 +67,14 @@
         <!-- Formulario centrado -->
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock x:Name="Titulo" Text="Iniciar Sesión" FontSize="24" FontWeight="Bold"  HorizontalAlignment="Center" Margin="20" Foreground="White" />
+            <TextBlock Text="Email" FontSize="16" HorizontalAlignment="Left" Margin="5" Foreground="White"/> 
             <TextBox x:Name="UsernameTextBox"  Margin="5" />
+            <TextBlock Text="Contraseña" FontSize="16" HorizontalAlignment="Left" Margin="5" Foreground="White"/>
             <PasswordBox x:Name="PasswordBox"  Margin="5" />
-            <Button Content="Iniciar Sesión" Margin="5" />
-            <Button Content="Registrarse" Margin="5" />
+
+            <Button Content="Iniciar Sesión" Margin="5" Click="Loguearse"/>
+
+            <Button Content="Registrarse" Margin="5"  Click="irRegistrarse"/>
         </StackPanel>
     </Grid>
 </Window>

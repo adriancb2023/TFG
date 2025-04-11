@@ -7,7 +7,13 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Ventanas\Home.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Ventanas\Login.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Ventanas\Registro.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -15,7 +21,13 @@
     <Page Update="Recursos\recursos.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Ventanas\Home.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Ventanas\Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Ventanas\Registro.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

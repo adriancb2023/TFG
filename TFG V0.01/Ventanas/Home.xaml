@@ -1,0 +1,64 @@
+﻿<Window x:Class="TFG_V0._01.Ventanas.Home"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TFG_V0._01.Ventanas"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        mc:Ignorable="d"
+        Title="Home" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style x:Key="SwitchStyle" TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid Width="50" Height="25">
+                            <!-- Background redondeado -->
+                            <Border x:Name="SwitchBackground" 
+                            Background="#6b67d8" 
+                            CornerRadius="12.5" 
+                            BorderBrush="DarkGray"
+                            BorderThickness="1"/>
+
+                            <!-- Iconos -->
+                            <Grid Margin="2">
+                                <Image x:Name="LightIcon" Source="/TFG V0.01;component/Recursos/Iconos/luna.png" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible"/>
+                                <Image x:Name="DarkIcon" Source="/TFG V0.01;component/Recursos/Iconos/sol.png" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Right" Visibility="Collapsed"/>
+                            </Grid>
+
+                            <!-- Thumb del switch -->
+                            <Ellipse x:Name="SwitchThumb" Fill="White" Width="20" Height="20" HorizontalAlignment="Left" Margin="2.5"/>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <!-- Cuando está activado -->
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="SwitchBackground" Property="Background" Value="#32438b"/>
+                                <Setter TargetName="SwitchThumb" Property="HorizontalAlignment" Value="Right"/>
+                                <Setter TargetName="LightIcon" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="DarkIcon" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Fondo -->
+        <Grid.Background>
+            <ImageBrush x:Name="backgroundFondo" ImageSource="/TFG V0.01;component/Recursos/Background/oscuro/main.png"/>
+        </Grid.Background>
+
+        <!-- Switch Modo Claro/Oscuro arriba derecha -->
+        <CheckBox x:Name="ThemeSwitch" Width="50" Height="25" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Top" Checked="ThemeSwitch_Checked" Unchecked="ThemeSwitch_Unchecked" Style="{StaticResource SwitchStyle}"/>
+
+        <!-- Contenido ventana -->
+        <TextBlock x:Name="Titulo" Text="Bienvenido a la aplicación" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" Foreground="White"/>
+        <wv2:WebView2 x:Name="webView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,100,10,10" Source="https://www.poderjudicial.es/search/" Visibility="Collapsed"/>
+    </Grid>
+</Window>
