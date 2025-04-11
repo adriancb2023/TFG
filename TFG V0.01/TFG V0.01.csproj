@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>TFG_V0._01</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Recursos\Background\claro\bg-footer-light.png" />
+    <None Remove="Recursos\Background\claro\bg-main-light.jpg" />
+    <None Remove="Recursos\Background\claro\fotter.png" />
+    <None Remove="Recursos\Background\claro\main.png" />
+    <None Remove="Recursos\Background\claro\mod1.png" />
+    <None Remove="Recursos\Background\oscuro\bg-footer-dark.png" />
+    <None Remove="Recursos\Background\oscuro\bg-main-dark-1440w.jpg" />
+    <None Remove="Recursos\Background\oscuro\bg-subtle-1-dark-1440w.jpg" />
+    <None Remove="Recursos\Background\oscuro\bg-subtle-2-dark-1440w.jpg" />
+    <None Remove="Recursos\Background\oscuro\footer.png" />
+    <None Remove="Recursos\Background\oscuro\main.png" />
+    <None Remove="Recursos\Background\oscuro\mod1.png" />
+    <None Remove="Recursos\Background\oscuro\mod2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentWPF" Version="0.10.2" />
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="MaterialDesignColors" Version="5.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Recursos\Imagenes\" />
+    <Folder Include="Recursos\Raw\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Recursos\Background\claro\fotter.png" />
+    <Resource Include="Recursos\Background\claro\main.png" />
+    <Resource Include="Recursos\Background\claro\mod1.png" />
+    <Resource Include="Recursos\Background\oscuro\footer.png" />
+    <Resource Include="Recursos\Background\oscuro\main.png" />
+    <Resource Include="Recursos\Background\oscuro\mod1.png" />
+    <Resource Include="Recursos\Background\oscuro\mod2.png" />
+    <Resource Include="Recursos\Iconos\sol.png" />
+    <Resource Include="Recursos\Iconos\luna.png" />
+  </ItemGroup>
+
+</Project>

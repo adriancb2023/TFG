@@ -1,0 +1,28 @@
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\bin\Debug\net8.0-windows\TFG V0.01.exe
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\bin\Debug\net8.0-windows\TFG V0.01.deps.json
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\bin\Debug\net8.0-windows\TFG V0.01.runtimeconfig.json
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\bin\Debug\net8.0-windows\TFG V0.01.dll
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\bin\Debug\net8.0-windows\TFG V0.01.pdb
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\bin\Debug\net8.0-windows\FluentWPF.dll
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\bin\Debug\net8.0-windows\FontAwesome.WPF.dll
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.csproj.AssemblyReference.cache
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Login.g.cs
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01_MarkupCompile.cache
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01_MarkupCompile.lref
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Login.baml
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.g.resources
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.AssemblyInfoInputs.cache
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.AssemblyInfo.cs
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.csproj.CoreCompileInputs.cache
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.csproj.Up2Date
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.dll
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\refint\TFG V0.01.dll
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.pdb
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.genruntimeconfig.cache
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\ref\TFG V0.01.dll
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\bin\Debug\net8.0-windows\MaterialDesignColors.dll
+C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\Recursos\recursos.baml
