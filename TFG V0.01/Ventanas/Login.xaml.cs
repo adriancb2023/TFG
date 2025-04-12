@@ -1,13 +1,19 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 
 namespace TFG_V0._01.Ventanas
 {
     public partial class Login : Window
     {
+        #region variables
+        private bool isDarkTheme = true;
         private SupabaseAutentificacion _authService;
+        #endregion
+
         public Login()
         {
             InitializeComponent();
@@ -16,24 +22,23 @@ namespace TFG_V0._01.Ventanas
         }
 
         #region modo oscuro/claro
-        private void ThemeSwitch_Checked(object sender, RoutedEventArgs e)
+        private void ThemeButton_Click(object sender, RoutedEventArgs e)
         {
-            // Cambiar a modo claro
-            backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
-            Titulo.Foreground = new SolidColorBrush(Colors.Black);
+            isDarkTheme = !isDarkTheme;
+            var button = sender as Button;
+            var icon = button.Template.FindName("ThemeIcon", button) as Image;
+            if (isDarkTheme)
+            {
+                icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
 
-            // Quitar el foco del switch después de hacer clic
-            Keyboard.ClearFocus();
-        }
+            }
+            else
+            {
+                icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
 
-        private void ThemeSwitch_Unchecked(object sender, RoutedEventArgs e)
-        {
-            // Cambiar a modo oscuro
-            backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
-            Titulo.Foreground = new SolidColorBrush(Colors.White);
-
-            // Quitar el foco del switch después de hacer clic
-            Keyboard.ClearFocus();
+            }
         }
         #endregion
 
@@ -64,6 +69,26 @@ namespace TFG_V0._01.Ventanas
             Registro registro = new Registro();
             registro.Show();
             this.Close();
+        }
+        #endregion
+
+        #region saltarse el inicio de sesión con root
+        private async void saltarInicio(object sender, RoutedEventArgs e)
+        {
+            string email = "root@root.com";
+            string password = "root";
+
+            try
+            {
+                var resultado = await _authService.SignInAsync(email, password);
+                var home = new Home();
+                home.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al iniciar sesión:\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         #endregion
     }

@@ -19,7 +19,10 @@ namespace TFG_V0._01.Ventanas
     /// </summary>
     public partial class Registro : Window
     {
+        #region variables
+        private bool isDarkTheme = true;
         private readonly SupabaseAutentificacion _supabaseAutentificacion;
+        #endregion
 
         public Registro()
         {
@@ -28,26 +31,23 @@ namespace TFG_V0._01.Ventanas
         }
 
         #region modo oscuro/claro
-        private void ThemeSwitch_Checked(object sender, RoutedEventArgs e)
+        private void ThemeButton_Click(object sender, RoutedEventArgs e)
         {
-            // Cambiar a modo claro
-            backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
+            isDarkTheme = !isDarkTheme;
+            var button = sender as Button;
+            var icon = button.Template.FindName("ThemeIcon", button) as Image;
+            if (isDarkTheme)
+            {
+                icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
 
-            Titulo.Foreground = new SolidColorBrush(Colors.Black);
+            }
+            else
+            {
+                icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
 
-            // Quitar el foco del switch después de hacer clic
-            Keyboard.ClearFocus();
-        }
-
-        private void ThemeSwitch_Unchecked(object sender, RoutedEventArgs e)
-        {
-            // Cambiar a modo oscuro
-            backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
-
-            Titulo.Foreground = new SolidColorBrush(Colors.White);
-
-            // Quitar el foco del switch después de hacer clic
-            Keyboard.ClearFocus();
+            }
         }
         #endregion
 

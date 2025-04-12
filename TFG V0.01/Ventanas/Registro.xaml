@@ -9,35 +9,15 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Window.Resources>
-        <Style x:Key="SwitchStyle" TargetType="CheckBox">
+        <!-- Estilo para el botón de cambio de tema -->
+        <Style x:Key="ThemeButtonStyle" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="CheckBox">
-                        <Grid Width="50" Height="25">
-                            <!-- Background redondeado -->
-                            <Border x:Name="SwitchBackground" 
-                                Background="#6b67d8" 
-                                CornerRadius="12.5" 
-                                BorderBrush="DarkGray"
-                                BorderThickness="1"/>
-
-                            <!-- Iconos -->
-                            <Grid Margin="2">
-                                <Image x:Name="LightIcon" Source="/TFG V0.01;component/Recursos/Iconos/luna.png" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible"/>
-                                <Image x:Name="DarkIcon" Source="/TFG V0.01;component/Recursos/Iconos/sol.png" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Right" Visibility="Collapsed"/>
-                            </Grid>
-
-                            <!-- Thumb del switch -->
-                            <Ellipse x:Name="SwitchThumb" Fill="White" Width="20" Height="20" HorizontalAlignment="Left" Margin="2.5"/>
-                        </Grid>
-
+                    <ControlTemplate TargetType="Button">
+                        <Image x:Name="ThemeIcon" Source="/TFG V0.01;component/Recursos/Iconos/sol.png" Width="16" Height="16"/>
                         <ControlTemplate.Triggers>
-                            <!-- Cuando está activado -->
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="SwitchBackground" Property="Background" Value="#32438b"/>
-                                <Setter TargetName="SwitchThumb" Property="HorizontalAlignment" Value="Right"/>
-                                <Setter TargetName="LightIcon" Property="Visibility" Value="Collapsed"/>
-                                <Setter TargetName="DarkIcon" Property="Visibility" Value="Visible"/>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ThemeIcon" Property="Source" Value="/TFG V0.01;component/Recursos/Iconos/luna.png"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -52,25 +32,11 @@
             <ImageBrush x:Name="backgroundFondo" ImageSource="/TFG V0.01;component/Recursos/Background/oscuro/main.png"/>
         </Grid.Background>
 
-        <!-- Switch Modo Claro/Oscuro arriba derecha -->
-        <CheckBox x:Name="ThemeSwitch"
-          Width="50"
-          Height="25"
-          Margin="10"
-          HorizontalAlignment="Right"
-          VerticalAlignment="Top"
-          Checked="ThemeSwitch_Checked"
-          Unchecked="ThemeSwitch_Unchecked"
-          Style="{StaticResource SwitchStyle}"/>
+        <!-- Claro/Oscuro -->
+        <Button x:Name="ThemeButton" Width="50" Height="25" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="ThemeButton_Click" Style="{StaticResource ThemeButtonStyle}"/>
         <!-- Formulario centrado -->
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock x:Name="Titulo" Text="Registrate" FontSize="24" FontWeight="Bold"  HorizontalAlignment="Center" Margin="20" Foreground="White" />
-            <TextBlock Text="Nombre" Foreground="White" FontSize="16" Margin="5" />
-            <TextBox x:Name="nombre"  Margin="5" />
-            <TextBlock Text="Apellidos" Foreground="White" FontSize="16" Margin="5" />
-            <TextBox x:Name="apellidos"  Margin="5" />
-            <TextBlock Text="Telefono" Foreground="White" FontSize="16" Margin="5" />
-            <TextBox x:Name="telefono"  Margin="5" />
             <TextBlock Text="Email" Foreground="White" FontSize="16" Margin="5" />
             <TextBox x:Name="Email"  Margin="5" />
             <TextBlock Text="Contraseña" Foreground="White" FontSize="16" Margin="5" />

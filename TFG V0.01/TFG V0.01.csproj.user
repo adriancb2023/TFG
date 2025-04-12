@@ -18,9 +18,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Recursos\recursos.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Ventanas\Home.xaml">
       <SubType>Designer</SubType>
     </Page>

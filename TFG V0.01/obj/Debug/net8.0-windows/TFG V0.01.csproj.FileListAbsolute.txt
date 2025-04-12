@@ -35,7 +35,6 @@ C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\Fluen
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\FontAwesome.WPF.dll
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\MaterialDesignColors.dll
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.csproj.AssemblyReference.cache
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Recursos\recursos.baml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Login.baml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\MainWindow.g.cs
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Login.g.cs
@@ -69,3 +68,4 @@ C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\Micro
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Home.g.cs
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01_Content.g.cs
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Home.baml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\Panuon.UI.Silver.dll

@@ -1,13 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "9f+BBHAxsW0=",
+  "dgSpecHash": "NV7EhOwFtAs=",
   "success": true,
   "projectFilePath": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\TFG V0.01.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Harvie\\.nuget\\packages\\fluentwpf\\0.10.2\\fluentwpf.0.10.2.nupkg.sha512",
     "C:\\Users\\Harvie\\.nuget\\packages\\fontawesome.wpf\\4.7.0.9\\fontawesome.wpf.4.7.0.9.nupkg.sha512",
     "C:\\Users\\Harvie\\.nuget\\packages\\materialdesigncolors\\5.2.1\\materialdesigncolors.5.2.1.nupkg.sha512",
-    "C:\\Users\\Harvie\\.nuget\\packages\\microsoft.web.webview2\\1.0.3179.45\\microsoft.web.webview2.1.0.3179.45.nupkg.sha512"
+    "C:\\Users\\Harvie\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\Harvie\\.nuget\\packages\\microsoft.web.webview2\\1.0.3179.45\\microsoft.web.webview2.1.0.3179.45.nupkg.sha512",
+    "C:\\Users\\Harvie\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\Harvie\\.nuget\\packages\\panuon.ui.silver\\1.1.3.4\\panuon.ui.silver.1.1.3.4.nupkg.sha512",
+    "C:\\Users\\Harvie\\.nuget\\packages\\system.drawing.common\\5.0.0\\system.drawing.common.5.0.0.nupkg.sha512"
   ],
   "logs": [
     {
