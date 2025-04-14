@@ -37,11 +37,11 @@
         <!-- Formulario centrado -->
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock x:Name="Titulo" Text="Registrate" FontSize="24" FontWeight="Bold"  HorizontalAlignment="Center" Margin="20" Foreground="White" />
-            <TextBlock Text="Email" Foreground="White" FontSize="16" Margin="5" />
+            <TextBlock x:Name="correo" Text="Email" Foreground="White" FontSize="16" Margin="5" />
             <TextBox x:Name="Email"  Margin="5" />
-            <TextBlock Text="Contraseña" Foreground="White" FontSize="16" Margin="5" />
+            <TextBlock x:Name="Pass1" Text="Contraseña" Foreground="White" FontSize="16" Margin="5" />
             <PasswordBox x:Name="Pass"  Margin="5" />
-            <TextBlock Text="Verificar Contraseña" Foreground="White" FontSize="16" Margin="5" />
+            <TextBlock x:Name="Pass2" Text="Verificar Contraseña" Foreground="White" FontSize="16" Margin="5" />
             <PasswordBox x:Name="pass2"  Margin="5" />
 
             <Button Content="Registrarse" Margin="5" Click="RegistrarUser"/>

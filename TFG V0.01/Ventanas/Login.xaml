@@ -40,13 +40,14 @@
         
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock x:Name="Titulo" Text="Iniciar Sesión" FontSize="24" FontWeight="Bold"  HorizontalAlignment="Center" Margin="10" Foreground="White" FontFamily="Stardom" />
-            <TextBlock Text="Email" FontSize="16" HorizontalAlignment="Left" Margin="5" Foreground="White" FontFamily="Melodrama"/> 
+            <TextBlock x:Name="Correo" Text="Email" FontSize="16" HorizontalAlignment="Left" Margin="5" Foreground="White" FontFamily="Melodrama"/> 
             <TextBox x:Name="UsernameTextBox"  Margin="5" />
-            <TextBlock Text="Contraseña" FontSize="16" HorizontalAlignment="Left" Margin="5" Foreground="White" FontFamily="Melodrama"/>
+            <TextBlock x:Name="Pass" Text="Contraseña" FontSize="16" HorizontalAlignment="Left" Margin="5" Foreground="White" FontFamily="Melodrama"/>
             <PasswordBox x:Name="PasswordBox"  Margin="5" />
-
+            
+            <TextBlock x:Name="errorLogin" Text="La contraseña o el email no son correctas" Margin="5" Visibility="Hidden" Foreground="White" FontFamily="Melodrama"/>
+            
             <Button Content="Iniciar Sesión" Margin="5" Click="Loguearse"/>
-
             <Button Content="Registrarse" Margin="5"  Click="irRegistrarse"/>
             <Button Content="Saltar Inicio" Margin="5" Click="saltarInicio"/>
         </StackPanel>

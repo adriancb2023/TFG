@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -10,34 +11,42 @@ namespace TFG_V0._01.Ventanas
     public partial class Login : Window
     {
         #region variables
-        private bool isDarkTheme = true;
         private SupabaseAutentificacion _authService;
         #endregion
 
+        #region InitializeComponent
         public Login()
         {
             InitializeComponent();
             _authService = new SupabaseAutentificacion("https://ddwyrkqxpmwlznjfjrwv.supabase.co",
               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkd3lya3F4cG13bHpuamZqcnd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQzOTcwNjQsImV4cCI6MjA1OTk3MzA2NH0.G2LzHWbC09LC69bj9wONzhD_a6AfFI1ZYFuQ3KD7XhI");
         }
+        #endregion
+
 
         #region modo oscuro/claro
         private void ThemeButton_Click(object sender, RoutedEventArgs e)
         {
-            isDarkTheme = !isDarkTheme;
+            MainWindow.isDarkTheme = !MainWindow.isDarkTheme;
             var button = sender as Button;
             var icon = button.Template.FindName("ThemeIcon", button) as Image;
-            if (isDarkTheme)
+            if (MainWindow.isDarkTheme)
             {
                 icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
                 backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
-
+                Titulo.Foreground = Brushes.White;
+                Correo.Foreground = Brushes.White;
+                Pass.Foreground = Brushes.White;
+                errorLogin.Foreground = Brushes.White;
             }
             else
             {
                 icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
                 backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
-
+                Titulo.Foreground = Brushes.Black;
+                Correo.Foreground = Brushes.Black;
+                Pass.Foreground = Brushes.Black;
+                errorLogin.Foreground = Brushes.Black;
             }
         }
         #endregion
@@ -58,7 +67,11 @@ namespace TFG_V0._01.Ventanas
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al iniciar sesión:\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                UsernameTextBox.Clear();
+                PasswordBox.Clear();
+                errorLogin.Visibility = Visibility.Visible;
+                UsernameTextBox.BorderBrush = Brushes.Red;
+                PasswordBox.BorderBrush = Brushes.Red;
             }
         }
         #endregion

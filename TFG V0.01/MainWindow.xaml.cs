@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -13,18 +14,20 @@ namespace TFG_V0._01
         private DispatcherTimer progressTimer = null!;
         private DateTime startTime;
         private readonly TimeSpan duration = TimeSpan.FromSeconds(0.5);
+        public static bool isDarkTheme;
         #endregion
 
         #region Constructor
         public MainWindow()
         {
+            DetectarModo();
             InitializeComponent();
             StartLoadingAnimation();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         #endregion
 
-        #region Métodos Privados
+        #region Animacion de carga
 
             #region Animación de Carga
             private void StartLoadingAnimation()
@@ -85,6 +88,14 @@ namespace TFG_V0._01
             };
             login.Show();
             this.Close();
+        }
+        #endregion
+
+        #region detectar modo claro/oscuro del sistema
+        private void DetectarModo()
+        {
+            var theme = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1);
+            isDarkTheme = theme != null && (int)theme == 0;
         }
         #endregion
     }

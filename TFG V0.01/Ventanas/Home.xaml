@@ -59,88 +59,89 @@
         </Grid.Background>
         <!-- Navbar -->
         <Grid x:Name="menu_contraido" Grid.Column="0" HorizontalAlignment="Left" MouseEnter="Menu_MouseEnter" MouseLeave="Menu_MouseLeave">
-            <Border Background="White" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,0,0">
+            <Border x:Name="backgroun_contraido" Background="White" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,0,0">
                 <StackPanel VerticalAlignment="Center">
                     <Button x:Name="btnHome1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/home.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenHome1" Source="/TFG V0.01;component/Recursos/Iconos/home.png" Width="25" Height="25"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnAgenda1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/agenda.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenAgenda1" Source="/TFG V0.01;component/Recursos/Iconos/agenda.png" Width="25" Height="25"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnCasos1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/casos.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenCasos1" Source="/TFG V0.01;component/Recursos/Iconos/casos.png" Width="25" Height="25"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnClientes1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/clientes.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenClientes1" Source="/TFG V0.01;component/Recursos/Iconos/clientes.png" Width="25" Height="25"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnDocumentos1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/documentos.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenDocumentos1" Source="/TFG V0.01;component/Recursos/Iconos/documentos.png" Width="25" Height="25"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnAjustes1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/ajustes.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenAjustes1" Source="/TFG V0.01;component/Recursos/Iconos/ajustes.png" Width="25" Height="25"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnAyuda1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/ayuda.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenAyuda1" Source="/TFG V0.01;component/Recursos/Iconos/ayuda.png" Width="25" Height="25"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
             </Border>
         </Grid>
+        
         <Grid x:Name="menu_desplegado" Grid.Column="0" Visibility="Collapsed" MouseEnter="Menu_MouseEnter" MouseLeave="Menu_MouseLeave" >
-            <Border Background="White" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,0,0">
+            <Border x:Name="backgroun_desplegado" Background="White" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,0,0">
                 <StackPanel VerticalAlignment="Center">
-                    <Button x:Name="btnHome" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" >
+                    <Button x:Name="btnHome" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irHome" >
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" >
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/home.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenHome2" Source="/TFG V0.01;component/Recursos/Iconos/home.png" Width="25" Height="25"/>
                             <TextBlock Text="Inicio" VerticalAlignment="Center" Margin="10,0" />
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnAgenda" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <Button x:Name="btnAgenda" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irAgenda">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" Background="Transparent" >
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/agenda.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenAgenda2" Source="/TFG V0.01;component/Recursos/Iconos/agenda.png" Width="25" Height="25"/>
                             <TextBlock Text="Agenda" VerticalAlignment="Center" Margin="10,0"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnCasos" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" >
+                    <Button x:Name="btnCasos" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irCasos" >
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" >
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/casos.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenCasos2" Source="/TFG V0.01;component/Recursos/Iconos/casos.png" Width="25" Height="25"/>
                             <TextBlock Text="Casos" VerticalAlignment="Center" Margin="10,0"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnClientes" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" >
+                    <Button x:Name="btnClientes" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irClientes" >
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/clientes.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenClientes2" Source="/TFG V0.01;component/Recursos/Iconos/clientes.png" Width="25" Height="25"/>
                             <TextBlock Text="Clientes" VerticalAlignment="Center" Margin="10,0"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnDocumentos" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" >
+                    <Button x:Name="btnDocumentos" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irDocumentos">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/documentos.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenDocumentos2" Source="/TFG V0.01;component/Recursos/Iconos/documentos.png" Width="25" Height="25"/>
                             <TextBlock Text="Documentos" VerticalAlignment="Center" Margin="10,0"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnAjustes" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" >
+                    <Button x:Name="btnAjustes" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irAjustes" >
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/ajustes.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenAjustes2" Source="/TFG V0.01;component/Recursos/Iconos/ajustes.png" Width="25" Height="25"/>
                             <TextBlock Text="Ajustes" VerticalAlignment="Center" Margin="10,0"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnAyuda" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" >
+                    <Button x:Name="btnAyuda" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent"  Click="irAyuda">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image Source="/TFG V0.01;component/Recursos/Iconos/ayuda.png" Width="25" Height="25"/>
+                            <Image x:Name="imagenAyuda2" Source="/TFG V0.01;component/Recursos/Iconos/ayuda.png" Width="25" Height="25"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
@@ -151,44 +152,39 @@
 
 
         <!-- Contenido -->
-        <!-- Contenido principal -->
         <ScrollViewer Grid.Column="2" Margin="20" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <!-- Título -->
-                <TextBlock Text="Titulo"
-                           FontSize="28"
-                           FontWeight="Bold"
-                           Foreground="White"
-                           HorizontalAlignment="Center"
-                           Margin="0,0,0,30"/>
-
+                <TextBlock Text="Titulo"  FontSize="28" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,30"/>
+                
                 <!-- Tarjetas en panel adaptable -->
                 <WrapPanel Name="CardContainer" HorizontalAlignment="Center">
-                    <Border Style="{StaticResource CardStyle}" Width="250">
+                    <Border Style="{StaticResource CardStyle}" Width="250" >
                         <StackPanel HorizontalAlignment="Center">
-                            <TextBlock Text="Guardar tus archivos" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                            <TextBlock Text="Guardamos automáticamente tus archivos mientras escribes." TextWrapping="Wrap" Foreground="White" Margin="0,5,0,0" TextAlignment="Center"/>
+                            <TextBlock Text="TODOS LOS ARCHIVOS" FontSize="16" FontWeight="Bold" Foreground="White"/>
                         </StackPanel>
                     </Border>
 
                     <Border Style="{StaticResource CardStyle}" Width="250">
                         <StackPanel HorizontalAlignment="Center">
-                            <TextBlock Text="Notificaciones" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                            <TextBlock Text="Recibe notificaciones cuando ocurra algo." TextWrapping="Wrap" Foreground="White" Margin="0,5,0,0" TextAlignment="Center"/>
+                            <TextBlock Text="PDF" FontSize="16" FontWeight="Bold" Foreground="White"/>
                         </StackPanel>
                     </Border>
 
                     <Border Style="{StaticResource CardStyle}" Width="250">
                         <StackPanel HorizontalAlignment="Center">
-                            <TextBlock Text="Integraciones" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                            <TextBlock Text="Soporta más de 100 integraciones y contando." TextWrapping="Wrap" Foreground="White" Margin="0,5,0,0" TextAlignment="Center"/>
+                            <TextBlock Text="Audios" FontSize="16" FontWeight="Bold" Foreground="White"/>
                         </StackPanel>
                     </Border>
 
-                    <Border Style="{StaticResource CardStyle}" Width="520">
+                    <Border Style="{StaticResource CardStyle}" Width="250">
                         <StackPanel HorizontalAlignment="Center">
-                            <TextBlock Text="Calendario" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                            <TextBlock Text="Usa el calendario para filtrar tus archivos por fecha." TextWrapping="Wrap" Foreground="White" Margin="0,5,0,0" TextAlignment="Center"/>
+                            <TextBlock Text="Videos" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource CardStyle}" Width="250">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="Imagenes" FontSize="16" FontWeight="Bold" Foreground="White"/>
                         </StackPanel>
                     </Border>
                 </WrapPanel>
