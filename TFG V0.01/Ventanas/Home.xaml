@@ -66,6 +66,11 @@
                             <Image x:Name="imagenHome1" Source="/TFG V0.01;component/Recursos/Iconos/home.png" Width="25" Height="25"/>
                         </StackPanel>
                     </Button>
+                    <Button x:Name="btnBuscar1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
+                            <Image x:Name="imagenBuscar1" Source="/TFG V0.01;component/Recursos/Iconos/Buscar.png" Width="25" Height="25"/>
+                        </StackPanel>
+                    </Button>
                     <Button x:Name="btnAgenda1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
                             <Image x:Name="imagenAgenda1" Source="/TFG V0.01;component/Recursos/Iconos/agenda.png" Width="25" Height="25"/>
@@ -107,6 +112,12 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" >
                             <Image x:Name="imagenHome2" Source="/TFG V0.01;component/Recursos/Iconos/home.png" Width="25" Height="25"/>
                             <TextBlock Text="Inicio" VerticalAlignment="Center" Margin="10,0" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnBuscar" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
+                            <Image x:Name="imagenBuscar2" Source="/TFG V0.01;component/Recursos/Iconos/buscar.png" Width="25" Height="25"/>
+                            <TextBlock Text="Buscar Jurisprudencia" VerticalAlignment="Center" Margin="10,0" />
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnAgenda" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irAgenda">

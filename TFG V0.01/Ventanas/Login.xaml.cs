@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-
+using DrawingBrushes = System.Drawing.Brushes;
+using WpfBrushes = System.Windows.Media.Brushes;
+using WpfImage = System.Windows.Controls.Image;
 
 namespace TFG_V0._01.Ventanas
 {
@@ -12,6 +16,8 @@ namespace TFG_V0._01.Ventanas
     {
         #region variables
         private SupabaseAutentificacion _authService;
+        private Storyboard fadeInStoryboard;
+        private Storyboard shakeStoryboard;
         #endregion
 
         #region InitializeComponent
@@ -20,34 +26,125 @@ namespace TFG_V0._01.Ventanas
             InitializeComponent();
             _authService = new SupabaseAutentificacion("https://ddwyrkqxpmwlznjfjrwv.supabase.co",
               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkd3lya3F4cG13bHpuamZqcnd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQzOTcwNjQsImV4cCI6MjA1OTk3MzA2NH0.G2LzHWbC09LC69bj9wONzhD_a6AfFI1ZYFuQ3KD7XhI");
+
+            // Inicializar animaciones
+            InitializeAnimations();
+
+            // Aplicar tema
+            AplicarModoSistema();
+
+            // Animar entrada
+            BeginFadeInAnimation();
         }
         #endregion
 
+        #region Animaciones
+        private void InitializeAnimations()
+        {
+            // Animación de entrada con fade
+            fadeInStoryboard = new Storyboard();
+            DoubleAnimation fadeIn = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(0.5)
+            };
+            Storyboard.SetTarget(fadeIn, this);
+            Storyboard.SetTargetProperty(fadeIn, new PropertyPath("Opacity"));
+            fadeInStoryboard.Children.Add(fadeIn);
+
+            // Animación de shake para error
+            shakeStoryboard = new Storyboard();
+            DoubleAnimation shakeAnimation = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                AutoReverse = true,
+                RepeatBehavior = new RepeatBehavior(3),
+                Duration = TimeSpan.FromSeconds(0.05)
+            };
+
+            shakeStoryboard.Children.Add(shakeAnimation);
+        }
+
+        private void BeginFadeInAnimation()
+        {
+            this.Opacity = 0;
+            fadeInStoryboard.Begin();
+        }
+
+        private void ShakeElement(FrameworkElement element)
+        {
+            TranslateTransform trans = new TranslateTransform();
+            element.RenderTransform = trans;
+
+            DoubleAnimation anim = new DoubleAnimation
+            {
+                From = 0,
+                To = 5,
+                AutoReverse = true,
+                RepeatBehavior = new RepeatBehavior(3),
+                Duration = TimeSpan.FromSeconds(0.05)
+            };
+
+            trans.BeginAnimation(TranslateTransform.XProperty, anim);
+        }
+        #endregion
+
+        #region Aplicar modo oscuro/claro cargado por sistema
+        private void AplicarModoSistema()
+        {
+            var button = this.FindName("ThemeButton") as Button;
+            var icon = button?.Template.FindName("ThemeIcon", button) as WpfImage;
+
+            if (MainWindow.isDarkTheme)
+            {
+                // Aplicar modo oscuro
+                if (icon != null)
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
+                }
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
+            }
+            else
+            {
+                // Aplicar modo claro
+                if (icon != null)
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna2.png", UriKind.Relative));
+                }
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
+            }
+        }
+        #endregion
 
         #region modo oscuro/claro
         private void ThemeButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.isDarkTheme = !MainWindow.isDarkTheme;
             var button = sender as Button;
-            var icon = button.Template.FindName("ThemeIcon", button) as Image;
+            var icon = button.Template.FindName("ThemeIcon", button) as WpfImage;
+
             if (MainWindow.isDarkTheme)
             {
                 icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
                 backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
-                Titulo.Foreground = Brushes.White;
-                Correo.Foreground = Brushes.White;
-                Pass.Foreground = Brushes.White;
-                errorLogin.Foreground = Brushes.White;
             }
             else
             {
-                icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
+                icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna2.png", UriKind.Relative));
                 backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
-                Titulo.Foreground = Brushes.Black;
-                Correo.Foreground = Brushes.Black;
-                Pass.Foreground = Brushes.Black;
-                errorLogin.Foreground = Brushes.Black;
             }
+
+            // Animación de transición
+            DoubleAnimation fadeAnimation = new DoubleAnimation
+            {
+                From = 0.7,
+                To = 0.9,
+                AutoReverse = true,
+                Duration = TimeSpan.FromSeconds(0.3)
+            };
+            backgroundFondo.BeginAnimation(OpacityProperty, fadeAnimation);
         }
         #endregion
 
@@ -57,31 +154,96 @@ namespace TFG_V0._01.Ventanas
             string email = UsernameTextBox.Text;
             string password = PasswordBox.Password;
 
+            // Validación básica
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            {
+                MostrarError("Por favor, complete todos los campos");
+                return;
+            }
+
             try
             {
+                // Animación de carga (cambiar el cursor)
+                Mouse.OverrideCursor = Cursors.Wait;
+
                 var resultado = await _authService.SignInAsync(email, password);
-                MessageBox.Show("Inicio de sesión exitoso ✅", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                var home = new Home();
-                home.Show();
-                this.Close();
+
+                // Restaurar cursor
+                Mouse.OverrideCursor = null;
+
+                // Animación de éxito
+                DoubleAnimation successAnim = new DoubleAnimation
+                {
+                    From = 1,
+                    To = 0,
+                    Duration = TimeSpan.FromSeconds(0.3)
+                };
+
+                successAnim.Completed += (s, args) =>
+                {
+                    var home = new Home();
+                    home.Show();
+                    this.Close();
+                };
+
+                this.BeginAnimation(OpacityProperty, successAnim);
             }
             catch (Exception ex)
             {
-                UsernameTextBox.Clear();
+                // Restaurar cursor
+                Mouse.OverrideCursor = null;
+
+                // Limpiar campos y mostrar error
                 PasswordBox.Clear();
-                errorLogin.Visibility = Visibility.Visible;
-                UsernameTextBox.BorderBrush = Brushes.Red;
-                PasswordBox.BorderBrush = Brushes.Red;
+                MostrarError("Email o contraseña incorrectos");
+
+                // Animar elementos con error
+                ShakeElement(UsernameTextBox);
+                ShakeElement(PasswordBox);
             }
+        }
+
+        private void MostrarError(string mensaje)
+        {
+            errorLogin.Text = mensaje;
+            errorLogin.Visibility = Visibility.Visible;
+
+            // Animación de aparición del error
+            DoubleAnimation fadeIn = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(0.3)
+            };
+            errorLogin.BeginAnimation(OpacityProperty, fadeIn);
+
+            // Cambiar bordes a rojo
+            UsernameTextBox.BorderBrush = WpfBrushes.Red;
+            UsernameTextBox.BorderThickness = new Thickness(1);
+            PasswordBox.BorderBrush = WpfBrushes.Red;
+            PasswordBox.BorderThickness = new Thickness(1);
         }
         #endregion
 
         #region Registro
         private void irRegistrarse(object sender, RoutedEventArgs e)
         {
-            Registro registro = new Registro();
-            registro.Show();
-            this.Close();
+            // Animación de salida
+            DoubleAnimation fadeOut = new DoubleAnimation
+            {
+                From = 1,
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0.3)
+            };
+
+            fadeOut.Completed += (s, args) =>
+            {
+                Registro registro = new Registro();
+                registro.Show();
+                this.Close();
+            };
+
+            this.BeginAnimation(OpacityProperty, fadeOut);
         }
         #endregion
 
@@ -93,15 +255,93 @@ namespace TFG_V0._01.Ventanas
 
             try
             {
+                // Animación de carga
+                Mouse.OverrideCursor = Cursors.Wait;
+
                 var resultado = await _authService.SignInAsync(email, password);
-                var home = new Home();
-                home.Show();
-                this.Close();
+
+                // Restaurar cursor
+                Mouse.OverrideCursor = null;
+
+                // Animación de salida
+                DoubleAnimation fadeOut = new DoubleAnimation
+                {
+                    From = 1,
+                    To = 0,
+                    Duration = TimeSpan.FromSeconds(0.3)
+                };
+
+                fadeOut.Completed += (s, args) =>
+                {
+                    var home = new Home();
+                    home.Show();
+                    this.Close();
+                };
+
+                this.BeginAnimation(OpacityProperty, fadeOut);
             }
             catch (Exception ex)
             {
+                // Restaurar cursor
+                Mouse.OverrideCursor = null;
+
                 MessageBox.Show($"Error al iniciar sesión:\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+        #endregion
+
+        #region Eventos de UI
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            DoubleAnimation fadeOut = new DoubleAnimation
+            {
+                From = 1,
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0.3)
+            };
+
+            fadeOut.Completed += (s, args) => this.Close();
+            this.BeginAnimation(OpacityProperty, fadeOut);
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox != null)
+            {
+                // Restaurar estilo normal al obtener foco
+                textBox.BorderBrush = WpfBrushes.Transparent;
+                errorLogin.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Puedes agregar validación aquí si es necesario
+        }
+
+        private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PasswordBox passwordBox = sender as PasswordBox;
+            if (passwordBox != null)
+            {
+                // Restaurar estilo normal al obtener foco
+                passwordBox.BorderBrush = WpfBrushes.Transparent;
+                errorLogin.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Puedes agregar validación aquí si es necesario
         }
         #endregion
     }

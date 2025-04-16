@@ -27,6 +27,8 @@
     <None Remove="Recursos\Iconos\ajustes2.png" />
     <None Remove="Recursos\Iconos\ayuda.png" />
     <None Remove="Recursos\Iconos\ayuda2.png" />
+    <None Remove="Recursos\Iconos\buscar.png" />
+    <None Remove="Recursos\Iconos\buscar2.png" />
     <None Remove="Recursos\Iconos\casos.png" />
     <None Remove="Recursos\Iconos\casos2.png" />
     <None Remove="Recursos\Iconos\clientes.png" />
@@ -35,6 +37,8 @@
     <None Remove="Recursos\Iconos\documentos2.png" />
     <None Remove="Recursos\Iconos\home.png" />
     <None Remove="Recursos\Iconos\home2.png" />
+    <None Remove="Recursos\Iconos\luna2.png" />
+    <None Remove="Recursos\Logo\logo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -69,6 +73,8 @@
     <Resource Include="Recursos\Iconos\ajustes2.png" />
     <Resource Include="Recursos\Iconos\ayuda.png" />
     <Resource Include="Recursos\Iconos\ayuda2.png" />
+    <Resource Include="Recursos\Iconos\buscar.png" />
+    <Resource Include="Recursos\Iconos\buscar2.png" />
     <Resource Include="Recursos\Iconos\casos.png" />
     <Resource Include="Recursos\Iconos\casos2.png" />
     <Resource Include="Recursos\Iconos\clientes.png" />
@@ -77,8 +83,10 @@
     <Resource Include="Recursos\Iconos\documentos2.png" />
     <Resource Include="Recursos\Iconos\home.png" />
     <Resource Include="Recursos\Iconos\home2.png" />
+    <Resource Include="Recursos\Iconos\luna2.png" />
     <Resource Include="Recursos\Iconos\sol.png" />
     <Resource Include="Recursos\Iconos\luna.png" />
+    <Resource Include="Recursos\Logo\logo.png" />
   </ItemGroup>
 
 </Project>

@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Ventanas\BusquedaJurisprudencia.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Ventanas\Documentos.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -21,6 +24,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Ventanas\BusquedaJurisprudencia.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Ventanas\Documentos.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -1,8 +1,9 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using TFG_V0._01.Ventanas;
 
@@ -13,7 +14,7 @@ namespace TFG_V0._01
         #region Campos
         private DispatcherTimer progressTimer = null!;
         private DateTime startTime;
-        private readonly TimeSpan duration = TimeSpan.FromSeconds(0.5);
+        private readonly TimeSpan duration = TimeSpan.FromSeconds(2.0);
         public static bool isDarkTheme;
         #endregion
 
@@ -24,57 +25,83 @@ namespace TFG_V0._01
             InitializeComponent();
             StartLoadingAnimation();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            // No necesitamos aplicar tema ya que el fondo es translúcido
+            // y queremos que se vea el fondo del escritorio
         }
         #endregion
 
         #region Animacion de carga
 
-            #region Animación de Carga
-            private void StartLoadingAnimation()
+        #region Animación de Carga
+        private void StartLoadingAnimation()
+        {
+            startTime = DateTime.Now;
+            progressTimer = new DispatcherTimer
             {
-                startTime = DateTime.Now;
-                progressTimer = new DispatcherTimer
+                Interval = TimeSpan.FromMilliseconds(16) // ~60fps para animación suave
+            };
+            progressTimer.Tick += UpdateProgressArc!;
+            progressTimer.Start();
+        }
+        #endregion
+
+        #region Actualización del Progreso
+        private void UpdateProgressArc(object? sender, EventArgs e)
+        {
+            TimeSpan elapsed = DateTime.Now - startTime;
+            double progress = Math.Min(elapsed.TotalMilliseconds / duration.TotalMilliseconds, 1.0);
+            double angle = progress * 360;
+
+            UpdateArc(angle);
+
+            // Actualizar texto de porcentaje
+            int percentage = (int)(progress * 100);
+            PercentageText.Text = $"{percentage}%";
+
+            if (progress >= 1.0)
+            {
+                progressTimer.Stop();
+
+                // Animación de finalización
+                DoubleAnimation fadeOut = new DoubleAnimation
                 {
-                    Interval = TimeSpan.FromMilliseconds(50)
+                    From = 1.0,
+                    To = 0.0,
+                    Duration = TimeSpan.FromSeconds(0.5)
                 };
-                progressTimer.Tick += UpdateProgressArc!;
-                progressTimer.Start();
+
+                fadeOut.Completed += (s, args) => OpenNewWindow();
+                this.BeginAnimation(OpacityProperty, fadeOut);
             }
-            #endregion
+        }
+        #endregion
 
-            #region Actualización del Progreso
-            private void UpdateProgressArc(object? sender, EventArgs e)
-            {
-                TimeSpan elapsed = DateTime.Now - startTime;
-                double progress = Math.Min(elapsed.TotalMilliseconds / duration.TotalMilliseconds, 1.0);
-                double angle = progress * 360;
+        #region Actualización del Arco
+        private void UpdateArc(double angle)
+        {
+            double radius = 90;
+            double centerX = 100;
+            double centerY = 100;
 
-                UpdateArc(angle);
+            double startAngle = -90; // Comenzar desde arriba
+            double endAngle = startAngle + angle;
 
-                if (progress >= 1.0)
-                {
-                    progressTimer.Stop();
-                    OpenNewWindow();
-                }
-            }
-            #endregion
+            double startRadians = (Math.PI / 180) * startAngle;
+            double endRadians = (Math.PI / 180) * endAngle;
 
-            #region Actualización del Arco
-            private void UpdateArc(double angle)
-            {
-                double radius = 50;
-                double centerX = 60;
-                double centerY = 60;
+            double startX = centerX + radius * Math.Cos(startRadians);
+            double startY = centerY + radius * Math.Sin(startRadians);
 
-                double radians = (Math.PI / 180) * (angle - 90);
-                double x = centerX + radius * Math.Cos(radians);
-                double y = centerY + radius * Math.Sin(radians);
+            double endX = centerX + radius * Math.Cos(endRadians);
+            double endY = centerY + radius * Math.Sin(endRadians);
 
-                // Asegúrate de que ProgressArc esté definido en tu XAML
-                ProgressArc.Point = new Point(x, y);
-                ProgressArc.IsLargeArc = angle > 180;
-            }
-            #endregion
+            // Actualizar la figura del arco
+            ProgressFigure.StartPoint = new Point(startX, startY);
+            ProgressArc.Point = new Point(endX, endY);
+            ProgressArc.IsLargeArc = angle > 180;
+        }
+        #endregion
 
         #endregion
 
@@ -83,7 +110,6 @@ namespace TFG_V0._01
         {
             Login login = new Login
             {
-               // Owner = this,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             login.Show();
@@ -95,7 +121,29 @@ namespace TFG_V0._01
         private void DetectarModo()
         {
             var theme = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1);
-            isDarkTheme = theme != null && (int)theme == 0;
+            if (theme is int themeValue && themeValue == 0)
+            {
+                isDarkTheme = true;
+            }
+            else
+            {
+                isDarkTheme = false;
+            }
+        }
+        #endregion
+
+        #region Eventos de UI
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
         #endregion
     }

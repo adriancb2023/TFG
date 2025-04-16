@@ -29,6 +29,7 @@ C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\Recurs
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.csproj.AssemblyReference.cache
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Login.baml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\BusquedaJurisprudencia.g.cs
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Documentos.g.cs
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Home.g.cs
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Login.g.cs
@@ -87,6 +88,7 @@ C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\Micro
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.WinForms.xml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Wpf.xml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\BusquedaJurisprudencia.baml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Documentos.baml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Home.baml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Registro.baml

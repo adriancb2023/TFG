@@ -164,16 +164,48 @@
 
                 <!-- Tarjetas en panel adaptable -->
                 <WrapPanel Name="CardContainer" HorizontalAlignment="Center">
-                    <Border Style="{StaticResource CardStyle}" Width="250">
+                    <!-- Contenedor para archivos de asignación automática -->
+                    <Border Style="{StaticResource CardStyle}" Width="250" AllowDrop="True" Drop="DopAutomatico">
                         <StackPanel HorizontalAlignment="Center">
-                            <TextBlock Text="Guardar tus archivos" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                            <TextBlock Text="Archivos de Asignación Automática" FontSize="16" FontWeight="Bold" Foreground="White"/>
                         </StackPanel>
                     </Border>
 
-                    
+                    <!-- Contenedor para PDF -->
+                    <Border Style="{StaticResource CardStyle}" Width="250" Margin="10">
+                        <StackPanel>
+                            <TextBlock Text="PDF" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                            <ListBox ItemsSource="{Binding PdfFiles}" Foreground="White"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Contenedor para Imágenes -->
+                    <Border Style="{StaticResource CardStyle}" Width="250" Margin="10">
+                        <StackPanel>
+                            <TextBlock Text="Imágenes" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                            <ListBox ItemsSource="{Binding ImageFiles}" Foreground="White"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Contenedor para Videos -->
+                    <Border Style="{StaticResource CardStyle}" Width="250" Margin="10">
+                        <StackPanel>
+                            <TextBlock Text="Videos" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                            <ListBox ItemsSource="{Binding VideoFiles}" Foreground="White"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Contenedor para Audios -->
+                    <Border Style="{StaticResource CardStyle}" Width="250" Margin="10">
+                        <StackPanel>
+                            <TextBlock Text="Audios" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                            <ListBox ItemsSource="{Binding AudioFiles}" Foreground="White"/>
+                        </StackPanel>
+                    </Border>
                 </WrapPanel>
             </StackPanel>
         </ScrollViewer>
+
 
 
     </Grid>

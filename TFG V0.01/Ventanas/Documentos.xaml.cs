@@ -11,6 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Supabase;
+using TFG_V0._01.Supabase;
+using Supabase.Storage;
+using System.IO;
+using System.Drawing;
+using System.Windows.Media.Animation;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace TFG_V0._01.Ventanas
 {
@@ -20,15 +29,50 @@ namespace TFG_V0._01.Ventanas
     public partial class Documentos : Window
     {
         #region variables
-
+        private readonly SupaBaseStorage _supaBaseStorage;
         #endregion
 
         public Documentos()
         {
             InitializeComponent();
-            //var client = new SupabaseAutentificacion("https://ddwyrkqxpmwlznjfjrwv.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkd3lya3F4cG13bHpuamZqcnd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQzOTcwNjQsImV4cCI6MjA1OTk3MzA2NH0.G2LzHWbC09LC69bj9wONzhD_a6AfFI1ZYFuQ3KD7XhI");
-
+            _supaBaseStorage = new SupaBaseStorage("https://ddwyrkqxpmwlznjfjrwv.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkd3lya3F4cG13bHpuamZqcnd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQzOTcwNjQsImV4cCI6MjA1OTk3MzA2NH0.G2LzHWbC09LC69bj9wONzhD_a6AfFI1ZYFuQ3KD7XhI");
+            _supaBaseStorage.InicializarAsync().Wait();
+            AplicarModoSistema();
         }
+
+        #region Aplicar modo oscuro/claro cargado por sistema
+        private void AplicarModoSistema()
+        {
+            var button = this.FindName("ThemeButton") as Button;
+            var icon = button?.Template.FindName("ThemeIcon", button) as System.Windows.Controls.Image;
+            if (MainWindow.isDarkTheme)
+            {
+                bool modo = true;
+                // Aplicar modo oscuro
+                if (icon != null)
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
+                }
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
+                CambiarIconosAOscuros();
+                CambiarTextosBlanco();
+                TextIconBack(modo);
+            }
+            else
+            {
+                bool modo = false;
+                // Aplicar modo claro
+                if (icon != null)
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
+                }
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
+                CambiarIconosAOscuros();
+                CambiarTextosBlanco();
+                TextIconBack(modo);
+            }
+        }
+        #endregion
 
         #region modo oscuro/claro + navbar
         private void CambiarIconosAOscuros()
@@ -93,7 +137,7 @@ namespace TFG_V0._01.Ventanas
         {
             if (modo)
             {
-                var claro = (Color)ColorConverter.ConvertFromString("#ecfdf5");
+                var claro = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#ecfdf5");
                 backgroun_desplegado.Background = new SolidColorBrush(claro);
                 backgroun_contraido.Background = new SolidColorBrush(claro);
                 CambiarIconosAOscuros();
@@ -101,7 +145,7 @@ namespace TFG_V0._01.Ventanas
             }
             else
             {
-                var oscuro = (Color)ColorConverter.ConvertFromString("#424242");
+                var oscuro = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#424242");
                 backgroun_desplegado.Background = new SolidColorBrush(oscuro);
                 backgroun_contraido.Background = new SolidColorBrush(oscuro);
                 CambiarIconosAClaros();
@@ -113,18 +157,21 @@ namespace TFG_V0._01.Ventanas
         {
             MainWindow.isDarkTheme = !MainWindow.isDarkTheme;
             var button = sender as Button;
-            var icon = button.Template.FindName("ThemeIcon", button) as Image;
-            if (MainWindow.isDarkTheme)
+            var icon = button?.Template.FindName("ThemeIcon", button) as System.Windows.Controls.Image;
+            if (icon != null)
             {
-                icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
-                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
-                TextIconBack(MainWindow.isDarkTheme);
-            }
-            else
-            {
-                icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
-                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
-                TextIconBack(MainWindow.isDarkTheme);
+                if (MainWindow.isDarkTheme)
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
+                    backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
+                    TextIconBack(MainWindow.isDarkTheme);
+                }
+                else
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
+                    backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
+                    TextIconBack(MainWindow.isDarkTheme);
+                }
             }
         }
         #endregion
@@ -195,5 +242,56 @@ namespace TFG_V0._01.Ventanas
 
         #endregion
 
+        #region Drop de archivos
+        private async void DopAutomatico(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (string file in files)
+                {
+                    string fileName = System.IO.Path.GetFileName(file);
+                    string fileBucket = _supaBaseStorage.ObtenerCuboPorTipoArchivo(file);
+                    await _supaBaseStorage.SubirArchivoAsync(fileBucket, file, fileName);
+                }
+            }
+        }
+        #endregion
+
+        #region Listados
+        /*
+        public async Task CargarDatosAsync()
+        {
+            try
+            {
+                await _storage.InicializarAsync();
+
+                var pdfs = await _storage.ListarArchivosAsync("documents");
+                var imgs = await _storage.ListarArchivosAsync("images");
+                var vids = await _storage.ListarArchivosAsync("videos");
+                var auds = await _storage.ListarArchivosAsync("audios");
+
+                ActualizarColeccion(PdfFiles, pdfs);
+                ActualizarColeccion(ImageFiles, imgs);
+                ActualizarColeccion(VideoFiles, vids);
+                ActualizarColeccion(AudioFiles, auds);
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores: puedes loguear o notificar
+            }
+        }
+
+        private void ActualizarColeccion(ObservableCollection<string> coleccion, List<string> datos)
+        {
+            coleccion.Clear();
+            foreach (var d in datos)
+                coleccion.Add(d);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string nombre = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nombre));
+        */
+        #endregion
     }
 }

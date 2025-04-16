@@ -9,8 +9,15 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Xps.Packaging;
+using System;
+using System.ComponentModel.DataAnnotations;
+using DrawingBrushes = System.Drawing.Brushes;
+using WpfBrushes = System.Windows.Media.Brushes;
+using WpfImage = System.Windows.Controls.Image;
 
 namespace TFG_V0._01.Ventanas
 {
@@ -21,6 +28,8 @@ namespace TFG_V0._01.Ventanas
     {
         #region variables
         private readonly SupabaseAutentificacion _supabaseAutentificacion;
+        private Storyboard fadeInStoryboard;
+        private Storyboard shakeStoryboard;
         #endregion
 
         #region InitializeComponent
@@ -28,6 +37,94 @@ namespace TFG_V0._01.Ventanas
         {
             InitializeComponent();
             _supabaseAutentificacion = new SupabaseAutentificacion("https://ddwyrkqxpmwlznjfjrwv.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkd3lya3F4cG13bHpuamZqcnd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQzOTcwNjQsImV4cCI6MjA1OTk3MzA2NH0.G2LzHWbC09LC69bj9wONzhD_a6AfFI1ZYFuQ3KD7XhI");
+            // Inicializar animaciones
+            InitializeAnimations();
+
+            // Aplicar tema
+            AplicarModoSistema();
+
+            // Animar entrada
+            BeginFadeInAnimation();
+        }
+        #endregion
+
+        #region Animaciones
+        private void InitializeAnimations()
+        {
+            // Animación de entrada con fade
+            fadeInStoryboard = new Storyboard();
+            DoubleAnimation fadeIn = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(0.5)
+            };
+            Storyboard.SetTarget(fadeIn, this);
+            Storyboard.SetTargetProperty(fadeIn, new PropertyPath("Opacity"));
+            fadeInStoryboard.Children.Add(fadeIn);
+
+            // Animación de shake para error
+            shakeStoryboard = new Storyboard();
+            DoubleAnimation shakeAnimation = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                AutoReverse = true,
+                RepeatBehavior = new RepeatBehavior(3),
+                Duration = TimeSpan.FromSeconds(0.05)
+            };
+
+            shakeStoryboard.Children.Add(shakeAnimation);
+        }
+
+        private void BeginFadeInAnimation()
+        {
+            this.Opacity = 0;
+            fadeInStoryboard.Begin();
+        }
+
+        private void ShakeElement(FrameworkElement element)
+        {
+            TranslateTransform trans = new TranslateTransform();
+            element.RenderTransform = trans;
+
+            DoubleAnimation anim = new DoubleAnimation
+            {
+                From = 0,
+                To = 5,
+                AutoReverse = true,
+                RepeatBehavior = new RepeatBehavior(3),
+                Duration = TimeSpan.FromSeconds(0.05)
+            };
+
+            trans.BeginAnimation(TranslateTransform.XProperty, anim);
+        }
+        #endregion
+
+        #region Aplicar modo oscuro/claro cargado por sistema
+        private void AplicarModoSistema()
+        {
+            var button = this.FindName("ThemeButton") as Button;
+            var icon = button?.Template.FindName("ThemeIcon", button) as WpfImage;
+
+            if (MainWindow.isDarkTheme)
+            {
+                // Aplicar modo oscuro
+                if (icon != null)
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
+                }
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
+            }
+            else
+            {
+                // Aplicar modo claro
+                if (icon != null)
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna2.png", UriKind.Relative));
+                }
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
+            }
         }
         #endregion
 
@@ -42,6 +139,7 @@ namespace TFG_V0._01.Ventanas
                 icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
                 backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
                 Titulo.Foreground = Brushes.White;
+                Subtitulo.Foreground = Brushes.White;
                 correo.Foreground = Brushes.White;
                 Pass1.Foreground = Brushes.White;
                 Pass2.Foreground = Brushes.White;
@@ -51,6 +149,7 @@ namespace TFG_V0._01.Ventanas
                 icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
                 backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
                 Titulo.Foreground = Brushes.Black;
+                Subtitulo.Foreground = Brushes.Black;
                 correo.Foreground = Brushes.Black;
                 Pass1.Foreground = Brushes.Black;
                 Pass2.Foreground = Brushes.Black;
@@ -72,9 +171,9 @@ namespace TFG_V0._01.Ventanas
         {
             try
             {
-                var email = Email.Text;
-                var password = Pass.Password;
-                var confirmPassword = pass2.Password;
+                var email = UsernameTextBox.Text;
+                var password = PasswordBox.Password;
+                var confirmPassword = PasswordBox2.Password;
 
                 if (password != confirmPassword)
                 {
@@ -88,6 +187,61 @@ namespace TFG_V0._01.Ventanas
             catch (Exception ex)
             {
                 MessageBox.Show($"Error en el registro: {ex.Message}");
+            }
+        }
+        #endregion
+
+        #region  metodos flotantes
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove(); // Permite mover la ventana al arrastrar el borde
+            }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close(); // Cierra la ventana
+        }
+
+        private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var passwordBox = sender as PasswordBox;
+            if (passwordBox != null && passwordBox.Password == "Contraseña")
+            {
+                passwordBox.Password = string.Empty; // Limpia el texto predeterminado
+                passwordBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var passwordBox = sender as PasswordBox;
+            if (passwordBox != null && string.IsNullOrWhiteSpace(passwordBox.Password))
+            {
+                passwordBox.Password = "Contraseña"; // Restaura el texto predeterminado
+                passwordBox.Foreground = Brushes.Gray;
+            }
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox != null && textBox.Text == "Usuario")
+            {
+                textBox.Text = string.Empty; // Limpia el texto predeterminado
+                textBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox != null && string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = "Usuario"; // Restaura el texto predeterminado
+                textBox.Foreground = Brushes.Gray;
             }
         }
         #endregion
