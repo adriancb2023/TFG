@@ -3,8 +3,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Xps.Packaging;
-using Microsoft.Web.WebView2.Core;
 
 namespace TFG_V0._01.Ventanas
 {
@@ -22,64 +20,26 @@ namespace TFG_V0._01.Ventanas
         }
         #endregion
 
-        #region barra superior
-        private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount == 2)
-            {
-                MaximizeButton_Click(sender, e);
-            }
-            else
-            {
-                this.DragMove();
-            }
-        }
-
-        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        private void MaximizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
-            else
-            {
-                this.WindowState = WindowState.Maximized;
-            }
-        }
-
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-        #endregion
-
         #region Aplicar modo oscuro/claro cargado por sistema
         private void AplicarModoSistema()
         {
             var button = this.FindName("ThemeButton") as Button;
             var icon = button?.Template.FindName("ThemeIcon", button) as Image;
+
             if (MainWindow.isDarkTheme)
             {
-                bool modo = true;
                 // Aplicar modo oscuro
                 if (icon != null)
                 {
                     icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
                 }
                 backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
-                CambiarIconosAOscuros();
+                CambiarIconosAClaros();
                 CambiarTextosBlanco();
-                TextIconBack(modo);
+                backgroun_menu.Background = new SolidColorBrush(Color.FromArgb(48, 255, 255, 255)); // Fondo semitransparente
             }
             else
             {
-                bool modo = false;
                 // Aplicar modo claro
                 if (icon != null)
                 {
@@ -87,8 +47,9 @@ namespace TFG_V0._01.Ventanas
                 }
                 backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
                 CambiarIconosAOscuros();
-                CambiarTextosBlanco();
-                TextIconBack(modo);
+                CambiarTextosNegro();
+                backgroun_menu.Background = new SolidColorBrush(Color.FromArgb(48, 128, 128, 128)); // Gris semitransparente
+
             }
         }
         #endregion
@@ -96,104 +57,67 @@ namespace TFG_V0._01.Ventanas
         #region modo oscuro/claro + navbar
         private void CambiarIconosAOscuros()
         {
-            imagenHome1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/home.png", UriKind.Relative));
-            imagenDocumentos1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/documentos.png", UriKind.Relative));
-            imagenClientes1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/clientes.png", UriKind.Relative));
-            imagenCasos1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/casos.png", UriKind.Relative));
-            imagenAyuda1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/ayuda.png", UriKind.Relative));
-            imagenAgenda1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/agenda.png", UriKind.Relative));
-            imagenAjustes1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/ajustes.png", UriKind.Relative));
-            imagenHome2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/home.png", UriKind.Relative));
-            imagenDocumentos2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/documentos.png", UriKind.Relative));
-            imagenClientes2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/clientes.png", UriKind.Relative));
-            imagenCasos2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/casos.png", UriKind.Relative));
-            imagenAyuda2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/ayuda.png", UriKind.Relative));
-            imagenAgenda2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/agenda.png", UriKind.Relative));
-            imagenAjustes2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/ajustes.png", UriKind.Relative));
-            imagenBuscar1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/buscar.png", UriKind.Relative));
-            imagenBuscar2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/buscar.png", UriKind.Relative));
+            CambiarIcono("imagenHome2", "/TFG V0.01;component/Recursos/Iconos/home.png");
+            CambiarIcono("imagenDocumentos2", "/TFG V0.01;component/Recursos/Iconos/documentos.png");
+            CambiarIcono("imagenClientes2", "/TFG V0.01;component/Recursos/Iconos/clientes.png");
+            CambiarIcono("imagenCasos2", "/TFG V0.01;component/Recursos/Iconos/casos.png");
+            CambiarIcono("imagenAyuda2", "/TFG V0.01;component/Recursos/Iconos/ayuda.png");
+            CambiarIcono("imagenAgenda2", "/TFG V0.01;component/Recursos/Iconos/agenda.png");
+            CambiarIcono("imagenAjustes2", "/TFG V0.01;component/Recursos/Iconos/ajustes.png");
+            CambiarIcono("imagenBuscar2", "/TFG V0.01;component/Recursos/Iconos/buscar.png");
         }
 
         private void CambiarIconosAClaros()
         {
-            imagenHome1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/home2.png", UriKind.Relative));
-            imagenDocumentos1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/documentos2.png", UriKind.Relative));
-            imagenClientes1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/clientes2.png", UriKind.Relative));
-            imagenCasos1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/casos2.png", UriKind.Relative));
-            imagenAyuda1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/ayuda2.png", UriKind.Relative));
-            imagenAgenda1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/agenda2.png", UriKind.Relative));
-            imagenAjustes1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/ajustes2.png", UriKind.Relative));
-            imagenHome2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/home2.png", UriKind.Relative));
-            imagenDocumentos2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/documentos2.png", UriKind.Relative));
-            imagenClientes2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/clientes2.png", UriKind.Relative));
-            imagenCasos2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/casos2.png", UriKind.Relative));
-            imagenAyuda2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/ayuda2.png", UriKind.Relative));
-            imagenAgenda2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/agenda2.png", UriKind.Relative));
-            imagenAjustes2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/ajustes2.png", UriKind.Relative));
-            imagenBuscar1.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/buscar2.png", UriKind.Relative));
-            imagenBuscar2.Source = new BitmapImage(new Uri($"/TFG V0.01;component/Recursos/Iconos/buscar2.png", UriKind.Relative));
+            CambiarIcono("imagenHome2", "/TFG V0.01;component/Recursos/Iconos/home2.png");
+            CambiarIcono("imagenDocumentos2", "/TFG V0.01;component/Recursos/Iconos/documentos2.png");
+            CambiarIcono("imagenClientes2", "/TFG V0.01;component/Recursos/Iconos/clientes2.png");
+            CambiarIcono("imagenCasos2", "/TFG V0.01;component/Recursos/Iconos/casos2.png");
+            CambiarIcono("imagenAyuda2", "/TFG V0.01;component/Recursos/Iconos/ayuda2.png");
+            CambiarIcono("imagenAgenda2", "/TFG V0.01;component/Recursos/Iconos/agenda2.png");
+            CambiarIcono("imagenAjustes2", "/TFG V0.01;component/Recursos/Iconos/ajustes2.png");
+            CambiarIcono("imagenBuscar2", "/TFG V0.01;component/Recursos/Iconos/buscar2.png");
+        }
+
+        private void CambiarIcono(string nombreElemento, string rutaIcono)
+        {
+            var imagen = this.FindName(nombreElemento) as Image;
+            if (imagen != null)
+            {
+                imagen.Source = new BitmapImage(new Uri(rutaIcono, UriKind.Relative));
+            }
         }
 
         private void CambiarTextosNegro()
         {
-            btnAgenda.Foreground = new SolidColorBrush(Colors.Black);
-            btnAjustes.Foreground = new SolidColorBrush(Colors.Black);
-            btnAyuda.Foreground = new SolidColorBrush(Colors.Black);
-            btnCasos.Foreground = new SolidColorBrush(Colors.Black);
-            btnClientes.Foreground = new SolidColorBrush(Colors.Black);
-            btnDocumentos.Foreground = new SolidColorBrush(Colors.Black);
-            btnHome.Foreground = new SolidColorBrush(Colors.Black);
-            btnBuscar.Foreground = new SolidColorBrush(Colors.Black);
+            CambiarColorTexto("btnAgenda", Colors.Black);
+            CambiarColorTexto("btnAjustes", Colors.Black);
+            CambiarColorTexto("btnAyuda", Colors.Black);
+            CambiarColorTexto("btnCasos", Colors.Black);
+            CambiarColorTexto("btnClientes", Colors.Black);
+            CambiarColorTexto("btnDocumentos", Colors.Black);
+            CambiarColorTexto("btnHome", Colors.Black);
+            CambiarColorTexto("btnBuscar", Colors.Black);
         }
 
         private void CambiarTextosBlanco()
         {
-            btnAgenda.Foreground = new SolidColorBrush(Colors.White);
-            btnAjustes.Foreground = new SolidColorBrush(Colors.White);
-            btnAyuda.Foreground = new SolidColorBrush(Colors.White);
-            btnCasos.Foreground = new SolidColorBrush(Colors.White);
-            btnClientes.Foreground = new SolidColorBrush(Colors.White);
-            btnDocumentos.Foreground = new SolidColorBrush(Colors.White);
-            btnHome.Foreground = new SolidColorBrush(Colors.White);
-            btnBuscar.Foreground = new SolidColorBrush(Colors.White);
+            CambiarColorTexto("btnAgenda", Colors.White);
+            CambiarColorTexto("btnAjustes", Colors.White);
+            CambiarColorTexto("btnAyuda", Colors.White);
+            CambiarColorTexto("btnCasos", Colors.White);
+            CambiarColorTexto("btnClientes", Colors.White);
+            CambiarColorTexto("btnDocumentos", Colors.White);
+            CambiarColorTexto("btnHome", Colors.White);
+            CambiarColorTexto("btnBuscar", Colors.White);
         }
 
-        private void TextIconBack(bool modo)
+        private void CambiarColorTexto(string nombreElemento, Color color)
         {
-            if (modo)
+            var boton = this.FindName(nombreElemento) as Button;
+            if (boton != null)
             {
-                var claro = (Color)ColorConverter.ConvertFromString("#ecfdf5");
-                backgroun_desplegado.Background = new SolidColorBrush(claro);
-                backgroun_contraido.Background = new SolidColorBrush(claro);
-                CambiarIconosAOscuros();
-                CambiarTextosNegro();
-            }
-            else
-            {
-                var oscuro = (Color)ColorConverter.ConvertFromString("#424242");
-                backgroun_desplegado.Background = new SolidColorBrush(oscuro);
-                backgroun_contraido.Background = new SolidColorBrush(oscuro);
-                CambiarIconosAClaros();
-                CambiarTextosBlanco();
-            }
-        }
-
-        private void ThemeButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.isDarkTheme = !MainWindow.isDarkTheme;
-            var button = sender as Button;
-            var icon = button.Template.FindName("ThemeIcon", button) as Image;
-            if (MainWindow.isDarkTheme)
-            {
-                icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
-                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
-                TextIconBack(MainWindow.isDarkTheme);
-            }
-            else
-            {
-                icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
-                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
-                TextIconBack(MainWindow.isDarkTheme);
+                boton.Foreground = new SolidColorBrush(color);
             }
         }
         #endregion
@@ -201,14 +125,103 @@ namespace TFG_V0._01.Ventanas
         #region navbar animacion
         private void Menu_MouseEnter(object sender, MouseEventArgs e)
         {
-            menu_desplegado.Visibility = Visibility.Visible;
-            menu_contraido.Visibility = Visibility.Collapsed;
+            inicio.Visibility = Visibility.Visible;
+            buscar.Visibility = Visibility.Visible;
+            documentos.Visibility = Visibility.Visible;
+            clientes.Visibility = Visibility.Visible;
+            casos.Visibility = Visibility.Visible;
+            agenda.Visibility = Visibility.Visible;
+            ajustes.Visibility = Visibility.Visible;
         }
 
         private void Menu_MouseLeave(object sender, MouseEventArgs e)
         {
-            menu_contraido.Visibility = Visibility.Visible;
-            menu_desplegado.Visibility = Visibility.Collapsed;
+            inicio.Visibility = Visibility.Collapsed;
+            buscar.Visibility = Visibility.Collapsed;
+            documentos.Visibility = Visibility.Collapsed;
+            clientes.Visibility = Visibility.Collapsed;
+            casos.Visibility = Visibility.Collapsed;
+            agenda.Visibility = Visibility.Collapsed;
+            ajustes.Visibility = Visibility.Collapsed;
+        }
+        #endregion
+
+        #region boton cambiar tema
+        private void ThemeButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Alternar el estado del tema
+            MainWindow.isDarkTheme = !MainWindow.isDarkTheme;
+
+            // Obtener el botón y el icono
+            var button = sender as Button;
+            var icon = button?.Template.FindName("ThemeIcon", button) as Image;
+
+            if (MainWindow.isDarkTheme)
+            {
+                // Cambiar a modo oscuro
+                if (icon != null)
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
+                }
+
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(
+                    @"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
+
+                CambiarIconosAClaros();
+                CambiarTextosBlanco();
+                backgroun_menu.Background = new SolidColorBrush(Color.FromArgb(48, 255, 255, 255)); // Fondo semitransparente
+            }
+            else
+            {
+                // Cambiar a modo claro
+                if (icon != null)
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
+                }
+
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(
+                    @"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
+
+                CambiarIconosAOscuros();
+                CambiarTextosNegro();
+                backgroun_menu.Background = new SolidColorBrush(Color.FromArgb(48, 128, 128, 128)); // Gris semitransparente
+            }
+        }
+
+        #endregion
+
+        #region Control de ventana sin bordes
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                if (WindowState == WindowState.Maximized)
+                    WindowState = WindowState.Normal;
+                else
+                    WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.DragMove();
+            }
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+                WindowState = WindowState.Normal;
+            else
+                WindowState = WindowState.Maximized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
         #endregion
 
@@ -220,7 +233,7 @@ namespace TFG_V0._01.Ventanas
             this.Close();
         }
 
-        private void irJurisprudencia (object sender, RoutedEventArgs e)
+        private void irJurisprudencia(object sender, RoutedEventArgs e)
         {
             BusquedaJurisprudencia busquedaJurisprudencia = new BusquedaJurisprudencia();
             busquedaJurisprudencia.Show();
@@ -268,7 +281,6 @@ namespace TFG_V0._01.Ventanas
             //ajustes.Show();
             //this.Close();
         }
-
         #endregion
     }
 }

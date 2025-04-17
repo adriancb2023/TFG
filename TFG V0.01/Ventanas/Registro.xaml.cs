@@ -148,11 +148,6 @@ namespace TFG_V0._01.Ventanas
             {
                 icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
                 backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
-                Titulo.Foreground = Brushes.Black;
-                Subtitulo.Foreground = Brushes.Black;
-                correo.Foreground = Brushes.Black;
-                Pass1.Foreground = Brushes.Black;
-                Pass2.Foreground = Brushes.Black;
             }
         }
         #endregion
