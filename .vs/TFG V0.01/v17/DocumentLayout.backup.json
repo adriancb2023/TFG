@@ -66,8 +66,7 @@
               "RelativeToolTip": "TFG V0.01\\Ventanas\\Home.xaml.cs",
               "ViewState": "AgIAABsAAAAAAAAAAAAowOEAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T18:21:24.698Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T18:21:24.698Z"
             },
             {
               "$type": "Document",
@@ -84,7 +83,7 @@
           ]
         },
         {
-          "DockedWidth": 184,
+          "DockedWidth": 54,
           "SelectedChildIndex": -1,
           "Children": [
             {
@@ -94,7 +93,7 @@
           ]
         },
         {
-          "DockedWidth": 161,
+          "DockedWidth": 184,
           "SelectedChildIndex": -1,
           "Children": [
             {

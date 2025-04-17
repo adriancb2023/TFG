@@ -94,7 +94,7 @@
         </Grid.Background>
         <!-- Navbar -->
         <Grid x:Name="menu" Grid.Column="0" Visibility="Visible" MouseEnter="Menu_MouseEnter" MouseLeave="Menu_MouseLeave" >
-            <Border x:Name="backgroun_menu" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,0,0" CornerRadius="15" Background="#30FFFFFF" VerticalAlignment="Center">
+            <Border x:Name="backgroun_menu" BorderBrush="#454545" BorderThickness="0" Margin="0,0,0,0" CornerRadius="15" Background="#30FFFFFF" VerticalAlignment="Center">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="15" Direction="-90" 
                       RenderingBias="Quality" ShadowDepth="2" 
@@ -161,7 +161,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="0.10*"/>
             </Grid.RowDefinitions>
 
             <!-- Header Section -->
@@ -585,18 +585,10 @@
             <!-- Footer -->
             <Border Grid.Row="2" Background="#30FFFFFF" CornerRadius="10" Padding="15" Margin="0,20,0,0">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="© 2025 TFG v0.01 - Sistema de Gestión Legal" Foreground="#CCFFFFFF" VerticalAlignment="Center"/>
-                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                        <TextBlock Text="Versión 0.01" Foreground="#CCFFFFFF" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                        <Button Content="Ayuda" Style="{StaticResource RoundedButtonStyle}" Background="#30FFFFFF" Width="80"/>
-                    </StackPanel>
+                    <TextBlock Text="© 2025 TFG v0.01 - TFG" Foreground="#CCFFFFFF" VerticalAlignment="Center"/>
+                    <TextBlock Text="Versión 0.01" Foreground="#CCFFFFFF" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </Grid>
             </Border>
         </Grid>
-
     </Grid>
 </Window>
