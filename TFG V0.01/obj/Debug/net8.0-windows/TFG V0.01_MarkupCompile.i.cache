@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\obj\Debug\net8.0-windows\
 TFG_V0._01
 none
 false
-TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\App.xaml
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\App.xaml
 51136833945
-3-875971652
+32100379308
 131849662384
-23442985809
+234-1030454604
 MainWindow.xaml;Ventanas\Documentos.xaml;Ventanas\Home.xaml;Ventanas\Login.xaml;Ventanas\Registro.xaml;
 
 False
