@@ -1,4 +1,49 @@
-.vs/TFG V0.01/FileContentIndex/122e9ee3-85da-4b9a-8ecc-1144d1fb39ca.vsidx
-.vs/TFG V0.01/FileContentIndex/122e9ee3-85da-4b9a-8ecc-1144d1fb39ca.vsidx
-.vs/TFG V0.01/FileContentIndex/51017fc4-46e1-4c78-ac98-f6fd49838870.vsidx
-TFG V0.01/Recursos/recursos.xaml
+# Visual Studio cache files
+.vs/
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# User specific files
+*.user
+*.suo
+
+# Build results specific to ASP.NET Core
+wwwroot/dist/
+
+# Build results specific to Blazor
+wwwroot/app.css
+
+# Rider specific files
+.idea/
+
+# Mac specific files
+.DS_Store
+
+# Windows specific files
+Thumbs.db
+
+# NuGet Packages
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
+# RestoreSolutionPackages uses this image for its marker file
+!**/packages/repositories.config
+
+# Cache files for WebView2
+**/[Tt]est[Rr]esult*/**
+**/*.exe.WebView2/**
+
+# Environment variables
+.env
+
+# Secrets files often contain sensitive information
+secrets.json
+appsettings.*.secrets.json
+
+# IDE session files
+*.session
+# Add other specific patterns if needed
