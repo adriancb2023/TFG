@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\busquedajurisprudencia.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\busquedajurisprudencia.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\home.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\home.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\busquedajurisprudencia.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\busquedajurisprudencia.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +22,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 78,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BusquedaJurisprudencia.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\BusquedaJurisprudencia.xaml.cs",
+              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\BusquedaJurisprudencia.xaml.cs",
+              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\BusquedaJurisprudencia.xaml.cs*",
+              "RelativeToolTip": "TFG V0.01\\Ventanas\\BusquedaJurisprudencia.xaml.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T19:04:49.565Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{25f7e850-ffa1-11d0-b63f-00a0c922e851}"
@@ -58,32 +75,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Home.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml.cs",
-              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\Home.xaml.cs",
-              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml.cs",
-              "RelativeToolTip": "TFG V0.01\\Ventanas\\Home.xaml.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowOEAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T18:21:24.698Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Home.xaml",
-              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml",
-              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\Home.xaml",
-              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml*",
-              "RelativeToolTip": "TFG V0.01\\Ventanas\\Home.xaml*",
+              "DocumentIndex": 2,
+              "Title": "BusquedaJurisprudencia.xaml",
+              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\BusquedaJurisprudencia.xaml",
+              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\BusquedaJurisprudencia.xaml",
+              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\BusquedaJurisprudencia.xaml",
+              "RelativeToolTip": "TFG V0.01\\Ventanas\\BusquedaJurisprudencia.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-17T18:39:24.587Z",
+              "WhenOpened": "2025-04-23T18:46:23.758Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 54,
+          "DockedWidth": 78,
           "SelectedChildIndex": -1,
           "Children": [
             {
@@ -93,12 +98,46 @@
           ]
         },
         {
-          "DockedWidth": 184,
+          "DockedWidth": 54,
           "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "6592839c-d981-43c4-b6f8-edcc6e3075ed",
+        "Display": 1,
+        "X": -806,
+        "Y": 524,
+        "Width": 2547,
+        "Height": 1317,
+        "WindowState": 2
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Home.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml.cs",
+              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\Home.xaml.cs",
+              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml.cs",
+              "RelativeToolTip": "TFG V0.01\\Ventanas\\Home.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwBAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T19:07:00.709Z",
+              "EditorCaption": ""
             }
           ]
         }

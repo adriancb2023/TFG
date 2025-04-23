@@ -256,9 +256,9 @@ namespace TFG_V0._01.Ventanas
 
         private void irCasos(object sender, RoutedEventArgs e)
         {
-            //Casos casos = new Casos();
-            //casos.Show();
-            //this.Close();
+            Casos casos = new Casos();
+            casos.Show();
+            this.Close();
         }
 
         private void irAyuda(object sender, RoutedEventArgs e)

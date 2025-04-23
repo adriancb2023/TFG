@@ -104,3 +104,5 @@ C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\refin
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.pdb
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.genruntimeconfig.cache
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\ref\TFG V0.01.dll
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Casos.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Casos.baml

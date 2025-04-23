@@ -9,40 +9,75 @@
         WindowStartupLocation="CenterScreen" >
 
     <Window.Resources>
-    <!-- Estilo para el botón de cambio de tema -->
-    <Style x:Key="ThemeButtonStyle" TargetType="Button">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Image x:Name="ThemeIcon" Source="/TFG V0.01;component/Recursos/Iconos/sol.png" Width="16" Height="16"/>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="ThemeIcon" Property="Source" Value="/TFG V0.01;component/Recursos/Iconos/luna.png"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <!-- Estilo de tarjeta -->
-    <Style x:Key="CardStyle" TargetType="Border">
-        <Setter Property="CornerRadius" Value="20"/>
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush x:Name="colortarjeta" Color="#454545" Opacity="0.4"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="BorderBrush" Value="#333" />
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="15"/>
-        <Setter Property="Margin" Value="10"/>
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="2" Opacity="0.3"/>
-            </Setter.Value>
-        </Setter>
-    </Style>
+        <!-- Estilo para el botón de cambio de tema -->
+        <Style x:Key="ThemeButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                            <Image x:Name="ThemeIcon" Source="/TFG V0.01;component/Recursos/Iconos/sol.png" Width="20" Height="20"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Botones redondeados -->
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                    CornerRadius="20" BorderThickness="{TemplateBinding BorderThickness}" 
+                    BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="aqua" TargetName="border"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" Value="#DDDDDD" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Easing para suavizar la animación -->
+        <QuadraticEase x:Key="SmoothEase" EasingMode="EaseInOut" />
+        <!-- Estilo de tarjeta -->
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush x:Name="colortarjeta" Color="#454545" Opacity="0.4"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="#333" />
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="2" Opacity="0.3"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
     </Window.Resources>
 
@@ -57,88 +92,57 @@
             <ImageBrush x:Name="backgroundFondo" ImageSource="/TFG V0.01;component/Recursos/Background/oscuro/main.png"/>
         </Grid.Background>
         <!-- Navbar -->
-        <Grid x:Name="menu_contraido" Grid.Column="0" HorizontalAlignment="Left" MouseEnter="Menu_MouseEnter" MouseLeave="Menu_MouseLeave">
-            <Border x:Name="backgroun_contraido" Background="White" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,0,0">
+        <Grid x:Name="menu" Grid.Column="0" Visibility="Visible" MouseEnter="Menu_MouseEnter" MouseLeave="Menu_MouseLeave" >
+            <Border x:Name="backgroun_menu" BorderBrush="#454545" BorderThickness="0" Margin="0,0,0,0" CornerRadius="15" Background="#30FFFFFF" VerticalAlignment="Center">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15" Direction="-90" 
+                  RenderingBias="Quality" ShadowDepth="2" 
+                  Color="#20000000"/>
+                </Border.Effect>
                 <StackPanel VerticalAlignment="Center">
-                    <Button x:Name="btnHome1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image x:Name="imagenHome1" Source="/TFG V0.01;component/Recursos/Iconos/home.png" Width="25" Height="25"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="btnAgenda1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image x:Name="imagenAgenda1" Source="/TFG V0.01;component/Recursos/Iconos/agenda.png" Width="25" Height="25"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="btnCasos1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image x:Name="imagenCasos1" Source="/TFG V0.01;component/Recursos/Iconos/casos.png" Width="25" Height="25"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="btnClientes1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image x:Name="imagenClientes1" Source="/TFG V0.01;component/Recursos/Iconos/clientes.png" Width="25" Height="25"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="btnDocumentos1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image x:Name="imagenDocumentos1" Source="/TFG V0.01;component/Recursos/Iconos/documentos.png" Width="25" Height="25"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="btnAjustes1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image x:Name="imagenAjustes1" Source="/TFG V0.01;component/Recursos/Iconos/ajustes.png" Width="25" Height="25"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="btnAyuda1" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                            <Image x:Name="imagenAyuda1" Source="/TFG V0.01;component/Recursos/Iconos/ayuda.png" Width="25" Height="25"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-            </Border>
-        </Grid>
-
-        <Grid x:Name="menu_desplegado" Grid.Column="0" Visibility="Collapsed" MouseEnter="Menu_MouseEnter" MouseLeave="Menu_MouseLeave" >
-            <Border x:Name="backgroun_desplegado" Background="White" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,0,0">
-                <StackPanel VerticalAlignment="Center">
-                    <Button x:Name="btnHome" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irHome" >
+                    <Button x:Name="btnHome" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irHome" >
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" >
                             <Image x:Name="imagenHome2" Source="/TFG V0.01;component/Recursos/Iconos/home.png" Width="25" Height="25"/>
-                            <TextBlock Text="Inicio" VerticalAlignment="Center" Margin="10,0" />
+                            <TextBlock x:Name="inicio" Visibility="Collapsed" Text="Inicio" VerticalAlignment="Center" Margin="10,0" />
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnAgenda" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irAgenda">
+                    <Button x:Name="btnBuscar" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Click="irJurisprudencia">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
+                            <Image x:Name="imagenBuscar2" Source="/TFG V0.01;component/Recursos/Iconos/buscar.png" Width="25" Height="25"/>
+                            <TextBlock x:Name="buscar" Visibility="Collapsed" Text="Buscar Jurisprudencia" VerticalAlignment="Center" Margin="10,0" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnAgenda" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irAgenda">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" Background="Transparent" >
                             <Image x:Name="imagenAgenda2" Source="/TFG V0.01;component/Recursos/Iconos/agenda.png" Width="25" Height="25"/>
-                            <TextBlock Text="Agenda" VerticalAlignment="Center" Margin="10,0"/>
+                            <TextBlock x:Name="agenda" Visibility="Collapsed" Text="Agenda" VerticalAlignment="Center" Margin="10,0"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnCasos" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irCasos" >
+                    <Button x:Name="btnCasos" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irCasos" >
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" >
                             <Image x:Name="imagenCasos2" Source="/TFG V0.01;component/Recursos/Iconos/casos.png" Width="25" Height="25"/>
-                            <TextBlock Text="Casos" VerticalAlignment="Center" Margin="10,0"/>
+                            <TextBlock x:Name="casos" Visibility="Collapsed" Text="Casos" VerticalAlignment="Center" Margin="10,0"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnClientes" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irClientes" >
+                    <Button x:Name="btnClientes" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irClientes" >
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
                             <Image x:Name="imagenClientes2" Source="/TFG V0.01;component/Recursos/Iconos/clientes.png" Width="25" Height="25"/>
-                            <TextBlock Text="Clientes" VerticalAlignment="Center" Margin="10,0"/>
+                            <TextBlock x:Name="clientes" Visibility="Collapsed" Text="Clientes" VerticalAlignment="Center" Margin="10,0"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnDocumentos" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irDocumentos">
+                    <Button x:Name="btnDocumentos" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irDocumentos">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
                             <Image x:Name="imagenDocumentos2" Source="/TFG V0.01;component/Recursos/Iconos/documentos.png" Width="25" Height="25"/>
-                            <TextBlock Text="Documentos" VerticalAlignment="Center" Margin="10,0"/>
+                            <TextBlock x:Name="documentos" Visibility="Collapsed" Text="Documentos" VerticalAlignment="Center" Margin="10,0"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnAjustes" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irAjustes" >
+                    <Button x:Name="btnAjustes" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irAjustes" >
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
                             <Image x:Name="imagenAjustes2" Source="/TFG V0.01;component/Recursos/Iconos/ajustes.png" Width="25" Height="25"/>
-                            <TextBlock Text="Ajustes" VerticalAlignment="Center" Margin="10,0"/>
+                            <TextBlock x:Name="ajustes" Visibility="Collapsed" Text="Ajustes" VerticalAlignment="Center" Margin="10,0"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnAyuda" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent"  Click="irAyuda">
+                    <Button x:Name="btnAyuda" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent"  Click="irAyuda">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
                             <Image x:Name="imagenAyuda2" Source="/TFG V0.01;component/Recursos/Iconos/ayuda.png" Width="25" Height="25"/>
                         </StackPanel>
@@ -149,227 +153,248 @@
         <!-- Claro/Oscuro  -->
         <Button x:Name="ThemeButton" Width="35" Height="35" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="ThemeButton_Click" Style="{StaticResource ThemeButtonStyle}" Grid.Column="2"/>
 
-        <Border Grid.Column="2" Background="Gray">
-            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="20">
+        <!-- Contenido principal -->
+        <Grid Grid.Column="2" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Buscar Jurisprudencias" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0,0,0,20"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1.2*"/>
+                </Grid.ColumnDefinitions>
+                <!-- Tarjeta de filtros -->
+                <Border Style="{StaticResource CardStyle}" Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Stretch">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <TextBlock Text="Filtros" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
+                            <Separator Margin="0,10,0,10"/>
 
-                <TextBlock Text="Buscar Jurisprudencias" FontSize="24" FontWeight="Bold"/>
-                <TextBlock Text="Filtros" FontSize="18" FontWeight="Bold" Margin="0,10,0,5"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                <Separator Margin="0,10,0,10"/>
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="Jurisdicción" FontWeight="Bold"/>
+                                    <ComboBox x:Name="JurisdiccionComboBox" ItemsSource="{Binding Jurisdicciones}" SelectedItem="{Binding JurisdiccionSeleccionada, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
+                                </StackPanel>
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                        <TextBlock Text="Jurisdicción" FontWeight="Bold"/>
-                        <ComboBox x:Name="JurisdiccionComboBox" ItemsSource="{Binding Jurisdicciones}" SelectedItem="{Binding JurisdiccionSeleccionada, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Text="Tipo de resolución" FontWeight="Bold"/>
-                        <ComboBox x:Name="TipoResolucionComboBox" ItemsSource="{Binding TiposResolucion}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                        <ItemsControl ItemsSource="{Binding SubTipos}">
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <StackPanel Margin="10,0,0,0">
-                                                        <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                        <ItemsControl ItemsSource="{Binding SubTipos}">
-                                                            <ItemsControl.ItemTemplate>
-                                                                <DataTemplate>
-                                                                    <CheckBox Content="{Binding Nombre}" Margin="20,0,0,0" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                                </DataTemplate>
-                                                            </ItemsControl.ItemTemplate>
-                                                        </ItemsControl>
-                                                    </StackPanel>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </StackPanel>
-                </Grid>
-                <Separator Margin="0,10,0,10"/>
-
-                <Grid Margin="0,10,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0">
-                        <TextBlock Text="Órgano judicial" FontWeight="Bold"/>
-                        <ComboBox x:Name="OrganoJudicialComboBox" ItemsSource="{Binding TiposOrgano}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                        <ItemsControl ItemsSource="{Binding SubTipos}">
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <StackPanel Margin="10,0,0,0">
-                                                        <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                        <ItemsControl ItemsSource="{Binding SubTipos}">
-                                                            <ItemsControl.ItemTemplate>
-                                                                <DataTemplate>
-                                                                    <CheckBox Content="{Binding Nombre}" Margin="20,0,0,0" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                                </DataTemplate>
-                                                            </ItemsControl.ItemTemplate>
-                                                        </ItemsControl>
-                                                    </StackPanel>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <TextBlock Text="Sección" FontWeight="Bold"/>
-                        <TextBox x:Name="SeccionTextBox" Text="{Binding Seccion, UpdateSourceTrigger=PropertyChanged}" Height="21"/>
-                    </StackPanel>
-                </Grid>
-                <TextBlock Text="Localización" FontWeight="Bold" Margin="0,10,0,0"/>
-                <Grid>
-                    <ComboBox x:Name="LocalizacionComboBox" ItemsSource="{Binding Localizaciones}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                    <ItemsControl ItemsSource="{Binding SubLocalizaciones}">
-                                        <ItemsControl.ItemTemplate>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Tipo de resolución" FontWeight="Bold"/>
+                                    <ComboBox x:Name="TipoResolucionComboBox" ItemsSource="{Binding TiposResolucion}">
+                                        <ComboBox.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Margin="10,0,0,0">
+                                                <StackPanel>
                                                     <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                    <ItemsControl ItemsSource="{Binding SubLocalizaciones}">
+                                                    <ItemsControl ItemsSource="{Binding SubTipos}">
                                                         <ItemsControl.ItemTemplate>
                                                             <DataTemplate>
-                                                                <CheckBox Content="{Binding Nombre}" Margin="20,0,0,0" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                                                <StackPanel Margin="10,0,0,0">
+                                                                    <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                                                    <ItemsControl ItemsSource="{Binding SubTipos}">
+                                                                        <ItemsControl.ItemTemplate>
+                                                                            <DataTemplate>
+                                                                                <CheckBox Content="{Binding Nombre}" Margin="20,0,0,0" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                                                            </DataTemplate>
+                                                                        </ItemsControl.ItemTemplate>
+                                                                    </ItemsControl>
+                                                                </StackPanel>
                                                             </DataTemplate>
                                                         </ItemsControl.ItemTemplate>
                                                     </ItemsControl>
                                                 </StackPanel>
                                             </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
                                 </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                </Grid>
+                            </Grid>
+                            <Separator Margin="0,10,0,10"/>
 
-                <Separator Margin="0,10,0,10"/>
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                <Grid Margin="0,10,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Órgano judicial" FontWeight="Bold"/>
+                                    <ComboBox x:Name="OrganoJudicialComboBox" ItemsSource="{Binding TiposOrgano}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                                    <ItemsControl ItemsSource="{Binding SubTipos}">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackPanel Margin="10,0,0,0">
+                                                                    <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                                                    <ItemsControl ItemsSource="{Binding SubTipos}">
+                                                                        <ItemsControl.ItemTemplate>
+                                                                            <DataTemplate>
+                                                                                <CheckBox Content="{Binding Nombre}" Margin="20,0,0,0" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                                                            </DataTemplate>
+                                                                        </ItemsControl.ItemTemplate>
+                                                                    </ItemsControl>
+                                                                </StackPanel>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </StackPanel>
 
-                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                        <TextBlock Text="Nº ROJ" FontWeight="Bold"/>
-                        <TextBox x:Name="NumeroRojTextBox" Text="{Binding NumeroRoj, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="Sección" FontWeight="Bold"/>
+                                    <TextBox x:Name="SeccionTextBox" Text="{Binding Seccion, UpdateSourceTrigger=PropertyChanged}" Height="21"/>
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Localización" FontWeight="Bold" Margin="0,10,0,0"/>
+                            <Grid>
+                                <ComboBox x:Name="LocalizacionComboBox" ItemsSource="{Binding Localizaciones}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                                <ItemsControl ItemsSource="{Binding SubLocalizaciones}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Margin="10,0,0,0">
+                                                                <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                                                <ItemsControl ItemsSource="{Binding SubLocalizaciones}">
+                                                                    <ItemsControl.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <CheckBox Content="{Binding Nombre}" Margin="20,0,0,0" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                                                        </DataTemplate>
+                                                                    </ItemsControl.ItemTemplate>
+                                                                </ItemsControl>
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </Grid>
 
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Text="ECLI" FontWeight="Bold"/>
-                        <TextBox x:Name="EcliTextBox" Text="{Binding Ecli, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                </Grid>
+                            <Separator Margin="0,10,0,10"/>
 
-                <Grid Margin="0,10,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                        <TextBlock Text="Nº Resolución" FontWeight="Bold"/>
-                        <TextBox x:Name="NumeroResolucionTextBox" Text="{Binding NumeroResolucion, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="Nº ROJ" FontWeight="Bold"/>
+                                    <TextBox x:Name="NumeroRojTextBox" Text="{Binding NumeroRoj, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
 
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Text="Nº Recurso" FontWeight="Bold"/>
-                        <TextBox x:Name="NumeroRecursoTextBox" Text="{Binding NumeroRecurso, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                </Grid>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="ECLI" FontWeight="Bold"/>
+                                    <TextBox x:Name="EcliTextBox" Text="{Binding Ecli, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                            </Grid>
 
-                <Grid Margin="0,10,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                        <TextBlock Text="Fecha desde" FontWeight="Bold"/>
-                        <DatePicker SelectedDate="{Binding FechaDesde, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="Nº Resolución" FontWeight="Bold"/>
+                                    <TextBox x:Name="NumeroResolucionTextBox" Text="{Binding NumeroResolucion, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
 
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Text="Fecha hasta" FontWeight="Bold"/>
-                        <DatePicker SelectedDate="{Binding FechaHasta, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                </Grid>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Nº Recurso" FontWeight="Bold"/>
+                                    <TextBox x:Name="NumeroRecursoTextBox" Text="{Binding NumeroRecurso, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                            </Grid>
 
-                <Separator Margin="0,10,0,10"/>
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                <Grid Margin="0,10,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="Fecha desde" FontWeight="Bold"/>
+                                    <DatePicker SelectedDate="{Binding FechaDesde, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
 
-                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                        <TextBlock Text="Ponente" FontWeight="Bold"/>
-                        <TextBox x:Name="PonenteTextBox" Text="{Binding Ponente, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Fecha hasta" FontWeight="Bold"/>
+                                    <DatePicker SelectedDate="{Binding FechaHasta, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                            </Grid>
 
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Text="Idioma" FontWeight="Bold"/>
-                        <ComboBox x:Name="IdiomaComboBox" SelectedItem="{Binding IdiomaSeleccionado, UpdateSourceTrigger=PropertyChanged}">
-                            <ComboBoxItem Content="Todos"/>
-                            <ComboBoxItem Content="Español"/>
-                            <ComboBoxItem Content="Català"/>
-                            <ComboBoxItem Content="Galego"/>
-                            <ComboBoxItem Content="Euskera"/>
-                        </ComboBox>
-                    </StackPanel>
-                </Grid>
+                            <Separator Margin="0,10,0,10"/>
 
-                <Separator Margin="0,10,0,10"/>
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                <Grid Margin="0,10,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="Ponente" FontWeight="Bold"/>
+                                    <TextBox x:Name="PonenteTextBox" Text="{Binding Ponente, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
 
-                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                        <TextBlock Text="Legislación" FontWeight="Bold"/>
-                        <!--
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Idioma" FontWeight="Bold"/>
+                                    <ComboBox x:Name="IdiomaComboBox" SelectedItem="{Binding IdiomaSeleccionado, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBoxItem Content="Todos"/>
+                                        <ComboBoxItem Content="Español"/>
+                                        <ComboBoxItem Content="Català"/>
+                                        <ComboBoxItem Content="Galego"/>
+                                        <ComboBoxItem Content="Euskera"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+
+                            <Separator Margin="0,10,0,10"/>
+
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="Legislación" FontWeight="Bold"/>
+                                    <!--
                         <TextBox x:Name="LegislacionTextBox" Text="{Binding Legislacion, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" PreviewMouseLeftButtonUp="LegislacionTextBox_PreviewMouseLeftButtonUp"/>
                         -->
+                                </StackPanel>
+                            </Grid>
+
+                            <Separator Margin="0,10,0,10"/>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                                <Button Content="Limpiar" Style="{StaticResource RoundedButtonStyle}" Padding="10,5" Margin="0,0,10,0" Command="{Binding LimpiarCommand}"/>
+                                <Button Content="Buscar" Style="{StaticResource RoundedButtonStyle}" Background="#2563EB" Foreground="White" Padding="10,5" />
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+                <!-- Tarjeta de resultados -->
+                <Border Style="{StaticResource CardStyle}" Grid.Column="1" VerticalAlignment="Stretch">
+                    <StackPanel>
+                        <TextBlock Text="Resultados" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
+                        <!-- Aquí puedes poner un ListView o DataGrid para mostrar resultados, o dejarlo como placeholder -->
+                        <TextBlock Text="(Aquí aparecerán los resultados de la búsqueda)" Foreground="#CCCCCC" FontStyle="Italic" Margin="10"/>
                     </StackPanel>
-                </Grid>
-
-                <Separator Margin="0,10,0,10"/>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-                    <Button Content="Limpiar" Background="#E5E7EB" Padding="10,5" Margin="0,0,10,0" Command="{Binding LimpiarCommand}"/>
-                    <Button Content="Buscar" Background="#2563EB" Foreground="White" Padding="10,5" />
-                </StackPanel>
-
-            </StackPanel>
-        </Border>
+                </Border>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

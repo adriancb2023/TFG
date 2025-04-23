@@ -107,7 +107,7 @@
                             <TextBlock x:Name="inicio" Visibility="Collapsed" Text="Inicio" VerticalAlignment="Center" Margin="10,0" />
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnBuscar" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
+                    <Button x:Name="btnBuscar" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Click="irJurisprudencia">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
                             <Image x:Name="imagenBuscar2" Source="/TFG V0.01;component/Recursos/Iconos/buscar.png" Width="25" Height="25"/>
                             <TextBlock x:Name="buscar" Visibility="Collapsed" Text="Buscar Jurisprudencia" VerticalAlignment="Center" Margin="10,0" />

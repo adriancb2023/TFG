@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\App.xaml
-61935523312
+7496260160
 3-875971652
-141906268814
+15685509299
 23442985809
-MainWindow.xaml;Ventanas\BusquedaJurisprudencia.xaml;Ventanas\Documentos.xaml;Ventanas\Home.xaml;Ventanas\Login.xaml;Ventanas\Registro.xaml;
+MainWindow.xaml;Ventanas\BusquedaJurisprudencia.xaml;Ventanas\Casos.xaml;Ventanas\Documentos.xaml;Ventanas\Home.xaml;Ventanas\Login.xaml;Ventanas\Registro.xaml;
 
-True
+False
 
