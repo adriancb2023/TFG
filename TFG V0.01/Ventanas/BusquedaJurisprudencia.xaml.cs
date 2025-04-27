@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -19,11 +20,23 @@ namespace TFG_V0._01.Ventanas
     /// </summary>
     public partial class BusquedaJurisprudencia : Window
     {
+        #region variables animacion
+        private Storyboard fadeInStoryboard;
+        private Storyboard shakeStoryboard;
+        #endregion
+
+        #region Variables
+
+        #endregion
+
+        #region Inicialización
         public BusquedaJurisprudencia()
         {
             InitializeComponent();
+            InitializeAnimations();
             AplicarModoSistema();
         }
+        #endregion
 
         #region Aplicar modo oscuro/claro cargado por sistema
         private void AplicarModoSistema()
@@ -38,7 +51,7 @@ namespace TFG_V0._01.Ventanas
                 {
                     icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
                 }
-                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString("pack://application:,,,/TFG V0.01;component/Recursos/Background/oscuro/main.png") as ImageSource;
                 CambiarIconosAClaros();
                 CambiarTextosBlanco();
                 backgroun_menu.Background = new SolidColorBrush(Color.FromArgb(48, 255, 255, 255)); // Fondo semitransparente
@@ -50,7 +63,7 @@ namespace TFG_V0._01.Ventanas
                 {
                     icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
                 }
-                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString("pack://application:,,,/TFG V0.01;component/Recursos/Background/claro/main.png") as ImageSource;
                 CambiarIconosAOscuros();
                 CambiarTextosNegro();
                 backgroun_menu.Background = new SolidColorBrush(Color.FromArgb(48, 128, 128, 128)); // Gris semitransparente
@@ -185,7 +198,7 @@ namespace TFG_V0._01.Ventanas
                 }
 
                 backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(
-                    @"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
+                    "pack://application:,,,/TFG V0.01;component/Recursos/Background/claro/main.png") as ImageSource;
 
                 CambiarIconosAOscuros();
                 CambiarTextosNegro();
@@ -227,6 +240,59 @@ namespace TFG_V0._01.Ventanas
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+        #endregion
+
+        #region Animaciones
+        private void InitializeAnimations()
+        {
+            // Animación de entrada con fade
+            fadeInStoryboard = new Storyboard();
+            DoubleAnimation fadeIn = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(0.5)
+            };
+            Storyboard.SetTarget(fadeIn, this);
+            Storyboard.SetTargetProperty(fadeIn, new PropertyPath("Opacity"));
+            fadeInStoryboard.Children.Add(fadeIn);
+
+            // Animación de shake para error
+            shakeStoryboard = new Storyboard();
+            DoubleAnimation shakeAnimation = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                AutoReverse = true,
+                RepeatBehavior = new RepeatBehavior(3),
+                Duration = TimeSpan.FromSeconds(0.05)
+            };
+
+            shakeStoryboard.Children.Add(shakeAnimation);
+        }
+
+        private void BeginFadeInAnimation()
+        {
+            this.Opacity = 0;
+            fadeInStoryboard.Begin();
+        }
+
+        private void ShakeElement(FrameworkElement element)
+        {
+            TranslateTransform trans = new TranslateTransform();
+            element.RenderTransform = trans;
+
+            DoubleAnimation anim = new DoubleAnimation
+            {
+                From = 0,
+                To = 5,
+                AutoReverse = true,
+                RepeatBehavior = new RepeatBehavior(3),
+                Duration = TimeSpan.FromSeconds(0.05)
+            };
+
+            trans.BeginAnimation(TranslateTransform.XProperty, anim);
         }
         #endregion
 

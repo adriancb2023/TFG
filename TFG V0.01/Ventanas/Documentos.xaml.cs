@@ -27,6 +27,12 @@ namespace TFG_V0._01.Ventanas
     /// </summary>
     public partial class Documentos : Window
     {
+        #region variables animacion
+        private Storyboard fadeInStoryboard;
+        private Storyboard shakeStoryboard;
+        #endregion
+
+
         #region variables
         private readonly SupaBaseStorage _supaBaseStorage;
         #endregion
@@ -36,6 +42,7 @@ namespace TFG_V0._01.Ventanas
             InitializeComponent();
             _supaBaseStorage = new SupaBaseStorage("https://ddwyrkqxpmwlznjfjrwv.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkd3lya3F4cG13bHpuamZqcnd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQzOTcwNjQsImV4cCI6MjA1OTk3MzA2NH0.G2LzHWbC09LC69bj9wONzhD_a6AfFI1ZYFuQ3KD7XhI");
             _supaBaseStorage.InicializarAsync().Wait();
+            InitializeAnimations();
             AplicarModoSistema();
         }
 
@@ -52,7 +59,7 @@ namespace TFG_V0._01.Ventanas
                 {
                     icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
                 }
-                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString("pack://application:,,,/TFG V0.01;component/Recursos/Background/oscuro/main.png") as ImageSource;
                 CambiarIconosAClaros();
                 CambiarTextosBlanco();
                 backgroun_menu.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(48, 255, 255, 255)); // Fondo semitransparente
@@ -64,7 +71,7 @@ namespace TFG_V0._01.Ventanas
                 {
                     icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
                 }
-                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(@"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString("pack://application:,,,/TFG V0.01;component/Recursos/Background/claro/main.png") as ImageSource;
                 CambiarIconosAOscuros();
                 CambiarTextosNegro();
                 backgroun_menu.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(48, 128, 128, 128)); // Gris semitransparente
@@ -219,6 +226,59 @@ namespace TFG_V0._01.Ventanas
         }
         #endregion
 
+        #region Animaciones
+        private void InitializeAnimations()
+        {
+            // Animación de entrada con fade
+            fadeInStoryboard = new Storyboard();
+            DoubleAnimation fadeIn = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(0.5)
+            };
+            Storyboard.SetTarget(fadeIn, this);
+            Storyboard.SetTargetProperty(fadeIn, new PropertyPath("Opacity"));
+            fadeInStoryboard.Children.Add(fadeIn);
+
+            // Animación de shake para error
+            shakeStoryboard = new Storyboard();
+            DoubleAnimation shakeAnimation = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                AutoReverse = true,
+                RepeatBehavior = new RepeatBehavior(3),
+                Duration = TimeSpan.FromSeconds(0.05)
+            };
+
+            shakeStoryboard.Children.Add(shakeAnimation);
+        }
+
+        private void BeginFadeInAnimation()
+        {
+            this.Opacity = 0;
+            fadeInStoryboard.Begin();
+        }
+
+        private void ShakeElement(FrameworkElement element)
+        {
+            TranslateTransform trans = new TranslateTransform();
+            element.RenderTransform = trans;
+
+            DoubleAnimation anim = new DoubleAnimation
+            {
+                From = 0,
+                To = 5,
+                AutoReverse = true,
+                RepeatBehavior = new RepeatBehavior(3),
+                Duration = TimeSpan.FromSeconds(0.05)
+            };
+
+            trans.BeginAnimation(TranslateTransform.XProperty, anim);
+        }
+        #endregion
+
         #region Control de ventana sin bordes
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -327,5 +387,7 @@ namespace TFG_V0._01.Ventanas
             }
         }
         #endregion
+
+
     }
 }
