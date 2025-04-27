@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\home.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\home.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\clientes.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\clientes.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\clientes.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\clientes.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\ajustes.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\ajustes.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -61,51 +69,72 @@
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Ajustes.xaml",
-              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Ajustes.xaml",
-              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\Ajustes.xaml",
-              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Ajustes.xaml",
-              "RelativeToolTip": "TFG V0.01\\Ventanas\\Ajustes.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-27T17:10:22.374Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Login.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Login.xaml.cs",
+              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\Login.xaml.cs",
+              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Login.xaml.cs",
+              "RelativeToolTip": "TFG V0.01\\Ventanas\\Login.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGMAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T19:17:16.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "TFG V0.01\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\MainWindow.xaml.cs",
+              "RelativeToolTip": "TFG V0.01\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T18:55:49.63Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Clientes.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Clientes.xaml.cs",
               "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\Clientes.xaml.cs",
               "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Clientes.xaml.cs",
               "RelativeToolTip": "TFG V0.01\\Ventanas\\Clientes.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG8BAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAIkAAAAAAAAAAADwvzMBAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T17:09:29.361Z",
+              "WhenOpened": "2025-04-27T18:19:51.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Home.xaml",
+              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml",
+              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\Home.xaml",
+              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml",
+              "RelativeToolTip": "TFG V0.01\\Ventanas\\Home.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-27T18:09:09.235Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Clientes.xaml",
-              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Clientes.xaml",
-              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\Clientes.xaml",
-              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Clientes.xaml",
-              "RelativeToolTip": "TFG V0.01\\Ventanas\\Clientes.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-27T17:09:02.826Z",
+              "Title": "Home.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml.cs",
+              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\Home.xaml.cs",
+              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml.cs",
+              "RelativeToolTip": "TFG V0.01\\Ventanas\\Home.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJwAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T17:47:48.556Z",
               "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 57,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             }
           ]
         },
