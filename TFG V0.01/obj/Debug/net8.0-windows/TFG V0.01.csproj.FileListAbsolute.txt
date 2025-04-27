@@ -106,3 +106,11 @@ C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\ref\TFG V0.01.dll
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Casos.g.cs
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Casos.baml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Agenda.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ajustes.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ayuda.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Clientes.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Agenda.baml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ajustes.baml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ayuda.baml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Clientes.baml

@@ -256,9 +256,9 @@ namespace TFG_V0._01.Ventanas
 
         private void irClientes(object sender, RoutedEventArgs e)
         {
-            //Clientes clientes = new Clientes();
-            //clientes.Show();
-            //this.Close();
+            Clientes clientes = new Clientes();
+            clientes.Show();
+            this.Close();
         }
 
         private void irCasos(object sender, RoutedEventArgs e)
@@ -270,23 +270,23 @@ namespace TFG_V0._01.Ventanas
 
         private void irAyuda(object sender, RoutedEventArgs e)
         {
-            //Ayuda ayuda = new Ayuda();
-            //ayuda.Show();
-            //this.Close();
+            Ayuda ayuda = new Ayuda();
+            ayuda.Show();
+            this.Close();
         }
 
         private void irAgenda(object sender, RoutedEventArgs e)
         {
-            //Agenda agenda = new Agenda();
-            //agenda.Show();
-            //this.Close();
+            Agenda agenda = new Agenda();
+            agenda.Show();
+            this.Close();
         }
 
         private void irAjustes(object sender, RoutedEventArgs e)
         {
-            //Ajustes ajustes = new Ajustes();
-            //ajustes.Show();
-            //this.Close();
+            Ajustes ajustes = new Ajustes();
+            ajustes.Show();
+            this.Close();
         }
         #endregion
 
