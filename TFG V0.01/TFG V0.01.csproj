@@ -23,6 +23,7 @@
     <None Remove="Recursos\Background\oscuro\main.png" />
     <None Remove="Recursos\Background\oscuro\mod1.png" />
     <None Remove="Recursos\Background\oscuro\mod2.png" />
+    <None Remove="Recursos\ER BBDD\ChatGPT Image 29 abr 2025, 20_22_38.png" />
     <None Remove="Recursos\Iconos\ajustes.png" />
     <None Remove="Recursos\Iconos\ajustes2.png" />
     <None Remove="Recursos\Iconos\ayuda.png" />
@@ -55,7 +56,6 @@
 
   <ItemGroup>
     <Folder Include="Recursos\Imagenes\" />
-    <Folder Include="Recursos\ER BBDD\" />
     <Folder Include="Recursos\Raw\" />
   </ItemGroup>
 
@@ -67,6 +67,7 @@
     <Resource Include="Recursos\Background\oscuro\main.png" />
     <Resource Include="Recursos\Background\oscuro\mod1.png" />
     <Resource Include="Recursos\Background\oscuro\mod2.png" />
+    <Resource Include="Recursos\ER BBDD\ChatGPT Image 29 abr 2025, 20_22_38.png" />
     <Resource Include="Recursos\Iconos\agenda2.png" />
     <Resource Include="Recursos\Iconos\agenda.png" />
     <Resource Include="Recursos\Iconos\ajustes.png" />
