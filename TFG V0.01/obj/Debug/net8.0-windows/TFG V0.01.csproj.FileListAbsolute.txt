@@ -178,3 +178,8 @@ C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\obj\Debug\net8.0-windo
 C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.pdb
 C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.genruntimeconfig.cache
 C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\obj\Debug\net8.0-windows\ref\TFG V0.01.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\selenium-manager\linux\selenium-manager
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\selenium-manager\macos\selenium-manager
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\selenium-manager\windows\selenium-manager.exe
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\WebDriver.Support.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\WebDriver.dll

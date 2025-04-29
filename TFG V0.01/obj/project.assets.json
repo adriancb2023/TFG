@@ -398,6 +398,44 @@
           "Microsoft.WindowsDesktop.App.WPF"
         ]
       },
+      "Selenium.Support/4.31.0": {
+        "type": "package",
+        "dependencies": {
+          "Selenium.WebDriver": "4.31.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/WebDriver.Support.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/WebDriver.Support.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Selenium.WebDriver/4.31.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/WebDriver.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/WebDriver.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/Selenium.WebDriver.targets": {}
+        }
+      },
+      "Selenium.WebDriver.ChromeDriver/135.0.7049.11400": {
+        "type": "package",
+        "build": {
+          "build/Selenium.WebDriver.ChromeDriver.targets": {}
+        }
+      },
       "Supabase/1.1.1": {
         "type": "package",
         "dependencies": {
@@ -1377,6 +1415,66 @@
         "panuon.ui.silver.nuspec"
       ]
     },
+    "Selenium.Support/4.31.0": {
+      "sha512": "dAGFDnl5rGc7eG12PJfrEU25+LMWUkBcCzp9VsJh+L4xfa6aQ7/7KSnCWDJUxiK9CjWgWJGkNYWVR7OawGvb1Q==",
+      "type": "package",
+      "path": "selenium.support/4.31.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/netstandard2.0/WebDriver.Support.dll",
+        "lib/netstandard2.0/WebDriver.Support.xml",
+        "selenium.support.4.31.0.nupkg.sha512",
+        "selenium.support.nuspec"
+      ]
+    },
+    "Selenium.WebDriver/4.31.0": {
+      "sha512": "RT5Pg6UVyxe/+S/H808VAbfXX4kHQdvo/U28oViwUcCpC4WL7zHq2GgxY/b9zNLTcwJ8zfqu+WmHPifkTx+BCQ==",
+      "type": "package",
+      "path": "selenium.webdriver/4.31.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/Selenium.WebDriver.targets",
+        "buildTransitive/Selenium.WebDriver.targets",
+        "icon.png",
+        "lib/net8.0/WebDriver.dll",
+        "lib/net8.0/WebDriver.xml",
+        "lib/netstandard2.0/WebDriver.dll",
+        "lib/netstandard2.0/WebDriver.xml",
+        "manager/linux/selenium-manager",
+        "manager/macos/selenium-manager",
+        "manager/windows/selenium-manager.exe",
+        "selenium.webdriver.4.31.0.nupkg.sha512",
+        "selenium.webdriver.nuspec"
+      ]
+    },
+    "Selenium.WebDriver.ChromeDriver/135.0.7049.11400": {
+      "sha512": "T1CR88WpX8ZuHeD67kINWeca8WmqXPNnnVnS3kxy8557Yi7mXD/RpIKq0wNnHuqAFTVVtdGBFwsX1pj/NRDFEw==",
+      "type": "package",
+      "path": "selenium.webdriver.chromedriver/135.0.7049.11400",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "build/DefinePropertiesChromeDriver.targets",
+        "build/Selenium.WebDriver.ChromeDriver.targets",
+        "driver/linux64/LICENSE.chromedriver",
+        "driver/linux64/chromedriver",
+        "driver/mac64/LICENSE.chromedriver",
+        "driver/mac64/chromedriver",
+        "driver/mac64arm/LICENSE.chromedriver",
+        "driver/mac64arm/chromedriver",
+        "driver/win32/LICENSE.chromedriver",
+        "driver/win32/chromedriver.exe",
+        "nupkg-icon.png",
+        "selenium.webdriver.chromedriver.135.0.7049.11400.nupkg.sha512",
+        "selenium.webdriver.chromedriver.nuspec"
+      ]
+    },
     "Supabase/1.1.1": {
       "sha512": "LW9O05IiZBW3YUDT/gndPKvzT3I7PVgx0j87+AdJu7mT42m7oh2nOnjuDR9pU0E9FE2Ke/QGovrH/u5OjGn7lg==",
       "type": "package",
@@ -1771,6 +1869,9 @@
       "Microsoft.Extensions.Configuration.Json >= 9.0.4",
       "Microsoft.Web.WebView2 >= 1.0.3179.45",
       "Panuon.UI.Silver >= 1.1.3.4",
+      "Selenium.Support >= 4.31.0",
+      "Selenium.WebDriver >= 4.31.0",
+      "Selenium.WebDriver.ChromeDriver >= 135.0.7049.11400",
       "Supabase >= 1.1.1",
       "Supabase.Core >= 1.0.0",
       "Supabase.Storage >= 2.0.2"
@@ -1849,6 +1950,18 @@
           "Panuon.UI.Silver": {
             "target": "Package",
             "version": "[1.1.3.4, )"
+          },
+          "Selenium.Support": {
+            "target": "Package",
+            "version": "[4.31.0, )"
+          },
+          "Selenium.WebDriver": {
+            "target": "Package",
+            "version": "[4.31.0, )"
+          },
+          "Selenium.WebDriver.ChromeDriver": {
+            "target": "Package",
+            "version": "[135.0.7049.11400, )"
           },
           "Supabase": {
             "target": "Package",
