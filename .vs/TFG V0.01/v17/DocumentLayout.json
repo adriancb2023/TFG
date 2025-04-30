@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 99,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -59,18 +54,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Home.xaml",
-              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml",
-              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\Home.xaml",
-              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml",
-              "RelativeToolTip": "TFG V0.01\\Ventanas\\Home.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-29T21:45:21.496Z",
-              "EditorCaption": ""
             }
           ]
         },

@@ -117,6 +117,9 @@ namespace TFG_V0._01.Ventanas
             CambiarColorTexto("btnDocumentos", Colors.Black);
             CambiarColorTexto("btnHome", Colors.Black);
             CambiarColorTexto("btnBuscar", Colors.Black);
+            CambiarColorTexto("titulo", Colors.Black);
+            CambiarColorTexto("recordatorios", Colors.Black);
+            CambiarColorTexto("eventosdia", Colors.Black);
         }
 
         private void CambiarTextosBlanco()
@@ -129,6 +132,10 @@ namespace TFG_V0._01.Ventanas
             CambiarColorTexto("btnDocumentos", Colors.White);
             CambiarColorTexto("btnHome", Colors.White);
             CambiarColorTexto("btnBuscar", Colors.White);
+
+            CambiarColorTexto("titulo", Colors.White);
+            CambiarColorTexto("recordatorios", Colors.White);
+            CambiarColorTexto("eventosdia", Colors.White);
         }
 
         private void CambiarColorTexto(string nombreElemento, Color color)
@@ -137,6 +144,12 @@ namespace TFG_V0._01.Ventanas
             if (boton != null)
             {
                 boton.Foreground = new SolidColorBrush(color);
+            }
+
+            var texto = this.FindName(nombreElemento) as TextBlock;
+            if (texto != null)
+            {
+                texto.Foreground = new SolidColorBrush(color);
             }
         }
         #endregion

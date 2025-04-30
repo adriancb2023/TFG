@@ -146,5 +146,10 @@ namespace TFG_V0._01
             this.Close();
         }
         #endregion
+
+        private void MinimizeWindow_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }

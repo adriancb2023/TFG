@@ -4,13 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TFG_V0._01.Ventanas"
-        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
-        Title="TFG  v0.01" Height="850" Width="1200"
-        WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
-        AllowsTransparency="True"
-        Background="Transparent">
+        Title="Home" Height="850" Width="1200"
+        WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <!-- Window Control Button Style -->
@@ -111,542 +107,517 @@
 
     </Window.Resources>
 
-    <Border CornerRadius="20" Background="#FF1A1A2E"  >
-        <Grid>
-            <!-- Custom Title Bar -->
-            <Grid Height="32" VerticalAlignment="Top" Margin="0,0,0,0">
+
+
+    <!-- Main Content -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="AUTO" />
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <!-- Fondo -->
+        <Grid.Background>
+            <ImageBrush x:Name="backgroundFondo" ImageSource="/TFG V0.01;component/Recursos/Background/oscuro/main.png"/>
+        </Grid.Background>
+        <!-- Navbar -->
+        <Grid x:Name="menu" Grid.Column="0" Visibility="Visible" MouseEnter="Menu_MouseEnter" MouseLeave="Menu_MouseLeave" >
+            <Border x:Name="backgroun_menu" BorderBrush="#454545" BorderThickness="0" Margin="0,0,0,0" CornerRadius="15" Background="#30FFFFFF" VerticalAlignment="Center">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15" Direction="-90" 
+                      RenderingBias="Quality" ShadowDepth="2" 
+                      Color="#20000000"/>
+                </Border.Effect>
+                <StackPanel VerticalAlignment="Center">
+                    <Button x:Name="btnHome" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irHome" >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" >
+                            <Image x:Name="imagenHome2" Source="/TFG V0.01;component/Recursos/Iconos/home.png" Width="25" Height="25"/>
+                            <TextBlock x:Name="inicio" Visibility="Collapsed" Text="Inicio" VerticalAlignment="Center" Margin="10,0" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnBuscar" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Click="irJurisprudencia">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
+                            <Image x:Name="imagenBuscar2" Source="/TFG V0.01;component/Recursos/Iconos/buscar.png" Width="25" Height="25"/>
+                            <TextBlock x:Name="buscar" Visibility="Collapsed" Text="Buscar Jurisprudencia" VerticalAlignment="Center" Margin="10,0" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnAgenda" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irAgenda">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" Background="Transparent" >
+                            <Image x:Name="imagenAgenda2" Source="/TFG V0.01;component/Recursos/Iconos/agenda.png" Width="25" Height="25"/>
+                            <TextBlock x:Name="agenda" Visibility="Collapsed" Text="Agenda" VerticalAlignment="Center" Margin="10,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnCasos" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irCasos" >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" >
+                            <Image x:Name="imagenCasos2" Source="/TFG V0.01;component/Recursos/Iconos/casos.png" Width="25" Height="25"/>
+                            <TextBlock x:Name="casos" Visibility="Collapsed" Text="Casos" VerticalAlignment="Center" Margin="10,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnClientes" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irClientes" >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
+                            <Image x:Name="imagenClientes2" Source="/TFG V0.01;component/Recursos/Iconos/clientes.png" Width="25" Height="25"/>
+                            <TextBlock x:Name="clientes" Visibility="Collapsed" Text="Clientes" VerticalAlignment="Center" Margin="10,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnDocumentos" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irDocumentos">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
+                            <Image x:Name="imagenDocumentos2" Source="/TFG V0.01;component/Recursos/Iconos/documentos.png" Width="25" Height="25"/>
+                            <TextBlock x:Name="documentos" Visibility="Collapsed" Text="Documentos" VerticalAlignment="Center" Margin="10,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnAjustes" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irAjustes" >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
+                            <Image x:Name="imagenAjustes2" Source="/TFG V0.01;component/Recursos/Iconos/ajustes.png" Width="25" Height="25"/>
+                            <TextBlock x:Name="ajustes" Visibility="Collapsed" Text="Ajustes" VerticalAlignment="Center" Margin="10,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnAyuda" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent"  Click="irAyuda">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
+                            <Image x:Name="imagenAyuda2" Source="/TFG V0.01;component/Recursos/Iconos/ayuda.png" Width="25" Height="25"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <!-- Claro/Oscuro  -->
+        <Button x:Name="ThemeButton" Width="35" Height="35" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="ThemeButton_Click" Style="{StaticResource ThemeButtonStyle}" Grid.Column="2"/>
+
+
+        <!-- Contenido -->
+        <!-- Dashboard Content for Grid Column="2" -->
+        <Grid Grid.Column="2" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.10*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header Section -->
+            <Grid Grid.Row="0" Margin="0,10,0,20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="TFG v0.01" Foreground="White" FontSize="14" 
-                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <StackPanel Grid.Column="0">
+                    <TextBlock x:Name="txtBienvenida" Text="Bienvenido, Usuario" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock x:Name="txtPanelControl" Text="Panel de Control" FontSize="16" Foreground="#CCFFFFFF" Margin="0,5,0,0"/>
+                </StackPanel>
 
-                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button x:Name="MinimizeButton" Style="{StaticResource WindowControlButton}" >
-                        <Path Data="M0,0 L8,0" Stroke="White" StrokeThickness="1" />
-                    </Button>
-                    <Button x:Name="MaximizeButton" Style="{StaticResource WindowControlButton}" >
-                        <Path Data="M0,0 L8,0 L8,8 L0,8 Z" Stroke="White" StrokeThickness="1" Fill="Transparent"/>
-                    </Button>
-                    <Button x:Name="CloseButton" Style="{StaticResource WindowControlButton}" >
-                        <Path Data="M0,0 L8,8 M8,0 L0,8" Stroke="White" StrokeThickness="1"/>
-                    </Button>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Background="#30FFFFFF" CornerRadius="20" Padding="15,8" Margin="0,0,15,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/TFG V0.01;component/Recursos/Iconos/home.png" Width="20" Height="20"/>
+                            <TextBlock Text="5" Foreground="White" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#30FFFFFF" CornerRadius="20" Padding="15,8">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/TFG V0.01;component/Recursos/Iconos/clientes.png" Width="20" Height="20"/>
+                            <TextBlock Text="Perfil" Foreground="White" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
             </Grid>
 
-            <!-- Main Content -->
-            <Grid Margin="0,32,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="AUTO" />
-                    <ColumnDefinition Width="2" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <!-- Fondo -->
-                <Grid.Background>
-                    <ImageBrush x:Name="backgroundFondo" ImageSource="/TFG V0.01;component/Recursos/Background/oscuro/main.png"/>
-                </Grid.Background>
-                <!-- Navbar -->
-                <Grid x:Name="menu" Grid.Column="0" Visibility="Visible" MouseEnter="Menu_MouseEnter" MouseLeave="Menu_MouseLeave" >
-                    <Border x:Name="backgroun_menu" BorderBrush="#454545" BorderThickness="0" Margin="0,0,0,0" CornerRadius="15" Background="#30FFFFFF" VerticalAlignment="Center">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" Direction="-90" 
-                      RenderingBias="Quality" ShadowDepth="2" 
-                      Color="#20000000"/>
-                        </Border.Effect>
-                        <StackPanel VerticalAlignment="Center">
-                            <Button x:Name="btnHome" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irHome" >
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" >
-                                    <Image x:Name="imagenHome2" Source="/TFG V0.01;component/Recursos/Iconos/home.png" Width="25" Height="25"/>
-                                    <TextBlock x:Name="inicio" Visibility="Collapsed" Text="Inicio" VerticalAlignment="Center" Margin="10,0" />
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="btnBuscar" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Click="irJurisprudencia">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                                    <Image x:Name="imagenBuscar2" Source="/TFG V0.01;component/Recursos/Iconos/buscar.png" Width="25" Height="25"/>
-                                    <TextBlock x:Name="buscar" Visibility="Collapsed" Text="Buscar Jurisprudencia" VerticalAlignment="Center" Margin="10,0" />
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="btnAgenda" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irAgenda">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" Background="Transparent" >
-                                    <Image x:Name="imagenAgenda2" Source="/TFG V0.01;component/Recursos/Iconos/agenda.png" Width="25" Height="25"/>
-                                    <TextBlock x:Name="agenda" Visibility="Collapsed" Text="Agenda" VerticalAlignment="Center" Margin="10,0"/>
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="btnCasos" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irCasos" >
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" >
-                                    <Image x:Name="imagenCasos2" Source="/TFG V0.01;component/Recursos/Iconos/casos.png" Width="25" Height="25"/>
-                                    <TextBlock x:Name="casos" Visibility="Collapsed" Text="Casos" VerticalAlignment="Center" Margin="10,0"/>
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="btnClientes" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irClientes" >
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                                    <Image x:Name="imagenClientes2" Source="/TFG V0.01;component/Recursos/Iconos/clientes.png" Width="25" Height="25"/>
-                                    <TextBlock x:Name="clientes" Visibility="Collapsed" Text="Clientes" VerticalAlignment="Center" Margin="10,0"/>
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="btnDocumentos" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irDocumentos">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                                    <Image x:Name="imagenDocumentos2" Source="/TFG V0.01;component/Recursos/Iconos/documentos.png" Width="25" Height="25"/>
-                                    <TextBlock x:Name="documentos" Visibility="Collapsed" Text="Documentos" VerticalAlignment="Center" Margin="10,0"/>
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="btnAjustes" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irAjustes" >
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                                    <Image x:Name="imagenAjustes2" Source="/TFG V0.01;component/Recursos/Iconos/ajustes.png" Width="25" Height="25"/>
-                                    <TextBlock x:Name="ajustes" Visibility="Collapsed" Text="Ajustes" VerticalAlignment="Center" Margin="10,0"/>
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="btnAyuda" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent"  Click="irAyuda">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
-                                    <Image x:Name="imagenAyuda2" Source="/TFG V0.01;component/Recursos/Iconos/ayuda.png" Width="25" Height="25"/>
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
-                    </Border>
-                </Grid>
-                <!-- Claro/Oscuro  -->
-                <Button x:Name="ThemeButton" Width="35" Height="35" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="ThemeButton_Click" Style="{StaticResource ThemeButtonStyle}" Grid.Column="2"/>
-
-
-                <!-- Contenido -->
-                <!-- Dashboard Content for Grid Column="2" -->
-                <Grid Grid.Column="2" Margin="20">
+            <!-- Main Dashboard Content -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="0.10*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <!-- Header Section -->
-                    <Grid Grid.Row="0" Margin="0,10,0,20">
+                    <!-- First Row - Summary Cards -->
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0">
-                            <TextBlock x:Name="txtBienvenida" Text="Bienvenido, Usuario" FontSize="24" FontWeight="Bold" Foreground="White"/>
-                            <TextBlock Text="Panel de Control" FontSize="16" Foreground="#CCFFFFFF" Margin="0,5,0,0"/>
-                        </StackPanel>
+                        <!-- Casos Activos Card -->
+                        <Border Grid.Column="0" Style="{StaticResource CardStyle}" Margin="0,0,10,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Casos Activos" FontSize="14" Foreground="#CCFFFFFF" Grid.Row="0"/>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="12" FontSize="36" FontWeight="Bold" Foreground="White"/>
+                                    <Border Background="#4CAF50" CornerRadius="5" Padding="5,2" Margin="15,10,0,0" VerticalAlignment="Top">
+                                        <TextBlock Text="+2" FontSize="12" Foreground="White"/>
+                                    </Border>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
 
-                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                            <Border Background="#30FFFFFF" CornerRadius="20" Padding="15,8" Margin="0,0,15,0">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/TFG V0.01;component/Recursos/Iconos/home.png" Width="20" Height="20"/>
-                                    <TextBlock Text="5" Foreground="White" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                        <!-- Clientes Card -->
+                        <Border Grid.Column="1" Style="{StaticResource CardStyle}" Margin="10,0,10,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Clientes" FontSize="14" Foreground="#CCFFFFFF" Grid.Row="0"/>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="48" FontSize="36" FontWeight="Bold" Foreground="White"/>
+                                    <Border Background="#2196F3" CornerRadius="5" Padding="5,2" Margin="15,10,0,0" VerticalAlignment="Top">
+                                        <TextBlock Text="+5" FontSize="12" Foreground="White"/>
+                                    </Border>
                                 </StackPanel>
-                            </Border>
-                            <Border Background="#30FFFFFF" CornerRadius="20" Padding="15,8">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/TFG V0.01;component/Recursos/Iconos/clientes.png" Width="20" Height="20"/>
-                                    <TextBlock Text="Perfil" Foreground="White" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+
+                        <!-- Documentos Card -->
+                        <Border Grid.Column="2" Style="{StaticResource CardStyle}" Margin="10,0,10,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Documentos" FontSize="14" Foreground="#CCFFFFFF" Grid.Row="0"/>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="156" FontSize="36" FontWeight="Bold" Foreground="White"/>
+                                    <Border Background="#FF9800" CornerRadius="5" Padding="5,2" Margin="15,10,0,0" VerticalAlignment="Top">
+                                        <TextBlock Text="+23" FontSize="12" Foreground="White"/>
+                                    </Border>
                                 </StackPanel>
-                            </Border>
-                        </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <!-- Eventos Card -->
+                        <Border Grid.Column="3" Style="{StaticResource CardStyle}" Margin="10,0,0,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Eventos Próximos" FontSize="14" Foreground="#CCFFFFFF" Grid.Row="0"/>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="8" FontSize="36" FontWeight="Bold" Foreground="White"/>
+                                    <Border Background="#E91E63" CornerRadius="5" Padding="5,2" Margin="15,10,0,0" VerticalAlignment="Top">
+                                        <TextBlock Text="Hoy" FontSize="12" Foreground="White"/>
+                                    </Border>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
                     </Grid>
 
-                    <!-- Main Dashboard Content -->
-                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                    <!-- Second Row - Calendar and Tasks -->
+                    <Grid Grid.Row="1" Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
 
-                            <!-- First Row - Summary Cards -->
-                            <Grid Grid.Row="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                        <!-- Calendar Card -->
+                        <Border Grid.Column="0" Style="{StaticResource CardStyle}" Margin="0,0,10,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
 
-                                <!-- Casos Activos Card -->
-                                <Border Grid.Column="0" Style="{StaticResource CardStyle}" Margin="0,0,10,0">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Text="Casos Activos" FontSize="14" Foreground="#CCFFFFFF" Grid.Row="0"/>
-                                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,15,0,0">
-                                            <TextBlock Text="12" FontSize="36" FontWeight="Bold" Foreground="White"/>
-                                            <Border Background="#4CAF50" CornerRadius="5" Padding="5,2" Margin="15,10,0,0" VerticalAlignment="Top">
-                                                <TextBlock Text="+2" FontSize="12" Foreground="White"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </Grid>
-                                </Border>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Name="txtTituloCalendario" Text="Calendario - Abril 2025" FontSize="16" FontWeight="SemiBold" Foreground="White"/>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <Button Content="&lt;" Style="{StaticResource RoundedButtonStyle}" Width="30" Height="30" Margin="0,0,5,0" Background="#30FFFFFF"/>
+                                        <Button Content="&gt;" Style="{StaticResource RoundedButtonStyle}" Width="30" Height="30" Background="#30FFFFFF"/>
+                                    </StackPanel>
+                                </Grid>
 
-                                <!-- Clientes Card -->
-                                <Border Grid.Column="1" Style="{StaticResource CardStyle}" Margin="10,0,10,0">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Text="Clientes" FontSize="14" Foreground="#CCFFFFFF" Grid.Row="0"/>
-                                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,15,0,0">
-                                            <TextBlock Text="48" FontSize="36" FontWeight="Bold" Foreground="White"/>
-                                            <Border Background="#2196F3" CornerRadius="5" Padding="5,2" Margin="15,10,0,0" VerticalAlignment="Top">
-                                                <TextBlock Text="+5" FontSize="12" Foreground="White"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </Grid>
-                                </Border>
-
-                                <!-- Documentos Card -->
-                                <Border Grid.Column="2" Style="{StaticResource CardStyle}" Margin="10,0,10,0">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Text="Documentos" FontSize="14" Foreground="#CCFFFFFF" Grid.Row="0"/>
-                                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,15,0,0">
-                                            <TextBlock Text="156" FontSize="36" FontWeight="Bold" Foreground="White"/>
-                                            <Border Background="#FF9800" CornerRadius="5" Padding="5,2" Margin="15,10,0,0" VerticalAlignment="Top">
-                                                <TextBlock Text="+23" FontSize="12" Foreground="White"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </Grid>
-                                </Border>
-
-                                <!-- Eventos Card -->
-                                <Border Grid.Column="3" Style="{StaticResource CardStyle}" Margin="10,0,0,0">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Text="Eventos Próximos" FontSize="14" Foreground="#CCFFFFFF" Grid.Row="0"/>
-                                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,15,0,0">
-                                            <TextBlock Text="8" FontSize="36" FontWeight="Bold" Foreground="White"/>
-                                            <Border Background="#E91E63" CornerRadius="5" Padding="5,2" Margin="15,10,0,0" VerticalAlignment="Top">
-                                                <TextBlock Text="Hoy" FontSize="12" Foreground="White"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </Grid>
-                                </Border>
-                            </Grid>
-
-                            <!-- Second Row - Calendar and Tasks -->
-                            <Grid Grid.Row="1" Margin="0,20,0,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <!-- Calendar Card -->
-                                <Border Grid.Column="0" Style="{StaticResource CardStyle}" Margin="0,0,10,0">
+                                <Grid Grid.Row="1" Margin="0,15,0,0">
+                                    <!-- Simplified Calendar View -->
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
 
+                                        <!-- Days of Week -->
                                         <Grid Grid.Row="0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Text="Calendario - Abril 2025" FontSize="16" FontWeight="SemiBold" Foreground="White"/>
-                                            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                                <Button Content="&lt;" Style="{StaticResource RoundedButtonStyle}" Width="30" Height="30" Margin="0,0,5,0" Background="#30FFFFFF"/>
-                                                <Button Content="&gt;" Style="{StaticResource RoundedButtonStyle}" Width="30" Height="30" Background="#30FFFFFF"/>
+                                            <TextBlock Grid.Column="0" Text="Lun" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
+                                            <TextBlock Grid.Column="1" Text="Mar" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
+                                            <TextBlock Grid.Column="2" Text="Mié" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
+                                            <TextBlock Grid.Column="3" Text="Jue" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
+                                            <TextBlock Grid.Column="4" Text="Vie" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
+                                            <TextBlock Grid.Column="5" Text="Sáb" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
+                                            <TextBlock Grid.Column="6" Text="Dom" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
+                                        </Grid>
+
+                                        <!-- Calendar Events -->
+                                        <Grid Grid.Row="1" Margin="0,10,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- Event 1 -->
+                                            <Border Grid.Row="0" Background="#3F51B5" CornerRadius="10" Padding="10" Margin="0,5,0,5">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Border Grid.Column="0" Background="#30FFFFFF" CornerRadius="5" Padding="8,5" Margin="0,0,10,0">
+                                                        <TextBlock Text="17" FontWeight="Bold" Foreground="White"/>
+                                                    </Border>
+                                                    <StackPanel Grid.Column="1">
+                                                        <TextBlock x:Name="txtEvento1Titulo" Text="Audiencia Preliminar" FontWeight="SemiBold" Foreground="White"/>
+                                                        <TextBlock x:Name="txtEvento1Descripcion" Text="Caso Martínez vs. Corporación XYZ" Foreground="#CCFFFFFF" FontSize="12"/>
+                                                        <TextBlock x:Name="txtEvento1Horario" Text="10:00 - 12:00 | Sala 305" Foreground="#CCFFFFFF" FontSize="12" Margin="0,5,0,0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+
+                                            <!-- Event 2 -->
+                                            <Border Grid.Row="1" Background="#009688" CornerRadius="10" Padding="10" Margin="0,5,0,5">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Border Grid.Column="0" Background="#30FFFFFF" CornerRadius="5" Padding="8,5" Margin="0,0,10,0">
+                                                        <TextBlock Text="18" FontWeight="Bold" Foreground="White"/>
+                                                    </Border>
+                                                    <StackPanel Grid.Column="1">
+                                                        <TextBlock x:Name="txtEvento2Titulo" Text="Reunión con Cliente" FontWeight="SemiBold" Foreground="White"/>
+                                                        <TextBlock x:Name="txtEvento2Descripcion" Text="Revisión de Contrato - Empresa ABC" Foreground="#CCFFFFFF" FontSize="12"/>
+                                                        <TextBlock x:Name="txtEvento2Horario" Text="15:30 - 16:30 | Oficina Principal" Foreground="#CCFFFFFF" FontSize="12" Margin="0,5,0,0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+
+                                            <!-- Event 3 -->
+                                            <Border Grid.Row="2" Background="#FF5722" CornerRadius="10" Padding="10" Margin="0,5,0,5">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Border Grid.Column="0" Background="#30FFFFFF" CornerRadius="5" Padding="8,5" Margin="0,0,10,0">
+                                                        <TextBlock Text="20" FontWeight="Bold" Foreground="White"/>
+                                                    </Border>
+                                                    <StackPanel Grid.Column="1">
+                                                        <TextBlock x:Name="txtEvento3Titulo" Text="Fecha Límite" FontWeight="SemiBold" Foreground="White"/>
+                                                        <TextBlock x:Name="txtEvento3Descripcion" Text="Presentación de Recurso - Caso Rodríguez" Foreground="#CCFFFFFF" FontSize="12"/>
+                                                        <TextBlock x:Name="txtEvento3Horario" Text="Antes de las 14:00" Foreground="#CCFFFFFF" FontSize="12" Margin="0,5,0,0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+
+                        <!-- Tasks Card -->
+                        <Border Grid.Column="1" Style="{StaticResource CardStyle}" Margin="10,0,0,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock x:Name="txtTareasPendientes" Grid.Row="0" Text="Tareas Pendientes" FontSize="16" FontWeight="SemiBold" Foreground="White"/>
+
+                                <StackPanel Grid.Row="1" Margin="0,15,0,0">
+                                    <!-- Task 1 -->
+                                    <Border Background="#30FFFFFF" CornerRadius="10" Padding="10" Margin="0,0,0,10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                            <StackPanel Grid.Column="1">
+                                                <TextBlock x:Name="txtTarea1Descripcion" Text="Revisar contrato de arrendamiento" Foreground="White" TextWrapping="Wrap"/>
+                                                <TextBlock x:Name="txtTarea1Vencimiento" Text="Vence hoy" Foreground="#FF5252" FontSize="12" Margin="0,5,0,0"/>
                                             </StackPanel>
                                         </Grid>
+                                    </Border>
 
-                                        <Grid Grid.Row="1" Margin="0,15,0,0">
-                                            <!-- Simplified Calendar View -->
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="*"/>
-                                                </Grid.RowDefinitions>
-
-                                                <!-- Days of Week -->
-                                                <Grid Grid.Row="0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="Lun" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
-                                                    <TextBlock Grid.Column="1" Text="Mar" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
-                                                    <TextBlock Grid.Column="2" Text="Mié" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
-                                                    <TextBlock Grid.Column="3" Text="Jue" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
-                                                    <TextBlock Grid.Column="4" Text="Vie" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
-                                                    <TextBlock Grid.Column="5" Text="Sáb" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
-                                                    <TextBlock Grid.Column="6" Text="Dom" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
-                                                </Grid>
-
-                                                <!-- Calendar Events -->
-                                                <Grid Grid.Row="1" Margin="0,10,0,0">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                    </Grid.RowDefinitions>
-
-                                                    <!-- Event 1 -->
-                                                    <Border Grid.Row="0" Background="#3F51B5" CornerRadius="10" Padding="10" Margin="0,5,0,5">
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="Auto"/>
-                                                                <ColumnDefinition Width="*"/>
-                                                            </Grid.ColumnDefinitions>
-                                                            <Border Grid.Column="0" Background="#30FFFFFF" CornerRadius="5" Padding="8,5" Margin="0,0,10,0">
-                                                                <TextBlock Text="17" FontWeight="Bold" Foreground="White"/>
-                                                            </Border>
-                                                            <StackPanel Grid.Column="1">
-                                                                <TextBlock Text="Audiencia Preliminar" FontWeight="SemiBold" Foreground="White"/>
-                                                                <TextBlock Text="Caso Martínez vs. Corporación XYZ" Foreground="#CCFFFFFF" FontSize="12"/>
-                                                                <TextBlock Text="10:00 - 12:00 | Sala 305" Foreground="#CCFFFFFF" FontSize="12" Margin="0,5,0,0"/>
-                                                            </StackPanel>
-                                                        </Grid>
-                                                    </Border>
-
-                                                    <!-- Event 2 -->
-                                                    <Border Grid.Row="1" Background="#009688" CornerRadius="10" Padding="10" Margin="0,5,0,5">
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="Auto"/>
-                                                                <ColumnDefinition Width="*"/>
-                                                            </Grid.ColumnDefinitions>
-                                                            <Border Grid.Column="0" Background="#30FFFFFF" CornerRadius="5" Padding="8,5" Margin="0,0,10,0">
-                                                                <TextBlock Text="18" FontWeight="Bold" Foreground="White"/>
-                                                            </Border>
-                                                            <StackPanel Grid.Column="1">
-                                                                <TextBlock Text="Reunión con Cliente" FontWeight="SemiBold" Foreground="White"/>
-                                                                <TextBlock Text="Revisión de Contrato - Empresa ABC" Foreground="#CCFFFFFF" FontSize="12"/>
-                                                                <TextBlock Text="15:30 - 16:30 | Oficina Principal" Foreground="#CCFFFFFF" FontSize="12" Margin="0,5,0,0"/>
-                                                            </StackPanel>
-                                                        </Grid>
-                                                    </Border>
-
-                                                    <!-- Event 3 -->
-                                                    <Border Grid.Row="2" Background="#FF5722" CornerRadius="10" Padding="10" Margin="0,5,0,5">
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="Auto"/>
-                                                                <ColumnDefinition Width="*"/>
-                                                            </Grid.ColumnDefinitions>
-                                                            <Border Grid.Column="0" Background="#30FFFFFF" CornerRadius="5" Padding="8,5" Margin="0,0,10,0">
-                                                                <TextBlock Text="20" FontWeight="Bold" Foreground="White"/>
-                                                            </Border>
-                                                            <StackPanel Grid.Column="1">
-                                                                <TextBlock Text="Fecha Límite" FontWeight="SemiBold" Foreground="White"/>
-                                                                <TextBlock Text="Presentación de Recurso - Caso Rodríguez" Foreground="#CCFFFFFF" FontSize="12"/>
-                                                                <TextBlock Text="Antes de las 14:00" Foreground="#CCFFFFFF" FontSize="12" Margin="0,5,0,0"/>
-                                                            </StackPanel>
-                                                        </Grid>
-                                                    </Border>
-                                                </Grid>
-                                            </Grid>
+                                    <!-- Task 2 -->
+                                    <Border Background="#30FFFFFF" CornerRadius="10" Padding="10" Margin="0,0,0,10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                            <StackPanel Grid.Column="1">
+                                                <TextBlock x:Name="txtTarea2Descripcion" Text="Preparar alegatos para caso Pérez" Foreground="White" TextWrapping="Wrap"/>
+                                                <TextBlock x:Name="txtTarea2Vencimiento" Text="Vence en 2 días" Foreground="#FFC107" FontSize="12" Margin="0,5,0,0"/>
+                                            </StackPanel>
                                         </Grid>
-                                    </Grid>
-                                </Border>
+                                    </Border>
 
-                                <!-- Tasks Card -->
-                                <Border Grid.Column="1" Style="{StaticResource CardStyle}" Margin="10,0,0,0">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
+                                    <!-- Task 3 -->
+                                    <Border Background="#30FFFFFF" CornerRadius="10" Padding="10" Margin="0,0,0,10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                            <StackPanel Grid.Column="1">
+                                                <TextBlock x:Name="txtTarea3Descripcion" Text="Llamar a testigo para confirmar declaración" Foreground="White" TextWrapping="Wrap"/>
+                                                <TextBlock x:Name="txtTarea3Vencimiento" Text="Vence en 3 días" Foreground="#8BC34A" FontSize="12" Margin="0,5,0,0"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
 
-                                        <TextBlock Grid.Row="0" Text="Tareas Pendientes" FontSize="16" FontWeight="SemiBold" Foreground="White"/>
+                                    <!-- Task 4 -->
+                                    <Border Background="#30FFFFFF" CornerRadius="10" Padding="10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                            <StackPanel Grid.Column="1">
+                                                <TextBlock x:Name="txtTarea4Descripcion" Text="Actualizar expediente del caso Gómez" Foreground="White" TextWrapping="Wrap"/>
+                                                <TextBlock x:Name="txtTarea4Vencimiento" Text="Vence en 5 días" Foreground="#8BC34A" FontSize="12" Margin="0,5,0,0"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
 
-                                        <StackPanel Grid.Row="1" Margin="0,15,0,0">
-                                            <!-- Task 1 -->
-                                            <Border Background="#30FFFFFF" CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <CheckBox Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                                    <StackPanel Grid.Column="1">
-                                                        <TextBlock Text="Revisar contrato de arrendamiento" Foreground="White" TextWrapping="Wrap"/>
-                                                        <TextBlock Text="Vence hoy" Foreground="#FF5252" FontSize="12" Margin="0,5,0,0"/>
-                                                    </StackPanel>
-                                                </Grid>
-                                            </Border>
+                                <Button x:Name="btnAnadirTarea" Grid.Row="2" Content="+ Añadir Tarea" Style="{StaticResource RoundedButtonStyle}" Margin="0,15,0,0" Background="#30FFFFFF"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
 
-                                            <!-- Task 2 -->
-                                            <Border Background="#30FFFFFF" CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <CheckBox Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                                    <StackPanel Grid.Column="1">
-                                                        <TextBlock Text="Preparar alegatos para caso Pérez" Foreground="White" TextWrapping="Wrap"/>
-                                                        <TextBlock Text="Vence en 2 días" Foreground="#FFC107" FontSize="12" Margin="0,5,0,0"/>
-                                                    </StackPanel>
-                                                </Grid>
-                                            </Border>
+                    <!-- Third Row - Recent Cases -->
+                    <Border Grid.Row="2" Style="{StaticResource CardStyle}" Margin="0,20,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                                            <!-- Task 3 -->
-                                            <Border Background="#30FFFFFF" CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <CheckBox Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                                    <StackPanel Grid.Column="1">
-                                                        <TextBlock Text="Llamar a testigo para confirmar declaración" Foreground="White" TextWrapping="Wrap"/>
-                                                        <TextBlock Text="Vence en 3 días" Foreground="#8BC34A" FontSize="12" Margin="0,5,0,0"/>
-                                                    </StackPanel>
-                                                </Grid>
-                                            </Border>
-
-                                            <!-- Task 4 -->
-                                            <Border Background="#30FFFFFF" CornerRadius="10" Padding="10">
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <CheckBox Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                                    <StackPanel Grid.Column="1">
-                                                        <TextBlock Text="Actualizar expediente del caso Gómez" Foreground="White" TextWrapping="Wrap"/>
-                                                        <TextBlock Text="Vence en 5 días" Foreground="#8BC34A" FontSize="12" Margin="0,5,0,0"/>
-                                                    </StackPanel>
-                                                </Grid>
-                                            </Border>
-                                        </StackPanel>
-
-                                        <Button Grid.Row="2" Content="+ Añadir Tarea" Style="{StaticResource RoundedButtonStyle}" Margin="0,15,0,0" Background="#30FFFFFF"/>
-                                    </Grid>
-                                </Border>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="txtCasosRecientes" Text="Casos Recientes" FontSize="16" FontWeight="SemiBold" Foreground="White"/>
+                                <Button Grid.Column="1" Content="Ver Todos" Style="{StaticResource RoundedButtonStyle}" Background="#30FFFFFF" Click="pruebaShake"/>
                             </Grid>
 
-                            <!-- Third Row - Recent Cases -->
-                            <Border Grid.Row="2" Style="{StaticResource CardStyle}" Margin="0,20,0,0">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
+                            <Grid Grid.Row="1" Margin="0,15,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
-                                    <Grid Grid.Row="0">
+                                <!-- Column Headers -->
+                                <Grid Grid.Row="0" Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="Nº Caso" Foreground="#CCFFFFFF"/>
+                                    <TextBlock Grid.Column="1" Text="Cliente" Foreground="#CCFFFFFF"/>
+                                    <TextBlock Grid.Column="2" Text="Tipo" Foreground="#CCFFFFFF"/>
+                                    <TextBlock Grid.Column="3" Text="Estado" Foreground="#CCFFFFFF"/>
+                                    <TextBlock Grid.Column="4" Text="Acciones" Foreground="#CCFFFFFF"/>
+                                </Grid>
+
+                                <!-- Case Row 1 -->
+                                <Border Grid.Row="1" Background="#30FFFFFF" CornerRadius="10" Padding="10" Margin="0,0,0,10">
+                                    <Grid>
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Casos Recientes" FontSize="16" FontWeight="SemiBold" Foreground="White"/>
-                                        <Button Grid.Column="1" Content="Ver Todos" Style="{StaticResource RoundedButtonStyle}" Background="#30FFFFFF" Click="pruebaShake"/>
+                                        <TextBlock x:Name="txtCaso1Numero" Grid.Column="0" Text="C-2025-042" Foreground="White" VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="txtCaso1Cliente" Grid.Column="1" Text="María Rodríguez" Foreground="White" VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="txtCaso1Tipo" Grid.Column="2" Text="Civil - Contractual" Foreground="White" VerticalAlignment="Center"/>
+                                        <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+                                            <Border Background="#4CAF50" CornerRadius="5" Padding="8,3">
+                                                <TextBlock x:Name="txtCaso1Estado" Text="Activo" Foreground="White" FontSize="12"/>
+                                            </Border>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="4" Orientation="Horizontal">
+                                            <Button Style="{StaticResource RoundedButtonStyle}" Width="35" Height="35" Background="#30FFFFFF" Margin="0,0,5,0">
+                                                <Image Source="/TFG V0.01;component/Recursos/Iconos/luna.png" Width="15" Height="15"/>
+                                            </Button>
+                                            <Button Style="{StaticResource RoundedButtonStyle}" Width="35" Height="35" Background="#30FFFFFF">
+                                                <Image Source="/TFG V0.01;component/Recursos/Iconos/sol.png" Width="15" Height="15"/>
+                                            </Button>
+                                        </StackPanel>
                                     </Grid>
+                                </Border>
 
-                                    <Grid Grid.Row="1" Margin="0,15,0,0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-
-                                        <!-- Column Headers -->
-                                        <Grid Grid.Row="0" Margin="0,0,0,10">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Grid.Column="0" Text="Nº Caso" Foreground="#CCFFFFFF"/>
-                                            <TextBlock Grid.Column="1" Text="Cliente" Foreground="#CCFFFFFF"/>
-                                            <TextBlock Grid.Column="2" Text="Tipo" Foreground="#CCFFFFFF"/>
-                                            <TextBlock Grid.Column="3" Text="Estado" Foreground="#CCFFFFFF"/>
-                                            <TextBlock Grid.Column="4" Text="Acciones" Foreground="#CCFFFFFF"/>
-                                        </Grid>
-
-                                        <!-- Case Row 1 -->
-                                        <Border Grid.Row="1" Background="#30FFFFFF" CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Grid.Column="0" Text="C-2025-042" Foreground="White" VerticalAlignment="Center"/>
-                                                <TextBlock Grid.Column="1" Text="María Rodríguez" Foreground="White" VerticalAlignment="Center"/>
-                                                <TextBlock Grid.Column="2" Text="Civil - Contractual" Foreground="White" VerticalAlignment="Center"/>
-                                                <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
-                                                    <Border Background="#4CAF50" CornerRadius="5" Padding="8,3">
-                                                        <TextBlock Text="Activo" Foreground="White" FontSize="12"/>
-                                                    </Border>
-                                                </StackPanel>
-                                                <StackPanel Grid.Column="4" Orientation="Horizontal">
-                                                    <Button Style="{StaticResource RoundedButtonStyle}" Width="35" Height="35" Background="#30FFFFFF" Margin="0,0,5,0">
-                                                        <Image Source="/TFG V0.01;component/Recursos/Iconos/luna.png" Width="15" Height="15"/>
-                                                    </Button>
-                                                    <Button Style="{StaticResource RoundedButtonStyle}" Width="35" Height="35" Background="#30FFFFFF">
-                                                        <Image Source="/TFG V0.01;component/Recursos/Iconos/sol.png" Width="15" Height="15"/>
-                                                    </Button>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-
-                                        <!-- Case Row 2 -->
-                                        <Border Grid.Row="2" Background="#30FFFFFF" CornerRadius="10" Padding="10">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Grid.Column="0" Text="C-2025-039" Foreground="White" VerticalAlignment="Center"/>
-                                                <TextBlock Grid.Column="1" Text="Juan Martínez" Foreground="White" VerticalAlignment="Center"/>
-                                                <TextBlock Grid.Column="2" Text="Laboral" Foreground="White" VerticalAlignment="Center"/>
-                                                <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
-                                                    <Border Background="#FF9800" CornerRadius="5" Padding="8,3">
-                                                        <TextBlock Text="En Proceso" Foreground="White" FontSize="12"/>
-                                                    </Border>
-                                                </StackPanel>
-                                                <StackPanel Grid.Column="4" Orientation="Horizontal">
-                                                    <Button Style="{StaticResource RoundedButtonStyle}" Width="35" Height="35" Background="#30FFFFFF" Margin="0,0,5,0">
-                                                        <Image Source="/TFG V0.01;component/Recursos/Iconos/sol.png" Width="15" Height="15"/>
-                                                    </Button>
-                                                    <Button Style="{StaticResource RoundedButtonStyle}" Width="35" Height="35" Background="#30FFFFFF">
-                                                        <Image Source="/TFG V0.01;component/Recursos/Iconos/luna.png" Width="15" Height="15"/>
-                                                    </Button>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
+                                <!-- Case Row 2 -->
+                                <Border Grid.Row="2" Background="#30FFFFFF" CornerRadius="10" Padding="10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock x:Name="txtCaso2Numero" Grid.Column="0" Text="C-2025-039" Foreground="White" VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="txtCaso2Cliente" Grid.Column="1" Text="Juan Martínez" Foreground="White" VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="txtCaso2Tipo" Grid.Column="2" Text="Laboral" Foreground="White" VerticalAlignment="Center"/>
+                                        <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+                                            <Border Background="#FF9800" CornerRadius="5" Padding="8,3">
+                                                <TextBlock x:Name="txtCaso2Estado" Text="En Proceso" Foreground="White" FontSize="12"/>
+                                            </Border>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="4" Orientation="Horizontal">
+                                            <Button Style="{StaticResource RoundedButtonStyle}" Width="35" Height="35" Background="#30FFFFFF" Margin="0,0,5,0">
+                                                <Image Source="/TFG V0.01;component/Recursos/Iconos/sol.png" Width="15" Height="15"/>
+                                            </Button>
+                                            <Button Style="{StaticResource RoundedButtonStyle}" Width="35" Height="35" Background="#30FFFFFF">
+                                                <Image Source="/TFG V0.01;component/Recursos/Iconos/luna.png" Width="15" Height="15"/>
+                                            </Button>
+                                        </StackPanel>
                                     </Grid>
-                                </Grid>
-                            </Border>
-                        </Grid>
-                    </ScrollViewer>
-
-                    <!-- Footer -->
-                    <Border Grid.Row="2" Background="#30FFFFFF" CornerRadius="10" Padding="15" Margin="0,20,0,0">
-                        <Grid>
-                            <TextBlock Text="© 2025 TFG v0.01 - TFG" Foreground="#CCFFFFFF" VerticalAlignment="Center"/>
-                            <TextBlock Text="Versión 0.01" Foreground="#CCFFFFFF" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                </Border>
+                            </Grid>
                         </Grid>
                     </Border>
                 </Grid>
-            </Grid>
+            </ScrollViewer>
+
+            <!-- Footer -->
+            <Border Grid.Row="2" Background="#30FFFFFF" CornerRadius="10" Padding="15" Margin="0,20,0,0">
+                <Grid>
+                    <TextBlock x:Name="txtPiePagina" Text="© 2025 TFG v0.01 - TFG" Foreground="#CCFFFFFF" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="txtVersion" Text="Versión 0.01" Foreground="#CCFFFFFF" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Grid>
+            </Border>
         </Grid>
-    </Border>
-    
+    </Grid>
+
 </Window>

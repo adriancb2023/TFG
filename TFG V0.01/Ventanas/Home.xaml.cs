@@ -98,6 +98,7 @@ namespace TFG_V0._01.Ventanas
 
         private void CambiarTextosNegro()
         {
+            // Botones de navegación
             CambiarColorTexto("btnAgenda", Colors.Black);
             CambiarColorTexto("btnAjustes", Colors.Black);
             CambiarColorTexto("btnAyuda", Colors.Black);
@@ -106,10 +107,51 @@ namespace TFG_V0._01.Ventanas
             CambiarColorTexto("btnDocumentos", Colors.Black);
             CambiarColorTexto("btnHome", Colors.Black);
             CambiarColorTexto("btnBuscar", Colors.Black);
+
+            // Textos principales
+            CambiarColorTexto("txtBienvenida", Colors.Black);
+            CambiarColorTexto("txtPanelControl", Colors.Black);
+            CambiarColorTexto("txtTituloCalendario", Colors.Black);
+            CambiarColorTexto("txtTareasPendientes", Colors.Black);
+            CambiarColorTexto("txtCasosRecientes", Colors.Black);
+            CambiarColorTexto("txtPiePagina", Colors.Black);
+            CambiarColorTexto("txtVersion", Colors.Black);
+
+            // Eventos del calendario
+            CambiarColorTexto("txtEvento1Titulo", Colors.Black);
+            CambiarColorTexto("txtEvento1Descripcion", Colors.Black);
+            CambiarColorTexto("txtEvento1Horario", Colors.Black);
+            CambiarColorTexto("txtEvento2Titulo", Colors.Black);
+            CambiarColorTexto("txtEvento2Descripcion", Colors.Black);
+            CambiarColorTexto("txtEvento2Horario", Colors.Black);
+            CambiarColorTexto("txtEvento3Titulo", Colors.Black);
+            CambiarColorTexto("txtEvento3Descripcion", Colors.Black);
+            CambiarColorTexto("txtEvento3Horario", Colors.Black);
+
+            // Tareas
+            CambiarColorTexto("txtTarea1Descripcion", Colors.Black);
+            CambiarColorTexto("txtTarea1Vencimiento", Colors.Black);
+            CambiarColorTexto("txtTarea2Descripcion", Colors.Black);
+            CambiarColorTexto("txtTarea2Vencimiento", Colors.Black);
+            CambiarColorTexto("txtTarea3Descripcion", Colors.Black);
+            CambiarColorTexto("txtTarea3Vencimiento", Colors.Black);
+            CambiarColorTexto("txtTarea4Descripcion", Colors.Black);
+            CambiarColorTexto("txtTarea4Vencimiento", Colors.Black);
+
+            // Casos recientes
+            CambiarColorTexto("txtCaso1Numero", Colors.Black);
+            CambiarColorTexto("txtCaso1Cliente", Colors.Black);
+            CambiarColorTexto("txtCaso1Tipo", Colors.Black);
+            CambiarColorTexto("txtCaso1Estado", Colors.Black);
+            CambiarColorTexto("txtCaso2Numero", Colors.Black);
+            CambiarColorTexto("txtCaso2Cliente", Colors.Black);
+            CambiarColorTexto("txtCaso2Tipo", Colors.Black);
+            CambiarColorTexto("txtCaso2Estado", Colors.Black);
         }
 
         private void CambiarTextosBlanco()
         {
+            // Botones de navegación
             CambiarColorTexto("btnAgenda", Colors.White);
             CambiarColorTexto("btnAjustes", Colors.White);
             CambiarColorTexto("btnAyuda", Colors.White);
@@ -118,6 +160,46 @@ namespace TFG_V0._01.Ventanas
             CambiarColorTexto("btnDocumentos", Colors.White);
             CambiarColorTexto("btnHome", Colors.White);
             CambiarColorTexto("btnBuscar", Colors.White);
+
+            // Textos principales
+            CambiarColorTexto("txtBienvenida", Colors.White);
+            CambiarColorTexto("txtPanelControl", Colors.White);
+            CambiarColorTexto("txtTituloCalendario", Colors.White);
+            CambiarColorTexto("txtTareasPendientes", Colors.White);
+            CambiarColorTexto("txtCasosRecientes", Colors.White);
+            CambiarColorTexto("txtPiePagina", Colors.White);
+            CambiarColorTexto("txtVersion", Colors.White);
+
+            // Eventos del calendario
+            CambiarColorTexto("txtEvento1Titulo", Colors.White);
+            CambiarColorTexto("txtEvento1Descripcion", Colors.White);
+            CambiarColorTexto("txtEvento1Horario", Colors.White);
+            CambiarColorTexto("txtEvento2Titulo", Colors.White);
+            CambiarColorTexto("txtEvento2Descripcion", Colors.White);
+            CambiarColorTexto("txtEvento2Horario", Colors.White);
+            CambiarColorTexto("txtEvento3Titulo", Colors.White);
+            CambiarColorTexto("txtEvento3Descripcion", Colors.White);
+            CambiarColorTexto("txtEvento3Horario", Colors.White);
+
+            // Tareas
+            CambiarColorTexto("txtTarea1Descripcion", Colors.White);
+            CambiarColorTexto("txtTarea1Vencimiento", Colors.White);
+            CambiarColorTexto("txtTarea2Descripcion", Colors.White);
+            CambiarColorTexto("txtTarea2Vencimiento", Colors.White);
+            CambiarColorTexto("txtTarea3Descripcion", Colors.White);
+            CambiarColorTexto("txtTarea3Vencimiento", Colors.White);
+            CambiarColorTexto("txtTarea4Descripcion", Colors.White);
+            CambiarColorTexto("txtTarea4Vencimiento", Colors.White);
+
+            // Casos recientes
+            CambiarColorTexto("txtCaso1Numero", Colors.White);
+            CambiarColorTexto("txtCaso1Cliente", Colors.White);
+            CambiarColorTexto("txtCaso1Tipo", Colors.White);
+            CambiarColorTexto("txtCaso1Estado", Colors.White);
+            CambiarColorTexto("txtCaso2Numero", Colors.White);
+            CambiarColorTexto("txtCaso2Cliente", Colors.White);
+            CambiarColorTexto("txtCaso2Tipo", Colors.White);
+            CambiarColorTexto("txtCaso2Estado", Colors.White);
         }
 
         private void CambiarColorTexto(string nombreElemento, Color color)
@@ -126,6 +208,11 @@ namespace TFG_V0._01.Ventanas
             if (boton != null)
             {
                 boton.Foreground = new SolidColorBrush(color);
+            }
+            var texto = this.FindName(nombreElemento) as TextBlock;
+            if (texto != null)
+            {
+                texto.Foreground = new SolidColorBrush(color);
             }
         }
         #endregion

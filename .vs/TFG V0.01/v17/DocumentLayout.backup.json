@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\agenda.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\agenda.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|c:\\users\\harvie\\documents\\tfg\\v 0.1\\tfg\\tfg v0.01\\ventanas\\agenda.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{1178EFCE-25D6-4ED8-A840-56F9C97CB6D1}|TFG V0.01\\TFG V0.01.csproj|solutionrelative:tfg v0.01\\ventanas\\agenda.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,19 +67,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Home.xaml",
-              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml",
-              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\Home.xaml",
-              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Home.xaml*",
-              "RelativeToolTip": "TFG V0.01\\Ventanas\\Home.xaml*",
+              "Title": "Agenda.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Agenda.xaml.cs",
+              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\Agenda.xaml.cs",
+              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Agenda.xaml.cs*",
+              "RelativeToolTip": "TFG V0.01\\Ventanas\\Agenda.xaml.cs*",
+              "ViewState": "AgIAACEAAAAAAAAAAAAqwJgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T19:22:42.256Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Agenda.xaml",
+              "DocumentMoniker": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Agenda.xaml",
+              "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\Agenda.xaml",
+              "ToolTip": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\Ventanas\\Agenda.xaml*",
+              "RelativeToolTip": "TFG V0.01\\Ventanas\\Agenda.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-29T21:45:21.496Z",
+              "WhenOpened": "2025-04-30T19:21:23.479Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 99,
+          "DockedWidth": 54,
           "SelectedChildIndex": -1,
           "Children": [
             {
