@@ -1,0 +1,248 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "JurisprudenciaAPI",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Jurisprudencia/search": {
+      "post": {
+        "tags": [
+          "Jurisprudencia"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JurisprudenciaSearchParameters"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JurisprudenciaSearchParameters"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/JurisprudenciaSearchParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JurisprudenciaResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JurisprudenciaResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JurisprudenciaResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Jurisprudencia/initialData": {
+      "get": {
+        "tags": [
+          "Jurisprudencia"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InitialDataResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InitialDataResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InitialDataResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "InitialDataResponse": {
+        "type": "object",
+        "properties": {
+          "jurisdicciones": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "tiposResolucion": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "organosJudiciales": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "localizaciones": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JurisprudenciaResult": {
+        "type": "object",
+        "properties": {
+          "roj": {
+            "type": "string",
+            "nullable": true
+          },
+          "ecli": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaResolucion": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoResolucion": {
+            "type": "string",
+            "nullable": true
+          },
+          "organoJudicial": {
+            "type": "string",
+            "nullable": true
+          },
+          "ponente": {
+            "type": "string",
+            "nullable": true
+          },
+          "resumen": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlDocumento": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JurisprudenciaSearchParameters": {
+        "type": "object",
+        "properties": {
+          "textoLibre": {
+            "type": "string",
+            "nullable": true
+          },
+          "jurisdiccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "tiposResolucion": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "organosJudiciales": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "localizaciones": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "seccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "idioma": {
+            "type": "string",
+            "nullable": true
+          },
+          "legislacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "roj": {
+            "type": "string",
+            "nullable": true
+          },
+          "ecli": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaDesde": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fechaHasta": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "numeroResolucion": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroRecurso": {
+            "type": "string",
+            "nullable": true
+          },
+          "ponente": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

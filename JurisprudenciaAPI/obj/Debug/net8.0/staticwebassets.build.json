@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "3lNFWEoMzXXQQPKAgslQH5d1UTcm7cO5MlL+sFiW2Ns=",
+  "Source": "JurisprudenciaAPI",
+  "BasePath": "_content/JurisprudenciaAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

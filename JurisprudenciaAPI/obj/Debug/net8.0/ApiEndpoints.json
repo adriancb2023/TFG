@@ -1,0 +1,48 @@
+[
+  {
+    "ContainingType": "JurisprudenciaApi.Controllers.JurisprudenciaController",
+    "Method": "GetInitialData",
+    "RelativePath": "api/Jurisprudencia/initialData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "JurisprudenciaApi.Controllers.InitialDataResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "JurisprudenciaApi.Controllers.JurisprudenciaController",
+    "Method": "Search",
+    "RelativePath": "api/Jurisprudencia/search",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parameters",
+        "Type": "JurisprudenciaApi.Models.JurisprudenciaSearchParameters",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[JurisprudenciaApi.Models.JurisprudenciaResult, JurisprudenciaAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "TFG V0.01\\TFG V0.01.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "JurisprudenciaAPI\\JurisprudenciaAPI.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

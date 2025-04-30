@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="BusquedaJurisprudencia" Height="850" Width="1200"
         WindowStartupLocation="CenterScreen" >
-
     <Window.Resources>
         <!-- Estilo para el botón de cambio de tema -->
         <Style x:Key="ThemeButtonStyle" TargetType="Button">
@@ -180,12 +179,16 @@
 
                                 <StackPanel Grid.Column="0" Margin="0,0,10,0">
                                     <TextBlock Text="Jurisdicción" FontWeight="Bold" Foreground="White"/>
-                                    <ComboBox x:Name="JurisdiccionComboBox" ItemsSource="{Binding Jurisdicciones}" SelectedItem="{Binding JurisdiccionSeleccionada, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
+                                    <ComboBox x:Name="JurisdiccionComboBox" 
+                                              ItemsSource="{Binding Jurisdicciones}" 
+                                              SelectedItem="{Binding JurisdiccionSeleccionada, UpdateSourceTrigger=PropertyChanged}" 
+                                              Foreground="Black"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
                                     <TextBlock Text="Tipo de resolución" FontWeight="Bold" Foreground="White"/>
-                                    <ComboBox x:Name="TipoResolucionComboBox" ItemsSource="{Binding TiposResolucion}">
+                                    <ComboBox x:Name="TipoResolucionComboBox" 
+                                              ItemsSource="{Binding TiposResolucion}">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
@@ -222,7 +225,8 @@
 
                                 <StackPanel Grid.Column="0">
                                     <TextBlock Text="Órgano judicial" FontWeight="Bold" Foreground="White"/>
-                                    <ComboBox x:Name="OrganoJudicialComboBox" ItemsSource="{Binding TiposOrgano}">
+                                    <ComboBox x:Name="OrganoJudicialComboBox" 
+                                              ItemsSource="{Binding TiposOrgano}">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
@@ -256,7 +260,8 @@
                             </Grid>
                             <TextBlock Text="Localización" FontWeight="Bold" Margin="0,10,0,0" Foreground="White"/>
                             <Grid>
-                                <ComboBox x:Name="LocalizacionComboBox" ItemsSource="{Binding Localizaciones}">
+                                <ComboBox x:Name="LocalizacionComboBox" 
+                                          ItemsSource="{Binding Localizaciones}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
@@ -327,12 +332,12 @@
 
                                 <StackPanel Grid.Column="0" Margin="0,0,10,0">
                                     <TextBlock Text="Fecha desde" FontWeight="Bold" Foreground="White"/>
-                                    <DatePicker SelectedDate="{Binding FechaDesde, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <DatePicker x:Name="FechaDesdeDatePicker" SelectedDate="{Binding FechaDesde, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
                                     <TextBlock Text="Fecha hasta" FontWeight="Bold" Foreground="White"/>
-                                    <DatePicker SelectedDate="{Binding FechaHasta, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <DatePicker x:Name="FechaHastaDatePicker" SelectedDate="{Binding FechaHasta, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
                             </Grid>
 
@@ -379,18 +384,17 @@
                             <Separator Margin="0,10,0,10"/>
 
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-                                <Button Content="Limpiar" Style="{StaticResource RoundedButtonStyle}" Padding="10,5" Margin="0,0,10,0" Command="{Binding LimpiarCommand}"/>
-                                <Button Content="Buscar" Style="{StaticResource RoundedButtonStyle}" Background="#2563EB" Foreground="White" Padding="10,5" />
+                                <Button x:Name="LimpiarButton" Content="Limpiar" Style="{StaticResource RoundedButtonStyle}" Padding="10,5" Margin="0,0,10,0" Command="{Binding LimpiarCommand}"/>
+                                <Button x:Name="BuscarButton" Click="BuscarButton_Click" Content="Buscar" Style="{StaticResource RoundedButtonStyle}" Background="#2563EB" Foreground="White" Padding="10,5" />
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
                 <!-- Tarjeta de resultados -->
-                <Border Style="{StaticResource CardStyle}" Grid.Column="1" VerticalAlignment="Stretch">
+                <Border x:Name="ResultadosBorder" Style="{StaticResource CardStyle}" Grid.Column="1" VerticalAlignment="Stretch">
                     <StackPanel>
                         <TextBlock Text="Resultados" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
-                        <!-- Aquí puedes poner un ListView o DataGrid para mostrar resultados, o dejarlo como placeholder -->
-                        <TextBlock Text="(Aquí aparecerán los resultados de la búsqueda)" Foreground="#CCCCCC" FontStyle="Italic" Margin="10"/>
+                        <TextBlock x:Name="ResultadosTextBlock" Text="(Aquí aparecerán los resultados de la búsqueda)" Foreground="#CCCCCC" FontStyle="Italic" Margin="10" TextWrapping="Wrap"/>
                     </StackPanel>
                 </Border>
             </Grid>
