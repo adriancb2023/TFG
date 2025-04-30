@@ -179,12 +179,12 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                    <TextBlock Text="Jurisdicción" FontWeight="Bold"/>
+                                    <TextBlock Text="Jurisdicción" FontWeight="Bold" Foreground="White"/>
                                     <ComboBox x:Name="JurisdiccionComboBox" ItemsSource="{Binding Jurisdicciones}" SelectedItem="{Binding JurisdiccionSeleccionada, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
-                                    <TextBlock Text="Tipo de resolución" FontWeight="Bold"/>
+                                    <TextBlock Text="Tipo de resolución" FontWeight="Bold" Foreground="White"/>
                                     <ComboBox x:Name="TipoResolucionComboBox" ItemsSource="{Binding TiposResolucion}">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -221,7 +221,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Grid.Column="0">
-                                    <TextBlock Text="Órgano judicial" FontWeight="Bold"/>
+                                    <TextBlock Text="Órgano judicial" FontWeight="Bold" Foreground="White"/>
                                     <ComboBox x:Name="OrganoJudicialComboBox" ItemsSource="{Binding TiposOrgano}">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -250,11 +250,11 @@
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                    <TextBlock Text="Sección" FontWeight="Bold"/>
+                                    <TextBlock Text="Sección" FontWeight="Bold" Foreground="White"/>
                                     <TextBox x:Name="SeccionTextBox" Text="{Binding Seccion, UpdateSourceTrigger=PropertyChanged}" Height="21"/>
                                 </StackPanel>
                             </Grid>
-                            <TextBlock Text="Localización" FontWeight="Bold" Margin="0,10,0,0"/>
+                            <TextBlock Text="Localización" FontWeight="Bold" Margin="0,10,0,0" Foreground="White"/>
                             <Grid>
                                 <ComboBox x:Name="LocalizacionComboBox" ItemsSource="{Binding Localizaciones}">
                                     <ComboBox.ItemTemplate>
@@ -292,12 +292,12 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                    <TextBlock Text="Nº ROJ" FontWeight="Bold"/>
+                                    <TextBlock Text="Nº ROJ" FontWeight="Bold" Foreground="White"/>
                                     <TextBox x:Name="NumeroRojTextBox" Text="{Binding NumeroRoj, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
-                                    <TextBlock Text="ECLI" FontWeight="Bold"/>
+                                    <TextBlock Text="ECLI" FontWeight="Bold" Foreground="White"/>
                                     <TextBox x:Name="EcliTextBox" Text="{Binding Ecli, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
                             </Grid>
@@ -309,12 +309,12 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                    <TextBlock Text="Nº Resolución" FontWeight="Bold"/>
+                                    <TextBlock Text="Nº Resolución" FontWeight="Bold" Foreground="White"/>
                                     <TextBox x:Name="NumeroResolucionTextBox" Text="{Binding NumeroResolucion, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
-                                    <TextBlock Text="Nº Recurso" FontWeight="Bold"/>
+                                    <TextBlock Text="Nº Recurso" FontWeight="Bold" Foreground="White"/>
                                     <TextBox x:Name="NumeroRecursoTextBox" Text="{Binding NumeroRecurso, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
                             </Grid>
@@ -326,12 +326,12 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                    <TextBlock Text="Fecha desde" FontWeight="Bold"/>
+                                    <TextBlock Text="Fecha desde" FontWeight="Bold" Foreground="White"/>
                                     <DatePicker SelectedDate="{Binding FechaDesde, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
-                                    <TextBlock Text="Fecha hasta" FontWeight="Bold"/>
+                                    <TextBlock Text="Fecha hasta" FontWeight="Bold" Foreground="White"/>
                                     <DatePicker SelectedDate="{Binding FechaHasta, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
                             </Grid>
@@ -345,12 +345,12 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                    <TextBlock Text="Ponente" FontWeight="Bold"/>
+                                    <TextBlock Text="Ponente" FontWeight="Bold" Foreground="White"/>
                                     <TextBox x:Name="PonenteTextBox" Text="{Binding Ponente, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
-                                    <TextBlock Text="Idioma" FontWeight="Bold"/>
+                                    <TextBlock Text="Idioma" FontWeight="Bold" Foreground="White"/>
                                     <ComboBox x:Name="IdiomaComboBox" SelectedItem="{Binding IdiomaSeleccionado, UpdateSourceTrigger=PropertyChanged}">
                                         <ComboBoxItem Content="Todos"/>
                                         <ComboBoxItem Content="Español"/>
@@ -370,10 +370,9 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                    <TextBlock Text="Legislación" FontWeight="Bold"/>
-                                    <!--
-                        <TextBox x:Name="LegislacionTextBox" Text="{Binding Legislacion, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" PreviewMouseLeftButtonUp="LegislacionTextBox_PreviewMouseLeftButtonUp"/>
-                        -->
+                                    <TextBlock Text="Legislación" FontWeight="Bold" Foreground="White"/>
+                                    <TextBox x:Name="LegislacionTextBox" Text="{Binding Legislacion, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" PreviewMouseLeftButtonUp="LegislacionTextBox_PreviewMouseLeftButtonUp"/>
+
                                 </StackPanel>
                             </Grid>
 

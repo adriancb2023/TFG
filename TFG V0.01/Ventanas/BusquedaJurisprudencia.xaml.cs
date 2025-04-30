@@ -40,7 +40,7 @@ namespace TFG_V0._01.Ventanas
 
         #region Aplicar modo oscuro/claro cargado por sistema
         private void AplicarModoSistema()
-        {
+        { 
             var button = this.FindName("ThemeButton") as Button;
             var icon = button?.Template.FindName("ThemeIcon", button) as Image;
 
@@ -240,6 +240,12 @@ namespace TFG_V0._01.Ventanas
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void LegislacionTextBox_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var legislacionWindow = new Legislacion();
+            legislacionWindow.ShowDialog();
         }
         #endregion
 
