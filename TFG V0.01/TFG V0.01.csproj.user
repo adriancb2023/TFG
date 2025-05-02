@@ -34,6 +34,9 @@
     <Compile Update="Ventanas\Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Ventanas\Pruebas.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Ventanas\Registro.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -64,6 +67,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Ventanas\Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Ventanas\Pruebas.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Ventanas\Registro.xaml">

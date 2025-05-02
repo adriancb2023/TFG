@@ -26,18 +26,6 @@ C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\TFG V0
 C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\ref\TFG V0.01.dll
 C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\bin\Debug\net8.0-windows\MaterialDesignColors.dll
 C:\Users\Harvie\source\repos\TFG V0.01\TFG V0.01\obj\Debug\net8.0-windows\Recursos\recursos.baml
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.csproj.AssemblyReference.cache
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Login.baml
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\MainWindow.g.cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\BusquedaJurisprudencia.g.cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Documentos.g.cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Home.g.cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Login.g.cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Registro.g.cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\App.g.cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01_Content.g.cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01_MarkupCompile.cache
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01_MarkupCompile.lref
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\runtimes\win-x86\native\WebView2Loader.dll
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\runtimes\win-x64\native\WebView2Loader.dll
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\runtimes\win-arm64\native\WebView2Loader.dll
@@ -47,7 +35,6 @@ C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\TFG V
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\TFG V0.01.dll
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\TFG V0.01.pdb
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\FluentWPF.dll
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\FontAwesome.WPF.dll
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\MaterialDesignColors.dll
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.dll
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
@@ -87,8 +74,30 @@ C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\Micro
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Core.xml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.WinForms.xml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Wpf.xml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.csproj.AssemblyReference.cache
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Login.baml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Agenda.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ajustes.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ayuda.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\BusquedaJurisprudencia.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Casos.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Clientes.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Documentos.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Home.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Login.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Registro.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01_Content.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01_MarkupCompile.cache
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01_MarkupCompile.lref
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Agenda.baml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ajustes.baml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ayuda.baml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\BusquedaJurisprudencia.baml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Casos.baml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Clientes.baml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Documentos.baml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Home.baml
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Registro.baml
@@ -104,13 +113,5 @@ C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\refin
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.pdb
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.genruntimeconfig.cache
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\ref\TFG V0.01.dll
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Casos.g.cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Casos.baml
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Agenda.g.cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ajustes.g.cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ayuda.g.cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Clientes.g.cs
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Agenda.baml
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ajustes.baml
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ayuda.baml
-C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Clientes.baml
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Pruebas.g.cs
+C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Pruebas.baml

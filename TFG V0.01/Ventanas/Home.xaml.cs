@@ -330,6 +330,12 @@ namespace TFG_V0._01.Ventanas
             Ajustes ajustes = new Ajustes();
             BeginFadeOutAnimation(ajustes);
         }
+
+        private void ir_pruebas(object sender, RoutedEventArgs e)
+        {
+            Pruebas pruebas = new Pruebas();
+            BeginFadeOutAnimation(pruebas);
+        }
         #endregion
 
         #region Animaciones
@@ -411,6 +417,7 @@ namespace TFG_V0._01.Ventanas
             trans.BeginAnimation(TranslateTransform.XProperty, anim);
         }
         #endregion
+
 
 
         //Prueba de animacion de shake en boton random

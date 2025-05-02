@@ -1,0 +1,476 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Metadata;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using TFG_V0._01.Clases_BBDD;
+
+
+namespace TFG_V0._01.Ventanas
+{
+    /// <summary>
+    /// Lógica de interacción para Pruebas.xaml
+    /// </summary>
+    public partial class Pruebas : Window
+    {
+        #region variables animacion
+        private Storyboard fadeInStoryboard;
+        private Storyboard shakeStoryboard;
+        #endregion
+
+        #region variables
+
+        #endregion
+
+        #region Inicializacion
+        public Pruebas()
+        {
+            InitializeComponent();
+            InitializeAnimations();
+            AplicarModoSistema();
+            BeginFadeInAnimation();
+        }
+        #endregion
+
+        #region Aplicar modo oscuro/claro cargado por sistema
+        private void AplicarModoSistema()
+        {
+            var button = this.FindName("ThemeButton") as Button;
+            var icon = button?.Template.FindName("ThemeIcon", button) as Image;
+
+            if (MainWindow.isDarkTheme)
+            {
+                // Aplicar modo oscuro
+                if (icon != null)
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
+                }
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString("pack://application:,,,/TFG V0.01;component/Recursos/Background/oscuro/main.png") as ImageSource;
+                CambiarIconosAClaros();
+                CambiarTextosBlanco();
+                backgroun_menu.Background = new SolidColorBrush(Color.FromArgb(48, 255, 255, 255)); // Fondo semitransparente
+            }
+            else
+            {
+                // Aplicar modo claro
+                if (icon != null)
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
+                }
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString("pack://application:,,,/TFG V0.01;component/Recursos/Background/claro/main.png") as ImageSource;
+                CambiarIconosAOscuros();
+                CambiarTextosNegro();
+                backgroun_menu.Background = new SolidColorBrush(Color.FromArgb(48, 128, 128, 128)); // Gris semitransparente
+
+            }
+        }
+        #endregion
+
+        #region modo oscuro/claro + navbar
+        private void CambiarIconosAOscuros()
+        {
+            CambiarIcono("imagenHome2", "/TFG V0.01;component/Recursos/Iconos/home.png");
+            CambiarIcono("imagenDocumentos2", "/TFG V0.01;component/Recursos/Iconos/documentos.png");
+            CambiarIcono("imagenClientes2", "/TFG V0.01;component/Recursos/Iconos/clientes.png");
+            CambiarIcono("imagenCasos2", "/TFG V0.01;component/Recursos/Iconos/casos.png");
+            CambiarIcono("imagenAyuda2", "/TFG V0.01;component/Recursos/Iconos/ayuda.png");
+            CambiarIcono("imagenAgenda2", "/TFG V0.01;component/Recursos/Iconos/agenda.png");
+            CambiarIcono("imagenAjustes2", "/TFG V0.01;component/Recursos/Iconos/ajustes.png");
+            CambiarIcono("imagenBuscar2", "/TFG V0.01;component/Recursos/Iconos/buscar.png");
+        }
+
+        private void CambiarIconosAClaros()
+        {
+            CambiarIcono("imagenHome2", "/TFG V0.01;component/Recursos/Iconos/home2.png");
+            CambiarIcono("imagenDocumentos2", "/TFG V0.01;component/Recursos/Iconos/documentos2.png");
+            CambiarIcono("imagenClientes2", "/TFG V0.01;component/Recursos/Iconos/clientes2.png");
+            CambiarIcono("imagenCasos2", "/TFG V0.01;component/Recursos/Iconos/casos2.png");
+            CambiarIcono("imagenAyuda2", "/TFG V0.01;component/Recursos/Iconos/ayuda2.png");
+            CambiarIcono("imagenAgenda2", "/TFG V0.01;component/Recursos/Iconos/agenda2.png");
+            CambiarIcono("imagenAjustes2", "/TFG V0.01;component/Recursos/Iconos/ajustes2.png");
+            CambiarIcono("imagenBuscar2", "/TFG V0.01;component/Recursos/Iconos/buscar2.png");
+        }
+
+        private void CambiarIcono(string nombreElemento, string rutaIcono)
+        {
+            var imagen = this.FindName(nombreElemento) as Image;
+            if (imagen != null)
+            {
+                imagen.Source = new BitmapImage(new Uri(rutaIcono, UriKind.Relative));
+            }
+        }
+
+        private void CambiarTextosNegro()
+        {
+            // Botones de navegación
+            CambiarColorTexto("btnAgenda", Colors.Black);
+            CambiarColorTexto("btnAjustes", Colors.Black);
+            CambiarColorTexto("btnAyuda", Colors.Black);
+            CambiarColorTexto("btnCasos", Colors.Black);
+            CambiarColorTexto("btnClientes", Colors.Black);
+            CambiarColorTexto("btnDocumentos", Colors.Black);
+            CambiarColorTexto("btnHome", Colors.Black);
+            CambiarColorTexto("btnBuscar", Colors.Black);
+
+            // Textos principales
+            CambiarColorTexto("txtBienvenida", Colors.Black);
+            CambiarColorTexto("txtPanelControl", Colors.Black);
+            CambiarColorTexto("txtTituloCalendario", Colors.Black);
+            CambiarColorTexto("txtTareasPendientes", Colors.Black);
+            CambiarColorTexto("txtCasosRecientes", Colors.Black);
+            CambiarColorTexto("txtPiePagina", Colors.Black);
+            CambiarColorTexto("txtVersion", Colors.Black);
+
+            // Eventos del calendario
+            CambiarColorTexto("txtEvento1Titulo", Colors.Black);
+            CambiarColorTexto("txtEvento1Descripcion", Colors.Black);
+            CambiarColorTexto("txtEvento1Horario", Colors.Black);
+            CambiarColorTexto("txtEvento2Titulo", Colors.Black);
+            CambiarColorTexto("txtEvento2Descripcion", Colors.Black);
+            CambiarColorTexto("txtEvento2Horario", Colors.Black);
+            CambiarColorTexto("txtEvento3Titulo", Colors.Black);
+            CambiarColorTexto("txtEvento3Descripcion", Colors.Black);
+            CambiarColorTexto("txtEvento3Horario", Colors.Black);
+
+            // Tareas
+            CambiarColorTexto("txtTarea1Descripcion", Colors.Black);
+            CambiarColorTexto("txtTarea1Vencimiento", Colors.Black);
+            CambiarColorTexto("txtTarea2Descripcion", Colors.Black);
+            CambiarColorTexto("txtTarea2Vencimiento", Colors.Black);
+            CambiarColorTexto("txtTarea3Descripcion", Colors.Black);
+            CambiarColorTexto("txtTarea3Vencimiento", Colors.Black);
+            CambiarColorTexto("txtTarea4Descripcion", Colors.Black);
+            CambiarColorTexto("txtTarea4Vencimiento", Colors.Black);
+
+            // Casos recientes
+            CambiarColorTexto("txtCaso1Numero", Colors.Black);
+            CambiarColorTexto("txtCaso1Cliente", Colors.Black);
+            CambiarColorTexto("txtCaso1Tipo", Colors.Black);
+            CambiarColorTexto("txtCaso1Estado", Colors.Black);
+            CambiarColorTexto("txtCaso2Numero", Colors.Black);
+            CambiarColorTexto("txtCaso2Cliente", Colors.Black);
+            CambiarColorTexto("txtCaso2Tipo", Colors.Black);
+            CambiarColorTexto("txtCaso2Estado", Colors.Black);
+        }
+
+        private void CambiarTextosBlanco()
+        {
+            // Botones de navegación
+            CambiarColorTexto("btnAgenda", Colors.White);
+            CambiarColorTexto("btnAjustes", Colors.White);
+            CambiarColorTexto("btnAyuda", Colors.White);
+            CambiarColorTexto("btnCasos", Colors.White);
+            CambiarColorTexto("btnClientes", Colors.White);
+            CambiarColorTexto("btnDocumentos", Colors.White);
+            CambiarColorTexto("btnHome", Colors.White);
+            CambiarColorTexto("btnBuscar", Colors.White);
+
+            // Textos principales
+            CambiarColorTexto("txtBienvenida", Colors.White);
+            CambiarColorTexto("txtPanelControl", Colors.White);
+            CambiarColorTexto("txtTituloCalendario", Colors.White);
+            CambiarColorTexto("txtTareasPendientes", Colors.White);
+            CambiarColorTexto("txtCasosRecientes", Colors.White);
+            CambiarColorTexto("txtPiePagina", Colors.White);
+            CambiarColorTexto("txtVersion", Colors.White);
+
+            // Eventos del calendario
+            CambiarColorTexto("txtEvento1Titulo", Colors.White);
+            CambiarColorTexto("txtEvento1Descripcion", Colors.White);
+            CambiarColorTexto("txtEvento1Horario", Colors.White);
+            CambiarColorTexto("txtEvento2Titulo", Colors.White);
+            CambiarColorTexto("txtEvento2Descripcion", Colors.White);
+            CambiarColorTexto("txtEvento2Horario", Colors.White);
+            CambiarColorTexto("txtEvento3Titulo", Colors.White);
+            CambiarColorTexto("txtEvento3Descripcion", Colors.White);
+            CambiarColorTexto("txtEvento3Horario", Colors.White);
+
+            // Tareas
+            CambiarColorTexto("txtTarea1Descripcion", Colors.White);
+            CambiarColorTexto("txtTarea1Vencimiento", Colors.White);
+            CambiarColorTexto("txtTarea2Descripcion", Colors.White);
+            CambiarColorTexto("txtTarea2Vencimiento", Colors.White);
+            CambiarColorTexto("txtTarea3Descripcion", Colors.White);
+            CambiarColorTexto("txtTarea3Vencimiento", Colors.White);
+            CambiarColorTexto("txtTarea4Descripcion", Colors.White);
+            CambiarColorTexto("txtTarea4Vencimiento", Colors.White);
+
+            // Casos recientes
+            CambiarColorTexto("txtCaso1Numero", Colors.White);
+            CambiarColorTexto("txtCaso1Cliente", Colors.White);
+            CambiarColorTexto("txtCaso1Tipo", Colors.White);
+            CambiarColorTexto("txtCaso1Estado", Colors.White);
+            CambiarColorTexto("txtCaso2Numero", Colors.White);
+            CambiarColorTexto("txtCaso2Cliente", Colors.White);
+            CambiarColorTexto("txtCaso2Tipo", Colors.White);
+            CambiarColorTexto("txtCaso2Estado", Colors.White);
+        }
+
+        private void CambiarColorTexto(string nombreElemento, Color color)
+        {
+            var boton = this.FindName(nombreElemento) as Button;
+            if (boton != null)
+            {
+                boton.Foreground = new SolidColorBrush(color);
+            }
+            var texto = this.FindName(nombreElemento) as TextBlock;
+            if (texto != null)
+            {
+                texto.Foreground = new SolidColorBrush(color);
+            }
+        }
+        #endregion
+
+        #region navbar animacion
+        private void Menu_MouseEnter(object sender, MouseEventArgs e)
+        {
+            inicio.Visibility = Visibility.Visible;
+            buscar.Visibility = Visibility.Visible;
+            documentos.Visibility = Visibility.Visible;
+            clientes.Visibility = Visibility.Visible;
+            casos.Visibility = Visibility.Visible;
+            agenda.Visibility = Visibility.Visible;
+            ajustes.Visibility = Visibility.Visible;
+        }
+
+        private void Menu_MouseLeave(object sender, MouseEventArgs e)
+        {
+            inicio.Visibility = Visibility.Collapsed;
+            buscar.Visibility = Visibility.Collapsed;
+            documentos.Visibility = Visibility.Collapsed;
+            clientes.Visibility = Visibility.Collapsed;
+            casos.Visibility = Visibility.Collapsed;
+            agenda.Visibility = Visibility.Collapsed;
+            ajustes.Visibility = Visibility.Collapsed;
+        }
+        #endregion
+
+        #region boton cambiar tema
+        private void ThemeButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Alternar el estado del tema
+            MainWindow.isDarkTheme = !MainWindow.isDarkTheme;
+
+            // Obtener el botón y el icono
+            var button = sender as Button;
+            var icon = button?.Template.FindName("ThemeIcon", button) as Image;
+
+            if (MainWindow.isDarkTheme)
+            {
+                // Cambiar a modo oscuro
+                if (icon != null)
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
+                }
+
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString("pack://application:,,,/TFG V0.01;component/Recursos/Background/oscuro/main.png") as ImageSource;
+
+                CambiarIconosAClaros();
+                CambiarTextosBlanco();
+                backgroun_menu.Background = new SolidColorBrush(Color.FromArgb(48, 255, 255, 255)); // Fondo semitransparente
+            }
+            else
+            {
+                // Cambiar a modo claro
+                if (icon != null)
+                {
+                    icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
+                }
+
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString("pack://application:,,,/TFG V0.01;component/Recursos/Background/claro/main.png") as ImageSource;
+
+                CambiarIconosAOscuros();
+                CambiarTextosNegro();
+                backgroun_menu.Background = new SolidColorBrush(Color.FromArgb(48, 128, 128, 128)); // Gris semitransparente
+            }
+        }
+        #endregion
+
+        #region Navbar botones
+        private void irHome(object sender, RoutedEventArgs e)
+        {
+            Home home = new Home();
+            BeginFadeOutAnimation(home);
+        }
+
+        private void irJurisprudencia(object sender, RoutedEventArgs e)
+        {
+            BusquedaJurisprudencia busquedaJurisprudencia = new BusquedaJurisprudencia();
+            BeginFadeOutAnimation(busquedaJurisprudencia);
+        }
+
+        private void irDocumentos(object sender, RoutedEventArgs e)
+        {
+            Documentos documentos = new Documentos();
+            BeginFadeOutAnimation(documentos);
+        }
+
+        private void irClientes(object sender, RoutedEventArgs e)
+        {
+            Clientes clientes = new Clientes();
+            BeginFadeOutAnimation(clientes);
+        }
+
+        private void irCasos(object sender, RoutedEventArgs e)
+        {
+            Casos casos = new Casos();
+            BeginFadeOutAnimation(casos);
+        }
+
+        private void irAyuda(object sender, RoutedEventArgs e)
+        {
+            Ayuda ayuda = new Ayuda();
+            BeginFadeOutAnimation(ayuda);
+        }
+
+        private void irAgenda(object sender, RoutedEventArgs e)
+        {
+            Agenda agenda = new Agenda();
+            BeginFadeOutAnimation(agenda);
+        }
+
+        private void irAjustes(object sender, RoutedEventArgs e)
+        {
+            Ajustes ajustes = new Ajustes();
+            BeginFadeOutAnimation(ajustes);
+        }
+
+        private void ir_pruebas(object sender, RoutedEventArgs e)
+        {
+            Pruebas pruebas = new Pruebas();
+            BeginFadeOutAnimation(pruebas);
+        }
+        #endregion
+
+        #region Animaciones
+        private void InitializeAnimations()
+        {
+            // Animación de entrada con fade
+            fadeInStoryboard = new Storyboard();
+            DoubleAnimation fadeIn = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(0.5),
+                EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseInOut }
+            };
+            Storyboard.SetTarget(fadeIn, this);
+            Storyboard.SetTargetProperty(fadeIn, new PropertyPath(UIElement.OpacityProperty));
+            fadeInStoryboard.Children.Add(fadeIn);
+
+            // Animación de shake para error
+            shakeStoryboard = new Storyboard();
+            DoubleAnimation shakeAnimation = new DoubleAnimation
+            {
+                From = -10,
+                To = 10,
+                AutoReverse = true,
+                RepeatBehavior = new RepeatBehavior(3),
+                Duration = TimeSpan.FromMilliseconds(50)
+            };
+            shakeStoryboard.Children.Add(shakeAnimation);
+        }
+
+        private void BeginFadeInAnimation()
+        {
+            this.Opacity = 0;
+            fadeInStoryboard.Begin();
+        }
+
+        private void BeginFadeOutAnimation(Window nextWindow)
+        {
+            var fadeOutStoryboard = new Storyboard();
+            var fadeOut = new DoubleAnimation
+            {
+                From = 1,
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0.3),
+                EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseInOut }
+            };
+            fadeOut.Completed += (s, e) =>
+            {
+                this.Close();
+                if (nextWindow != null)
+                {
+                    nextWindow.Show();
+                }
+            };
+            Storyboard.SetTarget(fadeOut, this);
+            Storyboard.SetTargetProperty(fadeOut, new PropertyPath(UIElement.OpacityProperty));
+            fadeOutStoryboard.Children.Add(fadeOut);
+            fadeOutStoryboard.Begin();
+        }
+
+        public void ShakeElement(FrameworkElement element)
+        {
+            TranslateTransform trans = new TranslateTransform();
+            element.RenderTransform = trans;
+
+            DoubleAnimation anim = new DoubleAnimation
+            {
+                From = -5,
+                To = 5,
+                AutoReverse = true,
+                RepeatBehavior = new RepeatBehavior(3),
+                Duration = TimeSpan.FromMilliseconds(50),
+                EasingFunction = new ElasticEase() { EasingMode = EasingMode.EaseOut }
+            };
+
+            trans.BeginAnimation(TranslateTransform.XProperty, anim);
+
+            trans.BeginAnimation(TranslateTransform.XProperty, anim);
+        }
+        #endregion
+
+
+
+        private async void cargar_datos_clientes(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Instancia de SupabaseBBDD
+                SupabaseBBDD supabase = new SupabaseBBDD();
+
+                // Obtener los datos de clientes en formato JSON
+                string clientesJson = await supabase.ObtenerClientesAsync();
+
+                // Verifica si la respuesta contiene un error
+                if (clientesJson.StartsWith("Error:"))
+                {
+                    MessageBox.Show(clientesJson, "Error en la solicitud", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Mostrar el JSON recibido para depuración
+                MessageBox.Show(clientesJson, "JSON Recibido", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Deserializar el JSON a una lista de objetos Clientes
+                var clientes = System.Text.Json.JsonSerializer.Deserialize<List<Clientes>>(clientesJson);
+
+                // Asignar la lista de clientes al DataGrid
+                DataGridClientes.ItemsSource = clientes;
+            }
+            catch (System.Text.Json.JsonException ex)
+            {
+                MessageBox.Show($"Error al deserializar el JSON: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar los datos de clientes: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+
+    }
+}
