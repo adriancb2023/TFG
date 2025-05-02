@@ -180,39 +180,17 @@
                                 <StackPanel Grid.Column="0" Margin="0,0,10,0">
                                     <TextBlock Text="Jurisdicción" FontWeight="Bold" Foreground="White"/>
                                     <ComboBox x:Name="JurisdiccionComboBox" 
-                                              ItemsSource="{Binding Jurisdicciones}" 
+                                              ItemsSource="{Binding}" 
                                               SelectedItem="{Binding JurisdiccionSeleccionada, UpdateSourceTrigger=PropertyChanged}" 
-                                              Foreground="Black"/>
+                                              Foreground="Black" />
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
                                     <TextBlock Text="Tipo de resolución" FontWeight="Bold" Foreground="White"/>
                                     <ComboBox x:Name="TipoResolucionComboBox" 
-                                              ItemsSource="{Binding TiposResolucion}">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel>
-                                                    <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                    <ItemsControl ItemsSource="{Binding SubTipos}">
-                                                        <ItemsControl.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <StackPanel Margin="10,0,0,0">
-                                                                    <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                                    <ItemsControl ItemsSource="{Binding SubTipos}">
-                                                                        <ItemsControl.ItemTemplate>
-                                                                            <DataTemplate>
-                                                                                <CheckBox Content="{Binding Nombre}" Margin="20,0,0,0" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                                            </DataTemplate>
-                                                                        </ItemsControl.ItemTemplate>
-                                                                    </ItemsControl>
-                                                                </StackPanel>
-                                                            </DataTemplate>
-                                                        </ItemsControl.ItemTemplate>
-                                                    </ItemsControl>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
+                                              ItemsSource="{Binding}" 
+                                              SelectedItem="{Binding TipoResolucionSeleccionada, UpdateSourceTrigger=PropertyChanged}" 
+                                              Foreground="Black" />
                                 </StackPanel>
                             </Grid>
                             <Separator Margin="0,10,0,10"/>
@@ -226,31 +204,9 @@
                                 <StackPanel Grid.Column="0">
                                     <TextBlock Text="Órgano judicial" FontWeight="Bold" Foreground="White"/>
                                     <ComboBox x:Name="OrganoJudicialComboBox" 
-                                              ItemsSource="{Binding TiposOrgano}">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel>
-                                                    <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                    <ItemsControl ItemsSource="{Binding SubTipos}">
-                                                        <ItemsControl.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <StackPanel Margin="10,0,0,0">
-                                                                    <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                                    <ItemsControl ItemsSource="{Binding SubTipos}">
-                                                                        <ItemsControl.ItemTemplate>
-                                                                            <DataTemplate>
-                                                                                <CheckBox Content="{Binding Nombre}" Margin="20,0,0,0" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                                            </DataTemplate>
-                                                                        </ItemsControl.ItemTemplate>
-                                                                    </ItemsControl>
-                                                                </StackPanel>
-                                                            </DataTemplate>
-                                                        </ItemsControl.ItemTemplate>
-                                                    </ItemsControl>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
+                                              ItemsSource="{Binding}" 
+                                              SelectedItem="{Binding OrganoJudicialSeleccionado, UpdateSourceTrigger=PropertyChanged}" 
+                                              Foreground="Black" />
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
@@ -261,31 +217,9 @@
                             <TextBlock Text="Localización" FontWeight="Bold" Margin="0,10,0,0" Foreground="White"/>
                             <Grid>
                                 <ComboBox x:Name="LocalizacionComboBox" 
-                                          ItemsSource="{Binding Localizaciones}">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                <ItemsControl ItemsSource="{Binding SubLocalizaciones}">
-                                                    <ItemsControl.ItemTemplate>
-                                                        <DataTemplate>
-                                                            <StackPanel Margin="10,0,0,0">
-                                                                <CheckBox Content="{Binding Nombre}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                                <ItemsControl ItemsSource="{Binding SubLocalizaciones}">
-                                                                    <ItemsControl.ItemTemplate>
-                                                                        <DataTemplate>
-                                                                            <CheckBox Content="{Binding Nombre}" Margin="20,0,0,0" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                                        </DataTemplate>
-                                                                    </ItemsControl.ItemTemplate>
-                                                                </ItemsControl>
-                                                            </StackPanel>
-                                                        </DataTemplate>
-                                                    </ItemsControl.ItemTemplate>
-                                                </ItemsControl>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
+                                          ItemsSource="{Binding}" 
+                                          SelectedItem="{Binding LocalizacionSeleccionada, UpdateSourceTrigger=PropertyChanged}" 
+                                          Foreground="Black" />
                             </Grid>
 
                             <Separator Margin="0,10,0,10"/>

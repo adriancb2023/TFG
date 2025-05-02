@@ -112,7 +112,7 @@ namespace JurisprudenciaApi.Controllers
                 // TextoLibre (Free text search) - Verify field name (e.g., "TEXTOLIBRE" or "query")
                 if (!string.IsNullOrEmpty(parameters.TextoLibre))
                 {
-                     formData["TEXTOLIBRE"] = parameters.TextoLibre; // ASSUMED field name
+                    formData["TEXTOLIBRE"] = parameters.TextoLibre; // ASSUMED field name
                 }
 
                 // Jurisdiccion (Single value) - Verify field name (e.g., "JURISDICCION")
@@ -130,51 +130,51 @@ namespace JurisprudenciaApi.Controllers
 
                 // OrganosJudiciales (List of Codes) - Verify field name (e.g., "TIPOORGANO" or "ORGANOJURISDICCIONAL")
                 // Using TIPOORGANOPUB and field=TIPOORGANO as before, but with joined codes
-                 if (parameters.OrganosJudiciales?.Any() == true)
-                 {
-                     // Assuming OrganosJudiciales contains the CODES (e.g., "11", "37") directly from mapping/UI
-                     formData["TIPOORGANOPUB"] = $"|{string.Join("|", parameters.OrganosJudiciales)}|"; // ASSUMED format (|code1|code2|)
-                     formData["field"] = "TIPOORGANO"; // Seems required when using TIPOORGANOPUB
-                 }
+                if (parameters.OrganosJudiciales?.Any() == true)
+                {
+                    // Assuming OrganosJudiciales contains the CODES (e.g., "11", "37") directly from mapping/UI
+                    formData["TIPOORGANOPUB"] = $"|{string.Join("|", parameters.OrganosJudiciales)}|"; // ASSUMED format (|code1|code2|)
+                    formData["field"] = "TIPOORGANO"; // Seems required when using TIPOORGANOPUB
+                }
 
 
                 // Roj
                 if (!string.IsNullOrEmpty(parameters.Roj))
                 {
-                     formData["ROJ"] = parameters.Roj;
+                    formData["ROJ"] = parameters.Roj;
                 }
 
                 // Ecli
-                 if (!string.IsNullOrEmpty(parameters.Ecli))
+                if (!string.IsNullOrEmpty(parameters.Ecli))
                 {
-                     formData["ECLI"] = parameters.Ecli;
+                    formData["ECLI"] = parameters.Ecli;
                 }
 
                 // FechaDesde
                 if (parameters.FechaDesde.HasValue)
                 {
-                     // Verify field name (e.g., "FECHA_DESDE" or "fechaDesde")
-                     formData["FECHA_DESDE"] = parameters.FechaDesde.Value.ToString("dd/MM/yyyy"); // ASSUMED field name
+                    // Verify field name (e.g., "FECHA_DESDE" or "fechaDesde")
+                    formData["FECHA_DESDE"] = parameters.FechaDesde.Value.ToString("dd/MM/yyyy"); // ASSUMED field name
                 }
 
                 // FechaHasta
                 if (parameters.FechaHasta.HasValue)
                 {
-                     // Verify field name (e.g., "FECHA_HASTA" or "fechaHasta")
-                     formData["FECHA_HASTA"] = parameters.FechaHasta.Value.ToString("dd/MM/yyyy"); // ASSUMED field name
+                    // Verify field name (e.g., "FECHA_HASTA" or "fechaHasta")
+                    formData["FECHA_HASTA"] = parameters.FechaHasta.Value.ToString("dd/MM/yyyy"); // ASSUMED field name
                 }
 
                 // NumeroResolucion - Verify field name (e.g., "NUMERO_RESOLUCION")
                 if (!string.IsNullOrEmpty(parameters.NumeroResolucion))
                 {
-                     formData["NUMERO_RESOLUCION"] = parameters.NumeroResolucion; // ASSUMED field name
+                    formData["NUMERO_RESOLUCION"] = parameters.NumeroResolucion; // ASSUMED field name
                 }
 
 
                 // NumeroRecurso - Verify field name (e.g., "NUMERO_RECURSO")
                 if (!string.IsNullOrEmpty(parameters.NumeroRecurso))
                 {
-                     formData["NUMERO_RECURSO"] = parameters.NumeroRecurso; // ASSUMED field name
+                    formData["NUMERO_RECURSO"] = parameters.NumeroRecurso; // ASSUMED field name
                 }
 
                 // Ponente - Verify field name (e.g., "PONENTE")
@@ -184,9 +184,9 @@ namespace JurisprudenciaApi.Controllers
                 }
 
                 // Seccion - Verify field name (e.g., "SECCION")
-                 if (!string.IsNullOrEmpty(parameters.Seccion))
+                if (!string.IsNullOrEmpty(parameters.Seccion))
                 {
-                     formData["SECCION"] = parameters.Seccion; // ASSUMED field name
+                    formData["SECCION"] = parameters.Seccion; // ASSUMED field name
                 }
 
                 // Idioma - Verify field name (e.g., "IDIOMA")
@@ -194,7 +194,7 @@ namespace JurisprudenciaApi.Controllers
                 {
                     if (IdiomaMap.TryGetValue(parameters.Idioma, out string? idiomaCode))
                     {
-                         formData["IDIOMA"] = idiomaCode; // ASSUMED field name, using mapped code
+                        formData["IDIOMA"] = idiomaCode; // ASSUMED field name, using mapped code
                     }
                     // else { // Handle case where language isn't mapped? Maybe pass raw string? }
                 }
@@ -202,7 +202,7 @@ namespace JurisprudenciaApi.Controllers
                 // Legislacion - Verify field name (e.g., "NORMA_CITADA") - How is this used? Exact match? Contains?
                 if (!string.IsNullOrEmpty(parameters.Legislacion))
                 {
-                     formData["NORMA_CITADA"] = parameters.Legislacion; // ASSUMED field name
+                    formData["NORMA_CITADA"] = parameters.Legislacion; // ASSUMED field name
                 }
 
                 // Localizaciones (List) - Verify field name (e.g., "AMBITOTERRITORIAL") and format
@@ -257,13 +257,13 @@ namespace JurisprudenciaApi.Controllers
                         // Make URL absolute if it's relative
                         if (!string.IsNullOrEmpty(result.UrlDocumento) && !result.UrlDocumento.StartsWith("http"))
                         {
-                           result.UrlDocumento = new Uri(new Uri("https://www.poderjudicial.es"), result.UrlDocumento).ToString();
+                            result.UrlDocumento = new Uri(new Uri("https://www.poderjudicial.es"), result.UrlDocumento).ToString();
                         }
 
 
                         // Clean up extracted data if necessary (e.g., remove "Roj: ", "Ecli: ")
-                        result.Roj = result.Roj?.Replace("Roj:","").Trim();
-                        result.Ecli = result.Ecli?.Replace("ECLI:","").Trim();
+                        result.Roj = result.Roj?.Replace("Roj:", "").Trim();
+                        result.Ecli = result.Ecli?.Replace("ECLI:", "").Trim();
 
 
                         parsedResults.Add(result);
@@ -279,17 +279,17 @@ namespace JurisprudenciaApi.Controllers
                 // Log the error details
                 Console.WriteLine($"Request Exception: {e.Message}");
                 Console.WriteLine($"Status Code: {e.StatusCode}");
-                 if (e.InnerException != null) Console.WriteLine($"Inner Exception: {e.InnerException.Message}");
+                if (e.InnerException != null) Console.WriteLine($"Inner Exception: {e.InnerException.Message}");
                 // Return a specific error response
                 return StatusCode((int?)e.StatusCode ?? 500, $"Error communicating with CENDOJ service: {e.Message}");
             }
             catch (Exception ex)
             {
-                 // Log the error details
-                 Console.WriteLine($"Generic Exception: {ex.Message}");
-                 if (ex.InnerException != null) Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
-                 // Return a generic server error
-                 return StatusCode(500, $"An internal server error occurred: {ex.Message}");
+                // Log the error details
+                Console.WriteLine($"Generic Exception: {ex.Message}");
+                if (ex.InnerException != null) Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                // Return a generic server error
+                return StatusCode(500, $"An internal server error occurred: {ex.Message}");
             }
         }
         [HttpGet("initialData")]
@@ -315,5 +315,4 @@ namespace JurisprudenciaApi.Controllers
         public List<string> OrganosJudiciales { get; set; }
         public List<string> Localizaciones { get; set; }
     }
-
 }

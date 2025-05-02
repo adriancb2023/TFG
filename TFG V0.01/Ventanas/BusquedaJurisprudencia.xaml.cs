@@ -599,7 +599,7 @@ namespace TFG_V0._01.Ventanas
                 string jsonResponse = await response.Content.ReadAsStringAsync();
                 var initialData = JsonSerializer.Deserialize<InitialDataResponse>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-                // Asignar los datos directamente a los ComboBox
+                // Asignar los datos a los ComboBox
                 JurisdiccionComboBox.ItemsSource = initialData.Jurisdicciones;
                 TipoResolucionComboBox.ItemsSource = initialData.TiposResolucion;
                 OrganoJudicialComboBox.ItemsSource = initialData.OrganosJudiciales;
