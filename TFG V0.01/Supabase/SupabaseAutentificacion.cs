@@ -61,7 +61,7 @@ public class SupabaseAutentificacion
         if (!response.IsSuccessStatusCode)
             throw new Exception($"SignIn error: {result}");
 
-        return result;
+        return result; // Aquí puedes extraer el token si quieres
     }
 
     

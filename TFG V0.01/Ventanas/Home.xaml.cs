@@ -1,9 +1,12 @@
-﻿using System.Windows;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using TFG_V0._01.Modelo;
 
 namespace TFG_V0._01.Ventanas
 {
@@ -15,7 +18,7 @@ namespace TFG_V0._01.Ventanas
         #endregion
 
         #region variables
-
+        private DateOnly fechaActual = DateOnly.FromDateTime(DateTime.Now);
         #endregion
 
         #region Inicializacion
@@ -24,7 +27,8 @@ namespace TFG_V0._01.Ventanas
             InitializeComponent();
             InitializeAnimations();
             AplicarModoSistema();
-            BeginFadeInAnimation();
+
+            cargarDatos();
         }
         #endregion
 
@@ -98,7 +102,6 @@ namespace TFG_V0._01.Ventanas
 
         private void CambiarTextosNegro()
         {
-            // Botones de navegación
             CambiarColorTexto("btnAgenda", Colors.Black);
             CambiarColorTexto("btnAjustes", Colors.Black);
             CambiarColorTexto("btnAyuda", Colors.Black);
@@ -107,51 +110,10 @@ namespace TFG_V0._01.Ventanas
             CambiarColorTexto("btnDocumentos", Colors.Black);
             CambiarColorTexto("btnHome", Colors.Black);
             CambiarColorTexto("btnBuscar", Colors.Black);
-
-            // Textos principales
-            CambiarColorTexto("txtBienvenida", Colors.Black);
-            CambiarColorTexto("txtPanelControl", Colors.Black);
-            CambiarColorTexto("txtTituloCalendario", Colors.Black);
-            CambiarColorTexto("txtTareasPendientes", Colors.Black);
-            CambiarColorTexto("txtCasosRecientes", Colors.Black);
-            CambiarColorTexto("txtPiePagina", Colors.Black);
-            CambiarColorTexto("txtVersion", Colors.Black);
-
-            // Eventos del calendario
-            CambiarColorTexto("txtEvento1Titulo", Colors.Black);
-            CambiarColorTexto("txtEvento1Descripcion", Colors.Black);
-            CambiarColorTexto("txtEvento1Horario", Colors.Black);
-            CambiarColorTexto("txtEvento2Titulo", Colors.Black);
-            CambiarColorTexto("txtEvento2Descripcion", Colors.Black);
-            CambiarColorTexto("txtEvento2Horario", Colors.Black);
-            CambiarColorTexto("txtEvento3Titulo", Colors.Black);
-            CambiarColorTexto("txtEvento3Descripcion", Colors.Black);
-            CambiarColorTexto("txtEvento3Horario", Colors.Black);
-
-            // Tareas
-            CambiarColorTexto("txtTarea1Descripcion", Colors.Black);
-            CambiarColorTexto("txtTarea1Vencimiento", Colors.Black);
-            CambiarColorTexto("txtTarea2Descripcion", Colors.Black);
-            CambiarColorTexto("txtTarea2Vencimiento", Colors.Black);
-            CambiarColorTexto("txtTarea3Descripcion", Colors.Black);
-            CambiarColorTexto("txtTarea3Vencimiento", Colors.Black);
-            CambiarColorTexto("txtTarea4Descripcion", Colors.Black);
-            CambiarColorTexto("txtTarea4Vencimiento", Colors.Black);
-
-            // Casos recientes
-            CambiarColorTexto("txtCaso1Numero", Colors.Black);
-            CambiarColorTexto("txtCaso1Cliente", Colors.Black);
-            CambiarColorTexto("txtCaso1Tipo", Colors.Black);
-            CambiarColorTexto("txtCaso1Estado", Colors.Black);
-            CambiarColorTexto("txtCaso2Numero", Colors.Black);
-            CambiarColorTexto("txtCaso2Cliente", Colors.Black);
-            CambiarColorTexto("txtCaso2Tipo", Colors.Black);
-            CambiarColorTexto("txtCaso2Estado", Colors.Black);
         }
 
         private void CambiarTextosBlanco()
         {
-            // Botones de navegación
             CambiarColorTexto("btnAgenda", Colors.White);
             CambiarColorTexto("btnAjustes", Colors.White);
             CambiarColorTexto("btnAyuda", Colors.White);
@@ -160,46 +122,6 @@ namespace TFG_V0._01.Ventanas
             CambiarColorTexto("btnDocumentos", Colors.White);
             CambiarColorTexto("btnHome", Colors.White);
             CambiarColorTexto("btnBuscar", Colors.White);
-
-            // Textos principales
-            CambiarColorTexto("txtBienvenida", Colors.White);
-            CambiarColorTexto("txtPanelControl", Colors.White);
-            CambiarColorTexto("txtTituloCalendario", Colors.White);
-            CambiarColorTexto("txtTareasPendientes", Colors.White);
-            CambiarColorTexto("txtCasosRecientes", Colors.White);
-            CambiarColorTexto("txtPiePagina", Colors.White);
-            CambiarColorTexto("txtVersion", Colors.White);
-
-            // Eventos del calendario
-            CambiarColorTexto("txtEvento1Titulo", Colors.White);
-            CambiarColorTexto("txtEvento1Descripcion", Colors.White);
-            CambiarColorTexto("txtEvento1Horario", Colors.White);
-            CambiarColorTexto("txtEvento2Titulo", Colors.White);
-            CambiarColorTexto("txtEvento2Descripcion", Colors.White);
-            CambiarColorTexto("txtEvento2Horario", Colors.White);
-            CambiarColorTexto("txtEvento3Titulo", Colors.White);
-            CambiarColorTexto("txtEvento3Descripcion", Colors.White);
-            CambiarColorTexto("txtEvento3Horario", Colors.White);
-
-            // Tareas
-            CambiarColorTexto("txtTarea1Descripcion", Colors.White);
-            CambiarColorTexto("txtTarea1Vencimiento", Colors.White);
-            CambiarColorTexto("txtTarea2Descripcion", Colors.White);
-            CambiarColorTexto("txtTarea2Vencimiento", Colors.White);
-            CambiarColorTexto("txtTarea3Descripcion", Colors.White);
-            CambiarColorTexto("txtTarea3Vencimiento", Colors.White);
-            CambiarColorTexto("txtTarea4Descripcion", Colors.White);
-            CambiarColorTexto("txtTarea4Vencimiento", Colors.White);
-
-            // Casos recientes
-            CambiarColorTexto("txtCaso1Numero", Colors.White);
-            CambiarColorTexto("txtCaso1Cliente", Colors.White);
-            CambiarColorTexto("txtCaso1Tipo", Colors.White);
-            CambiarColorTexto("txtCaso1Estado", Colors.White);
-            CambiarColorTexto("txtCaso2Numero", Colors.White);
-            CambiarColorTexto("txtCaso2Cliente", Colors.White);
-            CambiarColorTexto("txtCaso2Tipo", Colors.White);
-            CambiarColorTexto("txtCaso2Estado", Colors.White);
         }
 
         private void CambiarColorTexto(string nombreElemento, Color color)
@@ -208,11 +130,6 @@ namespace TFG_V0._01.Ventanas
             if (boton != null)
             {
                 boton.Foreground = new SolidColorBrush(color);
-            }
-            var texto = this.FindName(nombreElemento) as TextBlock;
-            if (texto != null)
-            {
-                texto.Foreground = new SolidColorBrush(color);
             }
         }
         #endregion
@@ -259,7 +176,8 @@ namespace TFG_V0._01.Ventanas
                     icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/sol.png", UriKind.Relative));
                 }
 
-                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString("pack://application:,,,/TFG V0.01;component/Recursos/Background/oscuro/main.png") as ImageSource;
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(
+                    @"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\oscuro\main.png") as ImageSource;
 
                 CambiarIconosAClaros();
                 CambiarTextosBlanco();
@@ -273,12 +191,49 @@ namespace TFG_V0._01.Ventanas
                     icon.Source = new BitmapImage(new Uri("/TFG V0.01;component/Recursos/Iconos/luna.png", UriKind.Relative));
                 }
 
-                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString("pack://application:,,,/TFG V0.01;component/Recursos/Background/claro/main.png") as ImageSource;
+                backgroundFondo.ImageSource = new ImageSourceConverter().ConvertFromString(
+                    @"C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\Recursos\Background\claro\main.png") as ImageSource;
 
                 CambiarIconosAOscuros();
                 CambiarTextosNegro();
                 backgroun_menu.Background = new SolidColorBrush(Color.FromArgb(48, 128, 128, 128)); // Gris semitransparente
             }
+        }
+
+        #endregion
+
+        #region Control de ventana sin bordes
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                if (WindowState == WindowState.Maximized)
+                    WindowState = WindowState.Normal;
+                else
+                    WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.DragMove();
+            }
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+                WindowState = WindowState.Normal;
+            else
+                WindowState = WindowState.Maximized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
         #endregion
 
@@ -286,55 +241,57 @@ namespace TFG_V0._01.Ventanas
         private void irHome(object sender, RoutedEventArgs e)
         {
             Home home = new Home();
-            BeginFadeOutAnimation(home);
+            home.Show();
+            this.Close();
         }
 
         private void irJurisprudencia(object sender, RoutedEventArgs e)
         {
             BusquedaJurisprudencia busquedaJurisprudencia = new BusquedaJurisprudencia();
-            BeginFadeOutAnimation(busquedaJurisprudencia);
+            busquedaJurisprudencia.Show();
+            this.Close();
         }
 
         private void irDocumentos(object sender, RoutedEventArgs e)
         {
             Documentos documentos = new Documentos();
-            BeginFadeOutAnimation(documentos);
+            documentos.Show();
+            this.Close();
         }
 
         private void irClientes(object sender, RoutedEventArgs e)
         {
             Clientes clientes = new Clientes();
-            BeginFadeOutAnimation(clientes);
+            clientes.Show();
+            this.Close();
         }
 
         private void irCasos(object sender, RoutedEventArgs e)
         {
             Casos casos = new Casos();
-            BeginFadeOutAnimation(casos);
+            casos.Show();
+            this.Close();
         }
 
         private void irAyuda(object sender, RoutedEventArgs e)
         {
             Ayuda ayuda = new Ayuda();
-            BeginFadeOutAnimation(ayuda);
+            ayuda.Show();
+            this.Close();
         }
 
         private void irAgenda(object sender, RoutedEventArgs e)
         {
             Agenda agenda = new Agenda();
-            BeginFadeOutAnimation(agenda);
+            agenda.Show();
+            this.Close();
         }
 
         private void irAjustes(object sender, RoutedEventArgs e)
         {
             Ajustes ajustes = new Ajustes();
-            BeginFadeOutAnimation(ajustes);
-        }
-
-        private void ir_pruebas(object sender, RoutedEventArgs e)
-        {
-            Pruebas pruebas = new Pruebas();
-            BeginFadeOutAnimation(pruebas);
+            ajustes.Show();
+            this.Close();
         }
         #endregion
 
@@ -347,23 +304,23 @@ namespace TFG_V0._01.Ventanas
             {
                 From = 0,
                 To = 1,
-                Duration = TimeSpan.FromSeconds(0.5),
-                EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseInOut }
+                Duration = TimeSpan.FromSeconds(0.5)
             };
             Storyboard.SetTarget(fadeIn, this);
-            Storyboard.SetTargetProperty(fadeIn, new PropertyPath(UIElement.OpacityProperty));
+            Storyboard.SetTargetProperty(fadeIn, new PropertyPath("Opacity"));
             fadeInStoryboard.Children.Add(fadeIn);
 
             // Animación de shake para error
             shakeStoryboard = new Storyboard();
             DoubleAnimation shakeAnimation = new DoubleAnimation
             {
-                From = -10,
-                To = 10,
+                From = 0,
+                To = 1,
                 AutoReverse = true,
                 RepeatBehavior = new RepeatBehavior(3),
-                Duration = TimeSpan.FromMilliseconds(50)
+                Duration = TimeSpan.FromSeconds(0.05)
             };
+
             shakeStoryboard.Children.Add(shakeAnimation);
         }
 
@@ -373,59 +330,231 @@ namespace TFG_V0._01.Ventanas
             fadeInStoryboard.Begin();
         }
 
-        private void BeginFadeOutAnimation(Window nextWindow)
-        {
-            var fadeOutStoryboard = new Storyboard();
-            var fadeOut = new DoubleAnimation
-            {
-                From = 1,
-                To = 0,
-                Duration = TimeSpan.FromSeconds(0.3),
-                EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseInOut }
-            };
-            fadeOut.Completed += (s, e) =>
-            {
-                this.Close();
-                if (nextWindow != null)
-                {
-                    nextWindow.Show();
-                }
-            };
-            Storyboard.SetTarget(fadeOut, this);
-            Storyboard.SetTargetProperty(fadeOut, new PropertyPath(UIElement.OpacityProperty));
-            fadeOutStoryboard.Children.Add(fadeOut);
-            fadeOutStoryboard.Begin();
-        }
-
-        public void ShakeElement(FrameworkElement element)
+        private void ShakeElement(FrameworkElement element)
         {
             TranslateTransform trans = new TranslateTransform();
             element.RenderTransform = trans;
 
             DoubleAnimation anim = new DoubleAnimation
             {
-                From = -5,
+                From = 0,
                 To = 5,
                 AutoReverse = true,
                 RepeatBehavior = new RepeatBehavior(3),
-                Duration = TimeSpan.FromMilliseconds(50),
-                EasingFunction = new ElasticEase() { EasingMode = EasingMode.EaseOut }
+                Duration = TimeSpan.FromSeconds(0.05)
             };
-
-            trans.BeginAnimation(TranslateTransform.XProperty, anim);
 
             trans.BeginAnimation(TranslateTransform.XProperty, anim);
         }
         #endregion
 
 
+        #region Carga de datos dashboard
 
-        //Prueba de animacion de shake en boton random
-        private void pruebaShake(object sender, RoutedEventArgs e)
+        private void cargarDatos()
         {
-            // Llama a la función de shake en el evento click del botón
-            ShakeElement(sender as FrameworkElement);
+            cargarCasosActivos();
+            cargarScoreCasos();
+
+            cargarClientes();
+            //cargarScoreClientes();
+
+            cargarDocumentos();
+            cargarScoreDocumentos();
+
+            cargarEventosDeHoy();
+
+            cargarMesCalendario();
         }
+
+        private void cargarCasosActivos()
+        {
+            using (var context = new TfgContext())
+            {
+                var estadosActivos = new[] { 1, 2, 4, 5 }; // Cambiado a int[]
+                var totalCasosActivos = context.Casos
+                    .Count(c => estadosActivos.Contains(c.IdEstado));
+
+                num_casosActivos.Text = totalCasosActivos.ToString();
+            }
+        }
+
+        private void cargarScoreCasos()
+        {
+            using (var context = new TfgContext())
+            {
+                var inicioMesAnterior = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(-1);
+                var finMesAnterior = inicioMesAnterior.AddMonths(1).AddDays(-1);
+
+                var casosMesAnterior = context.Casos
+                    .Count(c => c.FechaInicio >= inicioMesAnterior && c.FechaInicio <= finMesAnterior);
+
+                var inicioMesActual = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 1);
+                var finMesActual = inicioMesActual.AddMonths(1).AddDays(-1);
+
+                var casosMesActual = context.Casos
+                    .Count(c => c.FechaInicio >= inicioMesActual && c.FechaInicio <= finMesActual);
+
+                int resultado = -casosMesAnterior + casosMesActual;
+
+                if (resultado > 0)
+                {
+                    score_casosActivos.Text = "+" + resultado.ToString();
+                }
+                else if (resultado < 0)
+                {
+                    score_casosActivos.Text = resultado.ToString();
+                }
+                else
+                {
+                    score_casosActivos.Text = "0";
+                }
+            }
+        }
+
+        private void cargarClientes()
+        {
+            using (var context = new TfgContext())
+            {
+                var totalClientes = context.Clientes.Count();
+                numClientes.Text = totalClientes.ToString();
+            }
+        }
+
+        private void cargarScoreClientes()
+        {
+            //clientes nuevos respecto al mes anterior
+            using (var context = new TfgContext())
+            {
+                var inicioMesAnterior = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(-1);
+                var finMesAnterior = inicioMesAnterior.AddMonths(1).AddDays(-1);
+                var clientesMesAnterior = context.Clientes
+                    .Count(c => c.FechaContrato >= inicioMesAnterior && c.FechaContrato <= finMesAnterior);
+                var inicioMesActual = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 1);
+                var finMesActual = inicioMesActual.AddMonths(1).AddDays(-1);
+                var clientesMesActual = context.Clientes
+                    .Count(c => c.FechaContrato >= inicioMesActual && c.FechaContrato <= finMesActual);
+                int resultado = -clientesMesAnterior + clientesMesActual;
+                if (resultado > 0)
+                {
+                    newClientes.Text = "+" + resultado.ToString();
+                }
+                else if (resultado < 0)
+                {
+                    newClientes.Text = "-" + resultado.ToString();
+                }
+                else
+                {
+                    newClientes.Text = "0";
+                }
+            }
+        }
+
+        private void cargarDocumentos()
+        {
+            using (var context = new TfgContext())
+            {
+                var totalDocumentos = context.Documentos.Count();
+                TotalDocumentos.Text = totalDocumentos.ToString();
+            }
+        }
+
+        private void cargarScoreDocumentos()
+        {
+            using (var context = new TfgContext())
+            {
+                var inicioMesAnterior = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(-1);
+                var finMesAnterior = inicioMesAnterior.AddMonths(1).AddDays(-1);
+                var documentosMesAnterior = context.Documentos
+                    .Count(c => c.FechaSubid >= inicioMesAnterior && c.FechaSubid <= finMesAnterior);
+                var inicioMesActual = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 1);
+                var finMesActual = inicioMesActual.AddMonths(1).AddDays(-1);
+                var documentosMesActual = context.Documentos
+                    .Count(c => c.FechaSubid >= inicioMesActual && c.FechaSubid <= finMesActual);
+                int resultado = -documentosMesAnterior + documentosMesActual;
+                if (resultado > 0)
+                {
+                    ScoreDoc.Text = "+" + resultado.ToString();
+                }
+                else if (resultado < 0)
+                {
+                    ScoreDoc.Text = resultado.ToString();
+                }
+                else
+                {
+                    ScoreDoc.Text = "0";
+                }
+            }
+        }
+
+        private void cargarEventosDeHoy()
+        {
+            using (var context = new TfgContext())
+            {
+                var fechaHoy = DateOnly.FromDateTime(DateTime.Now);
+
+                // Contar las tareas cuya FechaFin coincide con la fecha actual.
+                var cantidad = context.Tareas.Count(e => e.FechaFin == fechaHoy);
+
+                eventHoy.Text = cantidad.ToString();
+            }
+        }
+
+        private void cargarMesCalendario()
+        {
+            var fechaHoy = DateOnly.FromDateTime(DateTime.Now);
+            var mes = fechaHoy.Month;
+            var anio = fechaHoy.Year;
+
+            string[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+            var mesText = meses[mes - 1];
+
+            mesCalendario.Text = mesText + " " + anio.ToString();
+        }
+
+        private void mesAnterior(object sender, RoutedEventArgs e)
+        {
+            var mes = fechaActual.Month - 1;
+            var anio = fechaActual.Year;
+
+            if (mes < 1)
+            {
+                mes = 12;
+                anio--;
+            }
+
+            fechaActual = new DateOnly(anio, mes, 1);
+
+            string[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+            var mesText = meses[mes - 1];
+
+            mesCalendario.Text = mesText + " " + anio.ToString();
+        }
+
+        private void mesSiguiente(object sender, RoutedEventArgs e)
+        {
+            var mes = fechaActual.Month + 1;
+            var anio = fechaActual.Year;
+
+            if (mes > 12)
+            {
+                mes = 1;
+                anio++;
+            }
+
+            fechaActual = new DateOnly(anio, mes, 1);
+
+            string[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+            var mesText = meses[mes - 1];
+
+            mesCalendario.Text = mesText + " " + anio.ToString();
+        }
+
+
+
+
+
+        #endregion
 
     }
 }

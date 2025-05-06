@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TFG_V0._01.Ventanas"
         mc:Ignorable="d"
-        Title="Ajustes" Height="950" Width="1500"
+        Title="Ajustes" Height="850" Width="1200"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -117,6 +117,9 @@
         <!-- Navbar -->
         <Grid x:Name="menu" Grid.Column="0" Visibility="Visible" MouseEnter="Menu_MouseEnter" MouseLeave="Menu_MouseLeave">
             <Border x:Name="backgroun_menu" BorderBrush="#454545" BorderThickness="0" Margin="0,0,0,0" CornerRadius="15" Background="#30FFFFFF" VerticalAlignment="Center">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2" Color="#20000000"/>
+                </Border.Effect>
                 <StackPanel VerticalAlignment="Center">
                     <Button x:Name="btnHome" Margin="10" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent" Click="irHome" >
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" >

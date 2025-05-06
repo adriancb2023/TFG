@@ -35,7 +35,6 @@ namespace TFG_V0._01.Ventanas
             InitializeComponent();
             InitializeAnimations();
             AplicarModoSistema();
-            BeginFadeInAnimation();
         }
         #endregion
 
@@ -206,55 +205,41 @@ namespace TFG_V0._01.Ventanas
                 backgroun_menu.Background = new SolidColorBrush(Color.FromArgb(48, 128, 128, 128)); // Gris semitransparente
             }
         }
+
         #endregion
 
-        #region Navbar botones
-        private void irHome(object sender, RoutedEventArgs e)
+        #region Control de ventana sin bordes
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Home home = new Home();
-            BeginFadeOutAnimation(home);
+            if (e.ClickCount == 2)
+            {
+                if (WindowState == WindowState.Maximized)
+                    WindowState = WindowState.Normal;
+                else
+                    WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.DragMove();
+            }
         }
 
-        private void irJurisprudencia(object sender, RoutedEventArgs e)
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
-            BusquedaJurisprudencia busquedaJurisprudencia = new BusquedaJurisprudencia();
-            BeginFadeOutAnimation(busquedaJurisprudencia);
+            WindowState = WindowState.Minimized;
         }
 
-        private void irDocumentos(object sender, RoutedEventArgs e)
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
         {
-            Documentos documentos = new Documentos();
-            BeginFadeOutAnimation(documentos);
+            if (WindowState == WindowState.Maximized)
+                WindowState = WindowState.Normal;
+            else
+                WindowState = WindowState.Maximized;
         }
 
-        private void irClientes(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Clientes clientes = new Clientes();
-            BeginFadeOutAnimation(clientes);
-        }
-
-        private void irCasos(object sender, RoutedEventArgs e)
-        {
-            Casos casos = new Casos();
-            BeginFadeOutAnimation(casos);
-        }
-
-        private void irAyuda(object sender, RoutedEventArgs e)
-        {
-            Ayuda ayuda = new Ayuda();
-            BeginFadeOutAnimation(ayuda);
-        }
-
-        private void irAgenda(object sender, RoutedEventArgs e)
-        {
-            Agenda agenda = new Agenda();
-            BeginFadeOutAnimation(agenda);
-        }
-
-        private void irAjustes(object sender, RoutedEventArgs e)
-        {
-            Ajustes ajustes = new Ajustes();
-            BeginFadeOutAnimation(ajustes);
+            this.Close();
         }
         #endregion
 
@@ -267,23 +252,23 @@ namespace TFG_V0._01.Ventanas
             {
                 From = 0,
                 To = 1,
-                Duration = TimeSpan.FromSeconds(0.3),
-                EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseInOut }
+                Duration = TimeSpan.FromSeconds(0.5)
             };
             Storyboard.SetTarget(fadeIn, this);
-            Storyboard.SetTargetProperty(fadeIn, new PropertyPath(UIElement.OpacityProperty));
+            Storyboard.SetTargetProperty(fadeIn, new PropertyPath("Opacity"));
             fadeInStoryboard.Children.Add(fadeIn);
 
             // Animación de shake para error
             shakeStoryboard = new Storyboard();
             DoubleAnimation shakeAnimation = new DoubleAnimation
             {
-                From = -10,
-                To = 10,
+                From = 0,
+                To = 1,
                 AutoReverse = true,
                 RepeatBehavior = new RepeatBehavior(3),
-                Duration = TimeSpan.FromMilliseconds(50)
+                Duration = TimeSpan.FromSeconds(0.05)
             };
+
             shakeStoryboard.Children.Add(shakeAnimation);
         }
 
@@ -293,48 +278,79 @@ namespace TFG_V0._01.Ventanas
             fadeInStoryboard.Begin();
         }
 
-        private void BeginFadeOutAnimation(Window nextWindow)
-        {
-            var fadeOutStoryboard = new Storyboard();
-            var fadeOut = new DoubleAnimation
-            {
-                From = 1,
-                To = 0,
-                Duration = TimeSpan.FromSeconds(0.3),
-                EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseInOut }
-            };
-            fadeOut.Completed += (s, e) =>
-            {
-                this.Close();
-                if (nextWindow != null)
-                {
-                    nextWindow.Show();
-                }
-            };
-            Storyboard.SetTarget(fadeOut, this);
-            Storyboard.SetTargetProperty(fadeOut, new PropertyPath(UIElement.OpacityProperty));
-            fadeOutStoryboard.Children.Add(fadeOut);
-            fadeOutStoryboard.Begin();
-        }
-
-        public void ShakeElement(FrameworkElement element)
+        private void ShakeElement(FrameworkElement element)
         {
             TranslateTransform trans = new TranslateTransform();
             element.RenderTransform = trans;
 
             DoubleAnimation anim = new DoubleAnimation
             {
-                From = -5,
+                From = 0,
                 To = 5,
                 AutoReverse = true,
                 RepeatBehavior = new RepeatBehavior(3),
-                Duration = TimeSpan.FromMilliseconds(50),
-                EasingFunction = new ElasticEase() { EasingMode = EasingMode.EaseOut }
+                Duration = TimeSpan.FromSeconds(0.05)
             };
 
             trans.BeginAnimation(TranslateTransform.XProperty, anim);
+        }
+        #endregion
 
-            trans.BeginAnimation(TranslateTransform.XProperty, anim);
+        #region Navbar botones
+        private void irHome(object sender, RoutedEventArgs e)
+        {
+            Home home = new Home();
+            home.Show();
+            this.Close();
+        }
+
+        private void irJurisprudencia(object sender, RoutedEventArgs e)
+        {
+            BusquedaJurisprudencia busquedaJurisprudencia = new BusquedaJurisprudencia();
+            busquedaJurisprudencia.Show();
+            this.Close();
+        }
+
+        private void irDocumentos(object sender, RoutedEventArgs e)
+        {
+            Documentos documentos = new Documentos();
+            documentos.Show();
+            this.Close();
+        }
+
+        private void irClientes(object sender, RoutedEventArgs e)
+        {
+            //Clientes clientes = new Clientes();
+            //clientes.Show();
+            //this.Close();
+        }
+
+        private void irCasos(object sender, RoutedEventArgs e)
+        {
+            Casos casos = new Casos();
+            casos.Show();
+            this.Close();
+        }
+
+        private void irAyuda(object sender, RoutedEventArgs e)
+        {
+            //Ayuda ayuda = new Ayuda();
+            //ayuda.Show();
+            //this.Close();
+        }
+
+        private void irAgenda(object sender, RoutedEventArgs e)
+        {
+            //Agenda agenda = new Agenda();
+            //agenda.Show();
+            //this.Close();
+        }
+
+        private void irAjustes(object sender, RoutedEventArgs e)
+        {
+            //Ajustes ajustes = new Ajustes();
+            //ajustes.Show();
+            //this.Close();
         }
         #endregion
     }

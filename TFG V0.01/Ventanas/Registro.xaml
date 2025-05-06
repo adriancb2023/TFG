@@ -13,7 +13,7 @@
         Background="Transparent">
 
     <Window.Resources>
-        <!-- Estilo para el botón de cambio de tema -->
+        
         <Style x:Key="ThemeButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -34,7 +34,6 @@
             </Setter>
         </Style>
 
-        <!-- Estilo para los TextBox -->
         <Style x:Key="ModernTextBox" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="#20FFFFFF"/>
             <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -67,7 +66,6 @@
             </Setter>
         </Style>
 
-        <!-- Estilo para los PasswordBox -->
         <Style x:Key="ModernPasswordBox" TargetType="{x:Type PasswordBox}">
             <Setter Property="Background" Value="#20FFFFFF"/>
             <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -100,7 +98,6 @@
             </Setter>
         </Style>
 
-        <!-- Estilo para los botones -->
         <Style x:Key="ModernButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#FFFFFF"/>
             <Setter Property="Foreground" Value="#333333"/>
@@ -131,7 +128,6 @@
             </Setter>
         </Style>
 
-        <!-- Estilo para botones secundarios -->
         <Style x:Key="SecondaryButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ModernButton}">
             <Setter Property="Background" Value="#20FFFFFF"/>
             <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -145,7 +141,6 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Estilo para botones terciarios -->
         <Style x:Key="TertiaryButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#AAFFFFFF"/>
@@ -173,26 +168,22 @@
 
     <Border CornerRadius="20" Background="#FF1A1A2E" MouseDown="Border_MouseDown">
         <Grid>
-            <!-- Fondo con imagen -->
+
             <Grid.Background>
                 <ImageBrush x:Name="backgroundFondo" Opacity="0.7" Stretch="UniformToFill"/>
             </Grid.Background>
-
-            <!-- Capa oscura encima -->
+            
             <Border Background="#80000000" CornerRadius="20"/>
 
-            <!-- Botón cerrar -->
             <Button x:Name="CloseButton" Content="×" FontSize="20" Width="30" Height="30" 
                     HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,15,15,0"
                     Background="Transparent" Foreground="White" BorderThickness="0"
                     Click="CloseButton_Click" Cursor="Hand"/>
 
-            <!-- Botón tema -->
             <Button x:Name="ThemeButton" Width="40" Height="40" Margin="15,15,0,0" 
                     HorizontalAlignment="Left" VerticalAlignment="Top" 
                     Click="ThemeButton_Click" Style="{StaticResource ThemeButtonStyle}"/>
 
-            <!-- Tarjeta principal -->
             <Border Width="350" Height="500" CornerRadius="15" Background="#30FFFFFF" VerticalAlignment="Center">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2" Color="#20000000"/>
@@ -205,45 +196,41 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <!-- Título -->
                     <StackPanel Grid.Row="0" Margin="0,0,0,20">
                         <TextBlock x:Name="Titulo" Text="Bienvenido" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
                         <TextBlock x:Name="Subtitulo" Text="Regístrese para continuar" FontSize="14" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
                     </StackPanel>
 
-                    <!-- Formulario -->
                     <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="0,10,0,10">
-                        <!-- Email -->
+                        
                         <StackPanel>
                             <TextBlock x:Name="correo" Text="Email" FontSize="13" Margin="5,0,0,5" Foreground="#CCFFFFFF"/>
                             <TextBox x:Name="UsernameTextBox" Style="{StaticResource ModernTextBox}" 
                                      GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
                         </StackPanel>
 
-                        <!-- Contraseña -->
                         <StackPanel>
                             <TextBlock x:Name="Pass1" Text="Contraseña" FontSize="13" Margin="5,0,0,5" Foreground="#CCFFFFFF"/>
                             <PasswordBox x:Name="PasswordBox" Style="{StaticResource ModernPasswordBox}" 
                                          GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
                         </StackPanel>
 
-                        <!-- Verificar Contraseña -->
                         <StackPanel>
                             <TextBlock x:Name="Pass2" Text="Verificar Contraseña" FontSize="13" Margin="5,0,0,5" Foreground="#CCFFFFFF"/>
                             <PasswordBox x:Name="PasswordBox2" Style="{StaticResource ModernPasswordBox}" 
                                          GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
                         </StackPanel>
 
-                        <!-- Error -->
                         <TextBlock x:Name="errorLogin" Text="Las contraseñas no coinciden" 
                                    Margin="5,0,0,0" Visibility="Collapsed" Foreground="#FFFF5252" FontSize="13"/>
 
-                        <!-- Botones -->
                         <Button Content="Registrarse" Style="{StaticResource ModernButton}" Margin="0,10,0,0" Click="RegistrarUser"/>
                         <Button Content="Volver" Style="{StaticResource SecondaryButton}" Margin="0,5,0,0" Click="VolverLogin"/>
                     </StackPanel>
+                    
                 </Grid>
             </Border>
+            
         </Grid>
     </Border>
 </Window>

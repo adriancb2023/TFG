@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:TFG_V0._01"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        
     </Application.Resources>
+
 </Application>
