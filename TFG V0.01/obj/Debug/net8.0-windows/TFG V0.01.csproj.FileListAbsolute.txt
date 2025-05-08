@@ -220,3 +220,119 @@ C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windo
 C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\JurisprudenciaAPI.dll
 C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\JurisprudenciaAPI.pdb
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\runtimes\win-x86\native\WebView2Loader.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\runtimes\win-x64\native\WebView2Loader.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\runtimes\win-arm64\native\WebView2Loader.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\JurisprudenciaAPI.deps.json
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\JurisprudenciaAPI.runtimeconfig.json
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\appsettings.Development.json
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\appsettings.json
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\JurisprudenciaAPI.staticwebassets.endpoints.json
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\JurisprudenciaAPI.exe
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\selenium-manager\linux\selenium-manager
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\selenium-manager\macos\selenium-manager
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\selenium-manager\windows\selenium-manager.exe
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\TFG V0.01.exe
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\TFG V0.01.deps.json
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\TFG V0.01.runtimeconfig.json
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\TFG V0.01.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\TFG V0.01.pdb
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\FluentWPF.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\FontAwesome.WPF.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\HtmlAgilityPack.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\MaterialDesignColors.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Options.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Logging.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Tokens.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.OpenApi.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\MimeMapping.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Panuon.UI.Silver.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Polly.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Polly.Core.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\WebDriver.Support.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\WebDriver.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Supabase.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Supabase.Core.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Supabase.Functions.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Supabase.Gotrue.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Supabase.Postgrest.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Supabase.Realtime.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Supabase.Storage.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\System.Diagnostics.DiagnosticSource.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\System.IO.Pipelines.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\System.Reactive.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\System.Text.Encodings.Web.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\System.Text.Json.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Websocket.Client.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\JurisprudenciaAPI.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Core.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.WinForms.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Wpf.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\JurisprudenciaAPI.pdb
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Core.xml
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.WinForms.xml
+C:\Users\franc\source\repos\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Wpf.xml
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.csproj.AssemblyReference.cache
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Login.baml
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Agenda.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ajustes.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ayuda.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\BusquedaJurisprudencia.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Casos.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Clientes.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Documentos.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Home.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Legislacion.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Login.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Registro.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01_Content.g.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01_MarkupCompile.cache
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01_MarkupCompile.lref
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Agenda.baml
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ajustes.baml
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Ayuda.baml
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\BusquedaJurisprudencia.baml
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Casos.baml
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Clientes.baml
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Documentos.baml
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Home.baml
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Legislacion.baml
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\Ventanas\Registro.baml
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.g.resources
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.AssemblyInfoInputs.cache
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.AssemblyInfo.cs
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.csproj.CoreCompileInputs.cache
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.sourcelink.json
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.csproj.Up2Date
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\refint\TFG V0.01.dll
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.pdb
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.genruntimeconfig.cache
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\ref\TFG V0.01.dll

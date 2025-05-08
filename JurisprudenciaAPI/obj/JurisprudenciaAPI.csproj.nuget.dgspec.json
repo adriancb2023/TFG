@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Francisco_Navarro\\Documents\\GitHub\\TFG\\JurisprudenciaAPI\\JurisprudenciaAPI.csproj": {}
+    "C:\\Users\\franc\\source\\repos\\TFG\\JurisprudenciaAPI\\JurisprudenciaAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Francisco_Navarro\\Documents\\GitHub\\TFG\\JurisprudenciaAPI\\JurisprudenciaAPI.csproj": {
+    "C:\\Users\\franc\\source\\repos\\TFG\\JurisprudenciaAPI\\JurisprudenciaAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Francisco_Navarro\\Documents\\GitHub\\TFG\\JurisprudenciaAPI\\JurisprudenciaAPI.csproj",
+        "projectUniqueName": "C:\\Users\\franc\\source\\repos\\TFG\\JurisprudenciaAPI\\JurisprudenciaAPI.csproj",
         "projectName": "JurisprudenciaAPI",
-        "projectPath": "C:\\Users\\Francisco_Navarro\\Documents\\GitHub\\TFG\\JurisprudenciaAPI\\JurisprudenciaAPI.csproj",
-        "packagesPath": "C:\\Users\\Francisco_Navarro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Francisco_Navarro\\Documents\\GitHub\\TFG\\JurisprudenciaAPI\\obj\\",
+        "projectPath": "C:\\Users\\franc\\source\\repos\\TFG\\JurisprudenciaAPI\\JurisprudenciaAPI.csproj",
+        "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\franc\\source\\repos\\TFG\\JurisprudenciaAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Francisco_Navarro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\franc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -53,6 +53,18 @@
             "HtmlAgilityPack": {
               "target": "Package",
               "version": "[1.12.1, )"
+            },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[8.5.2, )"
             },
             "Selenium.Support": {
               "target": "Package",
@@ -90,7 +102,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

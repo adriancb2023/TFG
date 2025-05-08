@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\obj\Debug\net8.0-windows\
+C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\
 TFG_V0._01
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\App.xaml
+C:\Users\franc\source\repos\TFG\TFG V0.01\App.xaml
 121767694169
-6-650458321
+6-1483752452
 20-1037593059
-367651475261
+369271712940
 MainWindow.xaml;Ventanas\Agenda.xaml;Ventanas\Ajustes.xaml;Ventanas\Ayuda.xaml;Ventanas\BusquedaJurisprudencia.xaml;Ventanas\Casos.xaml;Ventanas\Clientes.xaml;Ventanas\Documentos.xaml;Ventanas\Home.xaml;Ventanas\Legislacion.xaml;Ventanas\Login.xaml;Ventanas\Registro.xaml;
 
-False
+True
 

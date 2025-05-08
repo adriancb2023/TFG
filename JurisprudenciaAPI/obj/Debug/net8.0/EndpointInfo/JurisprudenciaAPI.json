@@ -90,6 +90,25 @@
           }
         }
       }
+    },
+    "/culture-debug": {
+      "get": {
+        "tags": [
+          "JurisprudenciaAPI"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringStringStringDictionary<>f__AnonymousType0"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -238,6 +257,24 @@
           },
           "ponente": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StringStringStringDictionary<>f__AnonymousType0": {
+        "type": "object",
+        "properties": {
+          "culture": {
+            "type": "string",
+            "nullable": true
+          },
+          "headers": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
             "nullable": true
           }
         },

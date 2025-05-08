@@ -7,7 +7,12 @@ using HtmlAgilityPack;
 using System.Linq;
 using System;
 using System.Net.Http.Headers;
-using System.Web; // Added for HtmlDecode
+using System.Web;
+using System.Net;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
+using Polly;
+using Polly.Retry;
 
 namespace JurisprudenciaApi.Controllers
 {
@@ -16,9 +21,11 @@ namespace JurisprudenciaApi.Controllers
     public class JurisprudenciaController : ControllerBase
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IMemoryCache _cache;
+        private readonly ILogger<JurisprudenciaController> _logger;
+        private readonly CookieContainer _cookieContainer = new CookieContainer();
 
-        // Mapeo de Nombre de Órgano a Código (extraído del HTML)
-        // Note: This map might need updates based on the exact values provided by the CENDOJ website's filters.
+        // Mapeo de Órganos Judiciales
         private static readonly Dictionary<string, string> TipoOrganoMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             { "Tribunal Supremo", "11|12|13|14|15|16" },
@@ -63,256 +70,288 @@ namespace JurisprudenciaApi.Controllers
             { "Audiencia Territorial", "36" }
         };
 
-        // Potential map for Idioma if CENDOJ expects codes (needs verification)
+        // Mapa de idiomas
         private static readonly Dictionary<string, string> IdiomaMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             { "Español", "es" }, // Guessed code
             { "Català", "ca" }, // Guessed code
             { "Galego", "gl" }, // Guessed code
             { "Euskera", "eu" }  // Guessed code
-            // "Todos" would likely mean omitting the parameter
         };
 
-        public JurisprudenciaController(IHttpClientFactory httpClientFactory)
+        // Política de reintentos
+        private static readonly AsyncRetryPolicy<HttpResponseMessage> RetryPolicy =
+            Policy<HttpResponseMessage>
+                .Handle<HttpRequestException>()
+                .OrResult(r => !r.IsSuccessStatusCode)
+                .WaitAndRetryAsync(3, retryAttempt =>
+                    TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+
+        public JurisprudenciaController(
+            IHttpClientFactory httpClientFactory,
+            IMemoryCache cache,
+            ILogger<JurisprudenciaController> logger)
         {
             _httpClientFactory = httpClientFactory;
+            _cache = cache;
+            _logger = logger;
         }
 
         [HttpPost("search")]
-        // Changed return type
         public async Task<ActionResult<IEnumerable<JurisprudenciaResult>>> Search([FromBody] JurisprudenciaSearchParameters parameters)
         {
             if (parameters == null)
+                return BadRequest("Parámetros de búsqueda no pueden ser nulos");
+
+            // Validación de fechas
+            if (parameters.FechaDesde.HasValue && parameters.FechaHasta.HasValue &&
+                parameters.FechaDesde > parameters.FechaHasta)
             {
-                return BadRequest("Search parameters cannot be null.");
+                return BadRequest("FechaDesde no puede ser mayor que FechaHasta");
             }
 
-            // var results = new List<string>(); // Old return type
-            var client = _httpClientFactory.CreateClient();
-            // Base URL might change, verify this is the correct endpoint for POST searches
-            var requestUrl = "https://www.poderjudicial.es/search/index.action"; // Adjusted endpoint based on observation, needs verification
+            // Cache key
+            var cacheKey = $"search_{System.Text.Json.JsonSerializer.Serialize(parameters)}";
+            if (_cache.TryGetValue(cacheKey, out List<JurisprudenciaResult> cachedResults))
+            {
+                _logger.LogInformation("Retornando resultados desde caché");
+                return Ok(cachedResults);
+            }
 
             try
             {
-                var formData = new Dictionary<string, string>
+                var client = _httpClientFactory.CreateClient("PoderJudicial");
+                var requestUrl = "https://www.poderjudicial.es/search/search.action";
+
+                // Configurar headers
+                var request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+                ConfigureRequestHeaders(request);
+
+                // Construir formulario
+                var formData = BuildFormData(parameters);
+                request.Content = new FormUrlEncodedContent(formData);
+                request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+
+                // Intento de conexión con retry
+                var response = await RetryPolicy.ExecuteAsync(async () =>
                 {
-                    // Parámetros fijos necesarios (Verify these are correct for 'index.action')
-                    { "action", "search" }, // Action might be different
-                    { "sort", "IN_FECHARESOLUCION:decreasing" },
-                    { "page", "1" }, // Use 'page' instead of 'start' perhaps?
-                    { "pageSize", "20" }, // Use 'pageSize' instead of 'recordsPerPage' perhaps? CENDOJ uses 10/20/50
-                    { "searchType", "jurisprudencia" }, // Likely needed
-                    { "historic", "false" } // Often needed
-                    // { "databasematch", "AN" }, // May not be needed with index.action
-                    // { "idtab", "jurisprudencia" } // May not be needed with index.action
-                };
+                    _logger.LogDebug("Enviando petición al Poder Judicial...");
+                    var res = await client.SendAsync(request);
 
-                // --- Mapeo Actualizado de Parámetros ---
-
-                // TextoLibre (Free text search) - Verify field name (e.g., "TEXTOLIBRE" or "query")
-                if (!string.IsNullOrEmpty(parameters.TextoLibre))
-                {
-                    formData["TEXTOLIBRE"] = parameters.TextoLibre; // ASSUMED field name
-                }
-
-                // Jurisdiccion (Single value) - Verify field name (e.g., "JURISDICCION")
-                if (!string.IsNullOrEmpty(parameters.Jurisdiccion))
-                {
-                    formData["JURISDICCION"] = $"|{parameters.Jurisdiccion.ToUpper()}|"; // Format assumption
-                }
-
-                // TiposResolucion (List) - Verify field name (e.g., "TIPORESOLUCION") and format
-                if (parameters.TiposResolucion?.Any() == true)
-                {
-                    // Assuming format is |Value1||Value2|...|
-                    formData["TIPORESOLUCION"] = string.Join("||", parameters.TiposResolucion.Select(tr => $"|{tr.ToUpper()}|")); // ASSUMED field name and format
-                }
-
-                // OrganosJudiciales (List of Codes) - Verify field name (e.g., "TIPOORGANO" or "ORGANOJURISDICCIONAL")
-                // Using TIPOORGANOPUB and field=TIPOORGANO as before, but with joined codes
-                if (parameters.OrganosJudiciales?.Any() == true)
-                {
-                    // Assuming OrganosJudiciales contains the CODES (e.g., "11", "37") directly from mapping/UI
-                    formData["TIPOORGANOPUB"] = $"|{string.Join("|", parameters.OrganosJudiciales)}|"; // ASSUMED format (|code1|code2|)
-                    formData["field"] = "TIPOORGANO"; // Seems required when using TIPOORGANOPUB
-                }
-
-
-                // Roj
-                if (!string.IsNullOrEmpty(parameters.Roj))
-                {
-                    formData["ROJ"] = parameters.Roj;
-                }
-
-                // Ecli
-                if (!string.IsNullOrEmpty(parameters.Ecli))
-                {
-                    formData["ECLI"] = parameters.Ecli;
-                }
-
-                // FechaDesde
-                if (parameters.FechaDesde.HasValue)
-                {
-                    // Verify field name (e.g., "FECHA_DESDE" or "fechaDesde")
-                    formData["FECHA_DESDE"] = parameters.FechaDesde.Value.ToString("dd/MM/yyyy"); // ASSUMED field name
-                }
-
-                // FechaHasta
-                if (parameters.FechaHasta.HasValue)
-                {
-                    // Verify field name (e.g., "FECHA_HASTA" or "fechaHasta")
-                    formData["FECHA_HASTA"] = parameters.FechaHasta.Value.ToString("dd/MM/yyyy"); // ASSUMED field name
-                }
-
-                // NumeroResolucion - Verify field name (e.g., "NUMERO_RESOLUCION")
-                if (!string.IsNullOrEmpty(parameters.NumeroResolucion))
-                {
-                    formData["NUMERO_RESOLUCION"] = parameters.NumeroResolucion; // ASSUMED field name
-                }
-
-
-                // NumeroRecurso - Verify field name (e.g., "NUMERO_RECURSO")
-                if (!string.IsNullOrEmpty(parameters.NumeroRecurso))
-                {
-                    formData["NUMERO_RECURSO"] = parameters.NumeroRecurso; // ASSUMED field name
-                }
-
-                // Ponente - Verify field name (e.g., "PONENTE")
-                if (!string.IsNullOrEmpty(parameters.Ponente))
-                {
-                    formData["PONENTE"] = parameters.Ponente; // ASSUMED field name
-                }
-
-                // Seccion - Verify field name (e.g., "SECCION")
-                if (!string.IsNullOrEmpty(parameters.Seccion))
-                {
-                    formData["SECCION"] = parameters.Seccion; // ASSUMED field name
-                }
-
-                // Idioma - Verify field name (e.g., "IDIOMA")
-                if (!string.IsNullOrEmpty(parameters.Idioma) && !parameters.Idioma.Equals("Todos", StringComparison.OrdinalIgnoreCase))
-                {
-                    if (IdiomaMap.TryGetValue(parameters.Idioma, out string? idiomaCode))
+                    if (!res.IsSuccessStatusCode)
                     {
-                        formData["IDIOMA"] = idiomaCode; // ASSUMED field name, using mapped code
+                        var errorContent = await res.Content.ReadAsStringAsync();
+                        _logger.LogWarning("Error en la respuesta: {StatusCode} - {Content}",
+                            res.StatusCode, errorContent);
                     }
-                    // else { // Handle case where language isn't mapped? Maybe pass raw string? }
-                }
 
-                // Legislacion - Verify field name (e.g., "NORMA_CITADA") - How is this used? Exact match? Contains?
-                if (!string.IsNullOrEmpty(parameters.Legislacion))
-                {
-                    formData["NORMA_CITADA"] = parameters.Legislacion; // ASSUMED field name
-                }
-
-                // Localizaciones (List) - Verify field name (e.g., "AMBITOTERRITORIAL") and format
-                if (parameters.Localizaciones?.Any() == true)
-                {
-                    // Format is a wild guess - CENDOJ might use specific codes here too
-                    formData["AMBITOTERRITORIAL"] = string.Join("||", parameters.Localizaciones.Select(l => $"|{l}|")); // ASSUMED field name and format
-                }
-
-                // --- Fin Mapeo ---
-
-                var content = new FormUrlEncodedContent(formData);
-
-                // Simular cabeceras de navegador comunes (mantener, potentially add more like Referer if needed)
-                client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"); // Updated UA
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/html"));
-                client.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue("es-ES,es;q=0.9"));
-                // client.DefaultRequestHeaders.Referrer = new Uri("https://www.poderjudicial.es/search/index.action"); // May be required
-
-                // Realizar la petición POST
-                HttpResponseMessage response = await client.PostAsync(requestUrl, content);
-                response.EnsureSuccessStatusCode(); // Throw exception for non-2xx status codes earlier
+                    res.EnsureSuccessStatusCode();
+                    return res;
+                });
 
                 string responseBody = await response.Content.ReadAsStringAsync();
+                _logger.LogDebug("Respuesta recibida. Longitud: {Length} chars", responseBody.Length);
 
-                // --- Lógica de Parseo con HtmlAgilityPack ---
-                var parsedResults = new List<JurisprudenciaResult>();
-                var htmlDoc = new HtmlDocument();
-                htmlDoc.LoadHtml(responseBody);
+                var parsedResults = ParseHtmlResponse(responseBody);
+                _logger.LogInformation("Parseados {Count} resultados", parsedResults.Count);
 
-                // *** CRITICAL ASSUMPTION ***: The structure below needs verification against actual CENDOJ results HTML.
-                // Find the container for all results. Adjust XPath as needed.
-                var resultNodes = htmlDoc.DocumentNode.SelectNodes("//li[contains(@class, 'resultado_busqueda')]"); // ASSUMED XPath for result items
-
-                if (resultNodes != null)
-                {
-                    foreach (var node in resultNodes)
-                    {
-                        var result = new JurisprudenciaResult();
-
-                        // Extract data using XPath relative to the current result node (.)
-                        // Adjust XPaths based on actual HTML structure and classes/IDs.
-                        result.Roj = node.SelectSingleNode(".//span[contains(@class, 'roj')]")?.InnerText.Trim(); // ASSUMED class
-                        result.Ecli = node.SelectSingleNode(".//span[contains(@class, 'ecli')]")?.InnerText.Trim(); // ASSUMED class
-                        result.FechaResolucion = node.SelectSingleNode(".//span[contains(@class, 'fecha')]")?.InnerText.Trim(); // ASSUMED class
-                        result.TipoResolucion = node.SelectSingleNode(".//strong[contains(text(), 'Resolución:')]/following-sibling::span")?.InnerText.Trim(); // ASSUMED structure
-                        result.OrganoJudicial = node.SelectSingleNode(".//strong[contains(text(), 'Órgano:')]/following-sibling::span")?.InnerText.Trim(); // ASSUMED structure
-                        result.Ponente = node.SelectSingleNode(".//strong[contains(text(), 'Ponente:')]/following-sibling::span")?.InnerText.Trim(); // ASSUMED structure
-                        result.Resumen = HttpUtility.HtmlDecode(node.SelectSingleNode(".//div[contains(@class, 'resumen_contenido')]")?.InnerText.Trim()); // ASSUMED class, decode HTML entities
-                        result.UrlDocumento = node.SelectSingleNode(".//a[contains(@class, 'btn-primary') and contains(text(), 'Documento')]")?.Attributes["href"]?.Value; // ASSUMED class and text
-
-                        // Make URL absolute if it's relative
-                        if (!string.IsNullOrEmpty(result.UrlDocumento) && !result.UrlDocumento.StartsWith("http"))
-                        {
-                            result.UrlDocumento = new Uri(new Uri("https://www.poderjudicial.es"), result.UrlDocumento).ToString();
-                        }
-
-
-                        // Clean up extracted data if necessary (e.g., remove "Roj: ", "Ecli: ")
-                        result.Roj = result.Roj?.Replace("Roj:", "").Trim();
-                        result.Ecli = result.Ecli?.Replace("ECLI:", "").Trim();
-
-
-                        parsedResults.Add(result);
-                    }
-                }
-                // --- Fin Lógica de Parseo ---
+                // Cachear resultados por 30 minutos
+                _cache.Set(cacheKey, parsedResults, TimeSpan.FromMinutes(30));
 
                 return Ok(parsedResults);
-
             }
             catch (HttpRequestException e)
             {
-                // Log the error details
-                Console.WriteLine($"Request Exception: {e.Message}");
-                Console.WriteLine($"Status Code: {e.StatusCode}");
-                if (e.InnerException != null) Console.WriteLine($"Inner Exception: {e.InnerException.Message}");
-                // Return a specific error response
-                return StatusCode((int?)e.StatusCode ?? 500, $"Error communicating with CENDOJ service: {e.Message}");
+                _logger.LogError(e, "Error al consultar el Poder Judicial. Status: {StatusCode}", e.StatusCode);
+                return StatusCode((int?)e.StatusCode ?? 500, "Error al conectar con el servicio del Poder Judicial");
             }
             catch (Exception ex)
             {
-                // Log the error details
-                Console.WriteLine($"Generic Exception: {ex.Message}");
-                if (ex.InnerException != null) Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
-                // Return a generic server error
-                return StatusCode(500, $"An internal server error occurred: {ex.Message}");
+                _logger.LogError(ex, "Error inesperado al procesar la búsqueda");
+                return StatusCode(500, "Error interno al procesar la solicitud");
             }
         }
+
+        private void ConfigureRequestHeaders(HttpRequestMessage request)
+        {
+            request.Headers.Clear();
+            request.Headers.Add("Accept", "text/html, */*; q=0.01");
+            request.Headers.Add("Accept-Language", "es-ES,es;q=0.6");
+            request.Headers.Add("Origin", "https://www.poderjudicial.es");
+            request.Headers.Add("Referer", "https://www.poderjudicial.es/search/indexAN.jsp");
+            request.Headers.Add("X-Requested-With", "XMLHttpRequest");
+            request.Headers.Add("Sec-Fetch-Dest", "empty");
+            request.Headers.Add("Sec-Fetch-Mode", "cors");
+            request.Headers.Add("Sec-Fetch-Site", "same-origin");
+            request.Headers.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+        }
+
+        private Dictionary<string, string> BuildFormData(JurisprudenciaSearchParameters parameters)
+        {
+            var formData = new Dictionary<string, string>
+            {
+                { "action", "query" }, // Cambiado a "query" según la petición real
+                { "sort", "IN_FECHARESOLUCION:decreasing" },
+                { "recordsPerPage", "20" }, // Cambiado a "recordsPerPage"
+                { "databasematch", "AN" }, // Añadido según petición real
+                { "start", "1" } // Cambiado a "start"
+            };
+
+            // Mapeo de parámetros actualizado
+            if (!string.IsNullOrEmpty(parameters.TextoLibre))
+                formData["TEXT"] = parameters.TextoLibre; // Cambiado a "TEXT"
+
+            if (!string.IsNullOrEmpty(parameters.Jurisdiccion))
+                formData["JURISDICCION"] = $"|{parameters.Jurisdiccion.ToUpper()}|";
+
+            if (parameters.TiposResolucion?.Any() == true)
+                formData["TIPORESOLUCION"] = string.Join("||", parameters.TiposResolucion.Select(tr => $"|{tr.ToUpper()}|"));
+
+            if (parameters.OrganosJudiciales?.Any() == true)
+            {
+                formData["TIPOORGANO"] = string.Join("|", parameters.OrganosJudiciales);
+                formData["field"] = "TIPOORGANO";
+            }
+
+            // Resto de parámetros
+            AddIfNotNull(formData, "ROJ", parameters.Roj);
+            AddIfNotNull(formData, "ECLI", parameters.Ecli);
+            AddIfNotNull(formData, "NUMERO_RESOLUCION", parameters.NumeroResolucion);
+            AddIfNotNull(formData, "NUMERO_RECURSO", parameters.NumeroRecurso);
+            AddIfNotNull(formData, "PONENTE", parameters.Ponente);
+            AddIfNotNull(formData, "SECCION", parameters.Seccion);
+            AddIfNotNull(formData, "NORMA_CITADA", parameters.Legislacion);
+
+            if (parameters.FechaDesde.HasValue)
+                formData["FECHA_DESDE"] = parameters.FechaDesde.Value.ToString("dd/MM/yyyy");
+
+            if (parameters.FechaHasta.HasValue)
+                formData["FECHA_HASTA"] = parameters.FechaHasta.Value.ToString("dd/MM/yyyy");
+
+            if (!string.IsNullOrEmpty(parameters.Idioma) && IdiomaMap.TryGetValue(parameters.Idioma, out var idiomaCode))
+                formData["IDIOMA"] = idiomaCode;
+
+            if (parameters.Localizaciones?.Any() == true)
+                formData["AMBITOTERRITORIAL"] = string.Join("||", parameters.Localizaciones.Select(l => $"|{l}|"));
+
+            _logger.LogDebug("FormData construido: {@FormData}", formData);
+            return formData;
+        }
+
+        private List<JurisprudenciaResult> ParseHtmlResponse(string html)
+        {
+            var results = new List<JurisprudenciaResult>();
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(html);
+
+            // Selectores mejorados para resultados
+            var resultNodes = htmlDoc.DocumentNode.SelectNodes("//div[contains(@class, 'resultado')]") ??
+                             htmlDoc.DocumentNode.SelectNodes("//div[contains(@class, 'result-item')]") ??
+                             htmlDoc.DocumentNode.SelectNodes("//li[contains(@class, 'resultado_busqueda')]");
+
+            if (resultNodes == null || !resultNodes.Any())
+            {
+                _logger.LogWarning("No se encontraron nodos de resultados. HTML recibido (inicio): {HtmlStart}",
+                    html.Length > 500 ? html.Substring(0, 500) + "..." : html);
+                return results;
+            }
+
+            foreach (var node in resultNodes)
+            {
+                try
+                {
+                    var result = new JurisprudenciaResult
+                    {
+                        Roj = node.SelectSingleNode(".//span[contains(@class, 'roj')]")?.InnerText?.Trim() ??
+                              node.SelectSingleNode(".//span[contains(text(), 'Roj:')]/following-sibling::text()")?.InnerText?.Trim(),
+
+                        Ecli = node.SelectSingleNode(".//span[contains(@class, 'ecli')]")?.InnerText?.Trim() ??
+                               node.SelectSingleNode(".//span[contains(text(), 'ECLI:')]/following-sibling::text()")?.InnerText?.Trim(),
+
+                        FechaResolucion = node.SelectSingleNode(".//span[contains(@class, 'fecha')]")?.InnerText?.Trim() ??
+                                         node.SelectSingleNode(".//span[contains(text(), 'Fecha:')]/following-sibling::text()")?.InnerText?.Trim(),
+
+                        TipoResolucion = node.SelectSingleNode(".//*[contains(text(), 'Resolución')]/following-sibling::span")?.InnerText?.Trim(),
+                        OrganoJudicial = node.SelectSingleNode(".//*[contains(text(), 'Órgano')]/following-sibling::span")?.InnerText?.Trim(),
+                        Ponente = node.SelectSingleNode(".//*[contains(text(), 'Ponente')]/following-sibling::span")?.InnerText?.Trim(),
+                        Resumen = HttpUtility.HtmlDecode(node.SelectSingleNode(".//div[contains(@class, 'resumen')]")?.InnerText?.Trim()),
+                        UrlDocumento = GetAbsoluteUrl(node.SelectSingleNode(".//a[contains(@href, 'download')]")?.GetAttributeValue("href", ""))
+                    if (_cache.TryGetValue(cacheKey, out List<JurisprudenciaResult>? cachedResults) && cachedResults != null)
+                    {
+                        _logger.LogInformation("Retornando resultados desde caché");
+                        return Ok(cachedResults);
+                    }
+                    };
+
+                    // Limpieza de datos
+                    result.Roj = CleanText(result.Roj);
+                    result.Ecli = CleanText(result.Ecli);
+                    result.FechaResolucion = CleanText(result.FechaResolucion);
+
+                    if (!string.IsNullOrWhiteSpace(result.Roj) || !string.IsNullOrWhiteSpace(result.Ecli))
+                    {
+                        results.Add(result);
+                    }
+                })
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex, "Error al parsear un resultado individual");
+                }
+            }
+
+            return results;
+        }
+
+        // ... (mantener los mismos métodos auxiliares CleanText, GetAbsoluteUrl, AddIfNotNull)
+
         [HttpGet("initialData")]
         public ActionResult<InitialDataResponse> GetInitialData()
         {
-            var response = new InitialDataResponse
+            return Ok(new InitialDataResponse
             {
                 Jurisdicciones = new List<string> { "Civil", "Penal", "Laboral", "Administrativo" },
                 TiposResolucion = new List<string> { "Sentencia", "Auto", "Providencia" },
-                OrganosJudiciales = TipoOrganoMap.Keys.ToList(),
-                Localizaciones = new List<string> { "Madrid", "Barcelona", "Sevilla" }
-            };
-
-            return Ok(response);
+                OrganosJudiciales = TipoOrganoMap.Keys.OrderBy(x => x).ToList(),
+                Localizaciones = new List<string> { "Madrid", "Barcelona", "Sevilla", "Valencia", "Bilbao" }
+            });
         }
+        private void AddIfNotNull(Dictionary<string, string> dict, string key, string? value)
+        {
+            if (!string.IsNullOrEmpty(value))
+            {
+                dict[key] = value;
+            }
+        }
+        private string GetAbsoluteUrl(string? relativeUrl)
+        {
+            if (string.IsNullOrEmpty(relativeUrl) || relativeUrl.StartsWith("http"))
+                return relativeUrl ?? string.Empty;
 
-        // Ya no necesitamos la función MapearTipoOrganoACodigo, usamos el diccionario directamente.
+            try
+            {
+                return new Uri(new Uri("https://www.poderjudicial.es"), relativeUrl).AbsoluteUri;
+            }
+            catch
+            {
+                return relativeUrl ?? string.Empty;
+            }
+        }
+        private string CleanText(string? text)
+        {
+            if (string.IsNullOrEmpty(text)) return string.Empty;
+
+            return text.Replace("Roj:", "")
+                       .Replace("ECLI:", "")
+                       .Replace("Fecha:", "")
+                       .Trim();
+        }
     }
+
     public class InitialDataResponse
     {
-        public List<string> Jurisdicciones { get; set; }
-        public List<string> TiposResolucion { get; set; }
-        public List<string> OrganosJudiciales { get; set; }
-        public List<string> Localizaciones { get; set; }
+        public List<string> Jurisdicciones { get; set; } = new List<string>();
+        public List<string> TiposResolucion { get; set; } = new List<string>();
+        public List<string> OrganosJudiciales { get; set; } = new List<string>();
+        public List<string> Localizaciones { get; set; } = new List<string>();
     }
 }
