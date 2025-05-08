@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vPJsP5GjsyI=",
+  "dgSpecHash": "gjmF+k9e7ec=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Harvie\\Documents\\TFG\\TFG V0.01\\TFG V0.01.csproj",
+  "projectFilePath": "C:\\Users\\Harvie\\Documents\\TFG\\V 0.1\\TFG\\TFG V0.01\\TFG V0.01.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Harvie\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Harvie\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
