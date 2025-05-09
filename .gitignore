@@ -8,6 +8,9 @@
 *.vcxproj.user
 *.aps
 *.ncb
+*.dll
+*.pdb
+*.cache
 
 # Carpetas de compilación
 bin/
