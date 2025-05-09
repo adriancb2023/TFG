@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JurisprudenciaAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e07bda4ae9a4b86abbb1df162f6fed83702be3c5")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c569d34b564b78a972a892da9d46be5a040672f3")]
+>>>>>>> Paco
 [assembly: System.Reflection.AssemblyProductAttribute("JurisprudenciaAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JurisprudenciaAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

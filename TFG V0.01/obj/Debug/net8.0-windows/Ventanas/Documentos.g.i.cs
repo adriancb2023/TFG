@@ -373,7 +373,7 @@ namespace TFG_V0._01.Ventanas {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TFG V0.01;V1.0.0.0;component/ventanas/documentos.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TFG V0.01;component/ventanas/documentos.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Ventanas\Documentos.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

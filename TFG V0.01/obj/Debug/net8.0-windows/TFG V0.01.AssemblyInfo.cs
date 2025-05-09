@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TFG V0.01")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+edcb9eaef86b8f5e3293a2eff0db393a2bcb891c")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c569d34b564b78a972a892da9d46be5a040672f3")]
+>>>>>>> Paco
 [assembly: System.Reflection.AssemblyProductAttribute("TFG V0.01")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TFG V0.01")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

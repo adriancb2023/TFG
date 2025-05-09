@@ -54,6 +54,18 @@
               "target": "Package",
               "version": "[1.12.1, )"
             },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[8.5.2, )"
+            },
             "Selenium.Support": {
               "target": "Package",
               "version": "[4.31.0, )"

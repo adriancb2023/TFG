@@ -21,6 +21,10 @@ namespace JurisprudenciaApi.Models
         public string? NumeroRecurso { get; set; }
         public string? Ponente { get; set; }
 
+        // Nuevas propiedades para paginación
+        public int PaginaActual { get; set; } = 1;
+        public int RegistrosPorPagina { get; set; } = 10; // Default 10, como lo hace CENDOJ
+
         // Añadir más propiedades según sea necesario para cubrir todos los campos del formulario CENDOJ
     }
 } 
