@@ -8,9 +8,12 @@
 *.vcxproj.user
 *.aps
 *.ncb
+<<<<<<< HEAD
 *.dll
 *.pdb
 *.cache
+=======
+>>>>>>> Paco
 
 # Carpetas de compilación
 bin/
