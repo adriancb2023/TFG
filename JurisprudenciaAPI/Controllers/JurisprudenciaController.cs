@@ -28,6 +28,7 @@ namespace JurisprudenciaApi.Controllers
         // Mapeo de Órganos Judiciales
         private static readonly Dictionary<string, string> TipoOrganoMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
+            // Tribunal Supremo (Agrupador y opciones individuales)
             { "Tribunal Supremo", "11|12|13|14|15|16" },
             { "Tribunal Supremo. Sala de lo Civil", "11" },
             { "Tribunal Supremo. Sala de lo Penal", "12" },
@@ -35,6 +36,7 @@ namespace JurisprudenciaApi.Controllers
             { "Tribunal Supremo. Sala de lo Social", "14" },
             { "Tribunal Supremo. Sala de lo Militar", "15" },
             { "Tribunal Supremo. Sala de lo Especial", "16" },
+            // Audiencia Nacional (Agrupador y opciones individuales)
             { "Audiencia Nacional", "22|2264|23|24|25|26|27|28|29" },
             { "Audiencia Nacional. Sala de lo Penal", "22" },
             { "Sala de Apelación de la Audiencia Nacional", "2264" },
@@ -45,11 +47,13 @@ namespace JurisprudenciaApi.Controllers
             { "Audiencia Nacional. Juzgado Central de Vigilancia Penitenciaria", "25" },
             { "Audiencia Nacional. Juzgados Centrales de lo Contencioso", "29" },
             { "Audiencia Nacional. Juzgados Centrales de lo Penal", "28" },
+            // Tribunal Superior de Justicia (Agrupador y opciones individuales)
             { "Tribunal Superior de Justicia", "31|31201202|33|34" },
             { "Tribunal Superior de Justicia. Sala de lo Civil y Penal", "31" },
             { "Sección de Apelación Penal. TSJ Sala de lo Civil y Penal", "31201202" },
             { "Tribunal Superior de Justicia. Sala de lo Contencioso", "33" },
             { "Tribunal Superior de Justicia. Sala de lo Social", "34" },
+            // Otros órganos
             { "Audiencia Provincial", "37" },
             { "Audiencia Provincial. Tribunal Jurado", "38" },
             { "Tribunal de Marca de la UE", "1001" },
@@ -73,6 +77,7 @@ namespace JurisprudenciaApi.Controllers
         // Mapa de idiomas
         private static readonly Dictionary<string, string> IdiomaMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
+            { "Todos", "" },
             { "Español", "es" }, // Guessed code
             { "Català", "ca" }, // Guessed code
             { "Galego", "gl" }, // Guessed code
@@ -86,6 +91,64 @@ namespace JurisprudenciaApi.Controllers
                 .OrResult(r => !r.IsSuccessStatusCode)
                 .WaitAndRetryAsync(3, retryAttempt =>
                     TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+
+
+
+        public static readonly Dictionary<string, string> SubTipoResolucionOptions = new Dictionary<string, string>
+        {
+            // Autos
+            { "Auto aclaratorio", "AUTO ACLARATORIO" },
+            { "Auto de admisión (recurso de casación L.O. 7/2015)", "AUTO ADMISION" },
+            { "Auto de inadmisión (recurso de casación L.O. 7/2015)", "AUTO INADMISION" },
+            { "Otros Autos", "AUTO OTROS" },
+            // Sentencias
+            { "Sentencia de casación (L.O. 7/2015)", "SENTENCIA CASACION" },
+            { "Otras Sentencias", "SENTENCIA OTRAS" },
+            // Acuerdo
+            { "Acuerdo", "ACUERDO" }
+            // Nota: Los valores "AUTO RECURSO" no son finales, sino agrupadores en el UI.
+        };
+
+        // Opciones para el tipo principal (que se enviarían en el parámetro TIPORESOLUCION)
+        // Podrías necesitar enviar esto si la API lo requiere explícitamente además del SUBTIPORESOLUCION.
+        public static readonly Dictionary<string, string> TipoResolucionPrincipalOptions = new Dictionary<string, string>
+        {
+            { "Auto", "AUTO" },
+            { "Sentencia", "SENTENCIA" }
+            // "Acuerdo" también podría ser un valor para TIPORESOLUCION si se selecciona "Acuerdo" arriba.
+        };
+
+        public static readonly Dictionary<string, string> SeccionAutoOptions = new Dictionary<string, string>
+        {
+            { "Todas", "" },
+            { "Segunda", "2" },
+            { "Tercera", "3" },
+            { "Cuarta", "4" },
+            { "Quinta", "1" }
+        };
+
+        public static readonly Dictionary<string, string> ComunidadOptions = new Dictionary<string, string>
+        {
+            { "ANDALUCÍA", "ALL@ALL@ANDALUCÍA" },
+            { "ARAGÓN", "ALL@ALL@ARAGÓN" },
+            { "ASTURIAS", "ALL@ALL@ASTURIAS" },
+            { "BALEARES", "ALL@ALL@BALEARES" },
+            { "CANARIAS", "ALL@ALL@CANARIAS" },
+            { "CANTABRIA", "ALL@ALL@CANTABRIA" },
+            { "CASTILLA LA MANCHA", "ALL@ALL@CASTILLA_LA_MANCHA" },
+            { "CASTILLA Y LEÓN", "ALL@ALL@CASTILLA_Y_LEÓN" },
+            { "CATALUÑA", "ALL@ALL@CATALUÑA" },
+            { "CEUTA", "ALL@ALL@CEUTA" },
+            { "COMUNIDAD VALENCIANA", "ALL@ALL@COMUNIDAD_VALENCIANA" },
+            { "EXTREMADURA", "ALL@ALL@EXTREMADURA" },
+            { "GALICIA", "ALL@ALL@GALICIA" },
+            { "LA RIOJA", "ALL@ALL@LA_RIOJA" },
+            { "MADRID", "ALL@ALL@MADRID" },
+            { "MELILLA", "ALL@ALL@MELILLA" },
+            { "MURCIA", "ALL@ALL@MURCIA" },
+            { "NAVARRA", "ALL@ALL@NAVARRA" },
+            { "PAÍS VASCO", "ALL@ALL@PAÍS_VASCO" }
+        };
 
         public JurisprudenciaController(
             IHttpClientFactory httpClientFactory,
@@ -450,7 +513,7 @@ namespace JurisprudenciaApi.Controllers
         {
             return Ok(new InitialDataResponse
             {
-                Jurisdicciones = new List<string> { "Civil", "Penal", "Laboral", "Administrativo" },
+                Jurisdicciones = new List<string> { "Civil", "Penal", "Contencioso", "Social" ,"Militar", "Especial" },
                 TiposResolucion = new List<string> { "Sentencia", "Auto", "Providencia" },
                 OrganosJudiciales = TipoOrganoMap.Keys.OrderBy(x => x).ToList(),
                 Localizaciones = new List<string> { "Madrid", "Barcelona", "Sevilla", "Valencia", "Bilbao" }
