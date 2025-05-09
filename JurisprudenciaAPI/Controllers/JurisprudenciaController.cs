@@ -78,10 +78,10 @@ namespace JurisprudenciaApi.Controllers
         private static readonly Dictionary<string, string> IdiomaMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             { "Todos", "" },
-            { "Español", "es" }, // Guessed code
-            { "Català", "ca" }, // Guessed code
-            { "Galego", "gl" }, // Guessed code
-            { "Euskera", "eu" }  // Guessed code
+            { "Español", "1" }, // Guessed code
+            { "Català", "2" }, // Guessed code
+            { "Galego", "3" }, // Guessed code
+            { "Euskera", "4" }  // Guessed code
         };
 
         // Política de reintentos
@@ -365,13 +365,13 @@ namespace JurisprudenciaApi.Controllers
             AddIfNotNull(formData, "NORMA_CITADA", parameters.Legislacion);
 
             if (parameters.FechaDesde.HasValue)
-                formData["FECHA_DESDE"] = parameters.FechaDesde.Value.ToString("dd/MM/yyyy");
+                formData["FECHARESOLUCIONDESDE"] = parameters.FechaDesde.Value.ToString("dd/MM/yyyy");
 
             if (parameters.FechaHasta.HasValue)
-                formData["FECHA_HASTA"] = parameters.FechaHasta.Value.ToString("dd/MM/yyyy");
+                formData["FECHARESOLUCIONHASTA"] = parameters.FechaHasta.Value.ToString("dd/MM/yyyy");
 
             if (!string.IsNullOrEmpty(parameters.Idioma) && IdiomaMap.TryGetValue(parameters.Idioma, out var idiomaCode))
-                formData["IDIOMA"] = idiomaCode;
+                AddIfNotNull(formData, "IDIOMA", idiomaCode);
 
             if (parameters.Localizaciones?.Any() == true) // Asumiendo que envías el nombre o código correcto
                 formData["AMBITOTERRITORIAL"] = string.Join("||", parameters.Localizaciones.Select(l => $"|{l}|"));

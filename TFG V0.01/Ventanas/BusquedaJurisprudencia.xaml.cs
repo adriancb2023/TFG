@@ -88,26 +88,6 @@ namespace TFG_V0._01.Ventanas
         private JurisprudenciaSearchParameters _lastSearchParameters; // Para recordar los filtros al cargar más
         #endregion
 
-        public BusquedaJurisprudencia()
-        {
-            InitializeComponent();
-            ResultadosBusqueda = new ObservableCollection<JurisprudenciaResult>(); // Inicializa la colección
-            this.DataContext = this; // Establece el DataContext para que los bindings del XAML funcionen
-            
-            InitializeAnimations();
-            AplicarModoSistema();
-
-            if (client.BaseAddress == null)
-            {
-                client.BaseAddress = new Uri(ApiBaseUrl);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            }
-
-            // Cargar datos iniciales
-            _ = CargarDatosInicialesAsync();
-        }
-
         #region Aplicar modo oscuro/claro cargado por sistema
         private void AplicarModoSistema()
         {
@@ -597,8 +577,25 @@ namespace TFG_V0._01.Ventanas
                 MessageBox.Show($"Error al cargar los datos iniciales: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        #endregion
+        public BusquedaJurisprudencia()
+        {
+            InitializeComponent();
+            ResultadosBusqueda = new ObservableCollection<JurisprudenciaResult>(); // Inicializa la colección
+            this.DataContext = this; // Establece el DataContext para que los bindings del XAML funcionen
 
+            InitializeAnimations();
+            AplicarModoSistema();
+
+            if (client.BaseAddress == null)
+            {
+                client.BaseAddress = new Uri(ApiBaseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            // Cargar datos iniciales
+            _ = CargarDatosInicialesAsync();
+        }
         private void VerDocumentoButton_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button button && button.CommandParameter is string url)
@@ -621,5 +618,8 @@ namespace TFG_V0._01.Ventanas
                 }
             }
         }
+        #endregion
+
+
     }
 }
