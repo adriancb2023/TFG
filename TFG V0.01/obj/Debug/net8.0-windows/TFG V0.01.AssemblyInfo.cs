@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TFG V0.01")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e07bda4ae9a4b86abbb1df162f6fed83702be3c5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+edcb9eaef86b8f5e3293a2eff0db393a2bcb891c")]
 [assembly: System.Reflection.AssemblyProductAttribute("TFG V0.01")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TFG V0.01")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

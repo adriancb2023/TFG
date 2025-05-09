@@ -77,8 +77,7 @@
               "ToolTip": "C:\\Users\\Francisco_Navarro\\Documents\\GitHub\\TFG\\TFG V0.01\\Ventanas\\BusquedaJurisprudencia.xaml",
               "RelativeToolTip": "TFG V0.01\\Ventanas\\BusquedaJurisprudencia.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-30T09:54:50.733Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T09:54:50.733Z"
             },
             {
               "$type": "Document",
@@ -90,8 +89,7 @@
               "RelativeToolTip": "JurisprudenciaAPI\\Controllers\\JurisprudenciaController.cs",
               "ViewState": "AgIAABcBAAAAAAAAAAAiwD0BAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T09:50:54.786Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T09:50:54.786Z"
             },
             {
               "$type": "Document",
@@ -125,7 +123,7 @@
               "RelativeDocumentMoniker": "TFG V0.01\\Ventanas\\BusquedaJurisprudencia.xaml.cs",
               "ToolTip": "C:\\Users\\Francisco_Navarro\\Documents\\GitHub\\TFG\\TFG V0.01\\Ventanas\\BusquedaJurisprudencia.xaml.cs",
               "RelativeToolTip": "TFG V0.01\\Ventanas\\BusquedaJurisprudencia.xaml.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAQwF0CAABOAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAQwF0CAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-30T09:50:48.722Z",
               "EditorCaption": ""
