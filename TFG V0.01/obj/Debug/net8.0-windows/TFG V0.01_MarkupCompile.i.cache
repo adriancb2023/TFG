@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Harvie\Documents\TFG\V 0.1\TFG\TFG V0.01\App.xaml
-121500238093
+13-174184660
 41493138872
-36711157760
+37927456533
 256-1696813938
-MainWindow.xaml;Ventanas\Agenda.xaml;Ventanas\Ajustes.xaml;Ventanas\Ayuda.xaml;Ventanas\BusquedaJurisprudencia.xaml;Ventanas\Casos.xaml;Ventanas\Clientes.xaml;Ventanas\Documentos.xaml;Ventanas\Home.xaml;Ventanas\Login.xaml;Ventanas\Pruebas.xaml;Ventanas\Registro.xaml;
+MainWindow.xaml;Ventanas\Agenda.xaml;Ventanas\Ajustes.xaml;Ventanas\Ayuda.xaml;Ventanas\BusquedaJurisprudencia.xaml;Ventanas\Casos.xaml;Ventanas\Clientes.xaml;Ventanas\Documentos.xaml;Ventanas\Home.xaml;Ventanas\Login.xaml;Ventanas\Pruebas.xaml;Ventanas\Registro.xaml;Ventanas\SubVentanas\NuevaTarea.xaml;
 
-False
+True
 

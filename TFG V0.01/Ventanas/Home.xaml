@@ -80,6 +80,40 @@
             </Setter>
         </Style>
 
+        <Style TargetType="ScrollBar" x:Key="scroll">
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid Background="Transparent">
+                            <Track Name="PART_Track" IsDirectionReversed="true"
+                                     >
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.LineUpCommand"
+                                                  Style="{x:Null}" Height="0"
+                                                  IsTabStop="False"/>
+                                </Track.DecreaseRepeatButton>
+
+                                <Track.Thumb>
+                                    <Thumb Background="#CCB37DFF" 
+                                        Margin="2"
+                                           BorderThickness="0"
+                                           Height="40"/>
+                                </Track.Thumb>
+
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.LineDownCommand"
+                                                  Style="{x:Null}" Height="0"
+                                                  IsTabStop="False"/>
+                                </Track.IncreaseRepeatButton>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
 
     <Grid>
@@ -201,7 +235,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <!-- First Row - Summary Cards -->
+                    <!-- Apartados Cabecera -->
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -279,14 +313,13 @@
                         </Border>
                     </Grid>
 
-                    <!-- Second Row - Calendar and Tasks -->
+                    <!-- Segunda linea -->
                     <Grid Grid.Row="1" Margin="0,20,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Calendar Card -->
                         <!-- Calendar Card -->
                         <Border Grid.Column="0" Style="{StaticResource CardStyle}" Margin="0,0,10,0">
                             <Grid>
@@ -311,15 +344,15 @@
                                     </StackPanel>
                                 </Grid>
 
-                                <Grid Grid.Row="1" Margin="0,15,0,0">
-                                    <!-- Simplified Calendar View -->
+                                <Grid Grid.Row="1" Margin="0,15,0,0" VerticalAlignment="Stretch">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="*"/>
+                                            <!-- Segunda fila ocupará el espacio restante -->
                                         </Grid.RowDefinitions>
 
-                                        <!-- Days of Week -->
+                                        <!-- Día de la semana -->
                                         <Grid Grid.Row="0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
@@ -330,85 +363,24 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Grid.Column="0" Text="Lun" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
-                                            <TextBlock Grid.Column="1" Text="Mar" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
-                                            <TextBlock Grid.Column="2" Text="Mié" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
-                                            <TextBlock Grid.Column="3" Text="Jue" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
-                                            <TextBlock Grid.Column="4" Text="Vie" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
-                                            <TextBlock Grid.Column="5" Text="Sáb" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
-                                            <TextBlock Grid.Column="6" Text="Dom" HorizontalAlignment="Center" Foreground="#CCFFFFFF"/>
+
+                                            <TextBlock Grid.Column="0" Text="Lun" HorizontalAlignment="Center" Foreground="#CCFFFFFF" x:Name="lun"/>
+                                            <TextBlock Grid.Column="1" Text="Mar" HorizontalAlignment="Center" Foreground="#CCFFFFFF" x:Name="mart"/>
+                                            <TextBlock Grid.Column="2" Text="Mié" HorizontalAlignment="Center" Foreground="#CCFFFFFF" x:Name="mier"/>
+                                            <TextBlock Grid.Column="3" Text="Jue" HorizontalAlignment="Center" Foreground="#CCFFFFFF" x:Name="juev"/>
+                                            <TextBlock Grid.Column="4" Text="Vie" HorizontalAlignment="Center" Foreground="#CCFFFFFF" x:Name="vier"/>
+                                            <TextBlock Grid.Column="5" Text="Sáb" HorizontalAlignment="Center" Foreground="#CCFFFFFF" x:Name="sab"/>
+                                            <TextBlock Grid.Column="6" Text="Dom" HorizontalAlignment="Center" Foreground="#CCFFFFFF" x:Name="dom"/>
                                         </Grid>
 
-                                        <!-- Calendar Events -->
-                                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,10,0,0">
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                </Grid.RowDefinitions>
-
-                                                <!-- Event 1 -->
-                                                <Border Grid.Row="0" Background="#3F51B5" CornerRadius="10" Padding="10" Margin="0,5,0,5">
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <Border Grid.Column="0" Background="#30FFFFFF" CornerRadius="5" Padding="8,5" Margin="0,0,10,0">
-                                                            <TextBlock Text="17" FontWeight="Bold" Foreground="White"/>
-                                                        </Border>
-                                                        <StackPanel Grid.Column="1">
-                                                            <TextBlock Text="Audiencia Preliminar" FontWeight="SemiBold" Foreground="White"/>
-                                                            <TextBlock Text="Caso Martínez vs. Corporación XYZ" Foreground="#CCFFFFFF" FontSize="12"/>
-                                                            <TextBlock Text="10:00 - 12:00 | Sala 305" Foreground="#CCFFFFFF" FontSize="12" Margin="0,5,0,0"/>
-                                                        </StackPanel>
-                                                    </Grid>
-                                                </Border>
-
-                                                <!-- Event 2 -->
-                                                <Border Grid.Row="1" Background="#009688" CornerRadius="10" Padding="10" Margin="0,5,0,5">
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <Border Grid.Column="0" Background="#30FFFFFF" CornerRadius="5" Padding="8,5" Margin="0,0,10,0">
-                                                            <TextBlock Text="18" FontWeight="Bold" Foreground="White"/>
-                                                        </Border>
-                                                        <StackPanel Grid.Column="1">
-                                                            <TextBlock Text="Reunión con Cliente" FontWeight="SemiBold" Foreground="White"/>
-                                                            <TextBlock Text="Revisión de Contrato - Empresa ABC" Foreground="#CCFFFFFF" FontSize="12"/>
-                                                            <TextBlock Text="15:30 - 16:30 | Oficina Principal" Foreground="#CCFFFFFF" FontSize="12" Margin="0,5,0,0"/>
-                                                        </StackPanel>
-                                                    </Grid>
-                                                </Border>
-
-                                                <!-- Event 3 -->
-                                                <Border Grid.Row="2" Background="#FF5722" CornerRadius="10" Padding="10" Margin="0,5,0,5">
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <Border Grid.Column="0" Background="#30FFFFFF" CornerRadius="5" Padding="8,5" Margin="0,0,10,0">
-                                                            <TextBlock Text="20" FontWeight="Bold" Foreground="White"/>
-                                                        </Border>
-                                                        <StackPanel Grid.Column="1">
-                                                            <TextBlock Text="Fecha Límite" FontWeight="SemiBold" Foreground="White"/>
-                                                            <TextBlock Text="Presentación de Recurso - Caso Rodríguez" Foreground="#CCFFFFFF" FontSize="12"/>
-                                                            <TextBlock Text="Antes de las 14:00" Foreground="#CCFFFFFF" FontSize="12" Margin="0,5,0,0"/>
-                                                        </StackPanel>
-                                                    </Grid>
-                                                </Border>
-                                                
-                                            </Grid>
+                                        <!-- Eventos con Scroll -->
+                                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,10,0,0" MaxHeight="600" x:Name="ContenedorEventos">
+                                            <StackPanel x:Name="PanelEventos" Margin="0,3,10,0"/>
                                         </ScrollViewer>
                                     </Grid>
                                 </Grid>
                             </Grid>
                         </Border>
-
 
                         <!-- Tasks Card -->
                         <Border Grid.Column="1" Style="{StaticResource CardStyle}" Margin="10,0,0,0">
@@ -421,69 +393,14 @@
 
                                 <TextBlock Grid.Row="0" Text="Tareas Pendientes" FontSize="16" FontWeight="SemiBold" Foreground="White"/>
 
-                                <StackPanel Grid.Row="1" Margin="0,15,0,0">
-                                    <!-- Task 1 -->
-                                    <Border Background="#30FFFFFF" CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <CheckBox Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                            <StackPanel Grid.Column="1">
-                                                <TextBlock Text="Revisar contrato de arrendamiento" Foreground="White" TextWrapping="Wrap"/>
-                                                <TextBlock Text="Vence hoy" Foreground="#FF5252" FontSize="12" Margin="0,5,0,0"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-
-                                    <!-- Task 2 -->
-                                    <Border Background="#30FFFFFF" CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <CheckBox Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                            <StackPanel Grid.Column="1">
-                                                <TextBlock Text="Preparar alegatos para caso Pérez" Foreground="White" TextWrapping="Wrap"/>
-                                                <TextBlock Text="Vence en 2 días" Foreground="#FFC107" FontSize="12" Margin="0,5,0,0"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-
-                                    <!-- Task 3 -->
-                                    <Border Background="#30FFFFFF" CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <CheckBox Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                            <StackPanel Grid.Column="1">
-                                                <TextBlock Text="Llamar a testigo para confirmar declaración" Foreground="White" TextWrapping="Wrap"/>
-                                                <TextBlock Text="Vence en 3 días" Foreground="#8BC34A" FontSize="12" Margin="0,5,0,0"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-
-                                    <!-- Task 4 -->
-                                    <Border Background="#30FFFFFF" CornerRadius="10" Padding="10">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <CheckBox Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                            <StackPanel Grid.Column="1">
-                                                <TextBlock Text="Actualizar expediente del caso Gómez" Foreground="White" TextWrapping="Wrap"/>
-                                                <TextBlock Text="Vence en 5 días" Foreground="#8BC34A" FontSize="12" Margin="0,5,0,0"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
+                                <StackPanel Grid.Row="1" Margin="0,15,0,0"  >
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,10,0,0" MaxHeight="600">
+                                        <StackPanel Grid.Row="1" x:Name="tareasPanel" Margin="0,3,10,0"/>
+                                    </ScrollViewer>
                                 </StackPanel>
 
-                                <Button Grid.Row="2" Content="+ Añadir Tarea" Style="{StaticResource RoundedButtonStyle}" Margin="0,15,0,0" Background="#30FFFFFF"/>
+
+                                <Button Grid.Row="2" Content="+ Añadir Tarea" Style="{StaticResource RoundedButtonStyle}" Margin="0,15,0,0" Background="#30FFFFFF" Click="nuevaTarea"/>
                             </Grid>
                         </Border>
                     </Grid>

@@ -19,8 +19,10 @@
                       StrokeStartLineCap="Round" StrokeEndLineCap="Round">
                     <Path.Stroke>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Color="#3084F2" Offset="0"/>
-                            <GradientStop Color="#8B5CF6" Offset="1"/>
+                            <GradientStop Color="#03001e" Offset="0"/>
+                            <GradientStop Color="#7303c0" Offset="1"/>
+                            <GradientStop Color="#ec38bc" Offset="1"/>
+                            <GradientStop Color="#fdeff9" Offset="1"/>
                         </LinearGradientBrush>
                     </Path.Stroke>
                     <Path.Data>

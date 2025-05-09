@@ -37,6 +37,9 @@
     <Compile Update="Ventanas\Registro.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Ventanas\SubVentanas\NuevaTarea.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Ventanas\Agenda.xaml">
@@ -67,6 +70,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Ventanas\Registro.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Ventanas\SubVentanas\NuevaTarea.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

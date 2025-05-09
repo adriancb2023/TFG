@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TFG_V0._01.Clases_BBDD;
 
 
 namespace TFG_V0._01.Ventanas
@@ -434,41 +433,7 @@ namespace TFG_V0._01.Ventanas
 
 
 
-        private async void cargar_datos_clientes(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // Instancia de SupabaseBBDD
-                SupabaseBBDD supabase = new SupabaseBBDD();
-
-                // Obtener los datos de clientes en formato JSON
-                string clientesJson = await supabase.ObtenerClientesAsync();
-
-                // Verifica si la respuesta contiene un error
-                if (clientesJson.StartsWith("Error:"))
-                {
-                    MessageBox.Show(clientesJson, "Error en la solicitud", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                // Mostrar el JSON recibido para depuración
-                MessageBox.Show(clientesJson, "JSON Recibido", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                // Deserializar el JSON a una lista de objetos Clientes
-                var clientes = System.Text.Json.JsonSerializer.Deserialize<List<Clientes>>(clientesJson);
-
-                // Asignar la lista de clientes al DataGrid
-                DataGridClientes.ItemsSource = clientes;
-            }
-            catch (System.Text.Json.JsonException ex)
-            {
-                MessageBox.Show($"Error al deserializar el JSON: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al cargar los datos de clientes: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
+        
 
 
 

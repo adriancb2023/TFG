@@ -2,11 +2,13 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using TFG_V0._01.Modelo;
+using TFG_V0._01.Ventanas.SubVentanas;
 
 namespace TFG_V0._01.Ventanas
 {
@@ -19,6 +21,8 @@ namespace TFG_V0._01.Ventanas
 
         #region variables
         private DateOnly fechaActual = DateOnly.FromDateTime(DateTime.Now);
+        private string mesText;
+        private string anio;
         #endregion
 
         #region Inicializacion
@@ -28,7 +32,7 @@ namespace TFG_V0._01.Ventanas
             InitializeAnimations();
             AplicarModoSistema();
 
-            cargarDatos();
+            cargarHome();
         }
         #endregion
 
@@ -348,25 +352,25 @@ namespace TFG_V0._01.Ventanas
         }
         #endregion
 
-
-        #region Carga de datos dashboard
-
-        private void cargarDatos()
+        #region Cargar Elementos Home
+        private void cargarHome()
         {
+            diaSemana();
             cargarCasosActivos();
             cargarScoreCasos();
-
             cargarClientes();
             //cargarScoreClientes();
-
             cargarDocumentos();
             cargarScoreDocumentos();
-
             cargarEventosDeHoy();
-
             cargarMesCalendario();
-        }
+            cargarTareasCalendario(mesText, anio);
+            cargarTareasPendientes();
 
+        }
+        #endregion
+
+        #region Carga de datos header
         private void cargarCasosActivos()
         {
             using (var context = new TfgContext())
@@ -499,62 +503,376 @@ namespace TFG_V0._01.Ventanas
                 eventHoy.Text = cantidad.ToString();
             }
         }
+        #endregion
+
+        #region 🔧 calendario
+        private void diaSemana()
+        {
+            var diaSemana = fechaActual.DayOfWeek;
+            switch (diaSemana)
+            {
+                case DayOfWeek.Monday:
+                    lun.Foreground = new SolidColorBrush(Colors.Red);
+                    break;
+                case DayOfWeek.Tuesday:
+                    mart.Foreground = new SolidColorBrush(Colors.Red);
+                    break;
+                case DayOfWeek.Wednesday:
+                    mier.Foreground = new SolidColorBrush(Colors.Red);
+                    break;
+                case DayOfWeek.Thursday:
+                    juev.Foreground = new SolidColorBrush(Colors.Red);
+                    break;
+                case DayOfWeek.Friday:
+                    vier.Foreground = new SolidColorBrush(Colors.Red);
+                    break;
+                case DayOfWeek.Saturday:
+                    sab.Foreground = new SolidColorBrush(Colors.Red);
+                    break;
+                case DayOfWeek.Sunday:
+                    dom.Foreground = new SolidColorBrush(Colors.Red);
+                    break;
+                default:
+
+                    break;
+            }
+        }
 
         private void cargarMesCalendario()
         {
             var fechaHoy = DateOnly.FromDateTime(DateTime.Now);
+            fechaActual = fechaHoy;
+
             var mes = fechaHoy.Month;
-            var anio = fechaHoy.Year;
+            anio = fechaHoy.Year.ToString();
 
             string[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
-            var mesText = meses[mes - 1];
+            mesText = meses[mes - 1];
 
-            mesCalendario.Text = mesText + " " + anio.ToString();
+            mesCalendario.Text = mesText + " " + anio;
+            cargarTareasCalendario(mesText, anio);
         }
 
         private void mesAnterior(object sender, RoutedEventArgs e)
         {
             var mes = fechaActual.Month - 1;
-            var anio = fechaActual.Year;
+            var anioInt = fechaActual.Year;
 
             if (mes < 1)
             {
                 mes = 12;
-                anio--;
+                anioInt--;
             }
 
-            fechaActual = new DateOnly(anio, mes, 1);
+            fechaActual = new DateOnly(anioInt, mes, 1);
 
             string[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
-            var mesText = meses[mes - 1];
+            mesText = meses[mes - 1];
 
-            mesCalendario.Text = mesText + " " + anio.ToString();
+            anio = anioInt.ToString();
+            mesCalendario.Text = mesText + " " + anio;
+
+            cargarTareasCalendario(mesText, anio);
         }
 
         private void mesSiguiente(object sender, RoutedEventArgs e)
         {
             var mes = fechaActual.Month + 1;
-            var anio = fechaActual.Year;
+            var anioInt = fechaActual.Year;
 
             if (mes > 12)
             {
                 mes = 1;
-                anio++;
+                anioInt++;
             }
 
-            fechaActual = new DateOnly(anio, mes, 1);
+            fechaActual = new DateOnly(anioInt, mes, 1);
 
             string[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
-            var mesText = meses[mes - 1];
+            mesText = meses[mes - 1];
 
-            mesCalendario.Text = mesText + " " + anio.ToString();
+            anio = anioInt.ToString();
+            mesCalendario.Text = mesText + " " + anio;
+
+            cargarTareasCalendario(mesText, anio);
         }
 
+        private void cargarTareasCalendario(string mesText, string anio)
+        {
+            var colores = new List<string>
+            {
+                "#FF5722", "#F4511E", "#E64A19", "#D84315",
+                "#009688", "#26A69A", "#00796B", "#004D40",
+                "#3F51B5", "#5C6BC0", "#3949AB", "#1A237E"
+            };
+
+            using (var context = new TfgContext())
+            {
+                int mes = Array.IndexOf(new[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }, mesText) + 1;
+                int anioInt = int.Parse(anio);
+
+                var tareas = context.Tareas.Where(t => t.FechaFin.Month == mes && t.FechaFin.Year == anioInt && t.Estado != "finalizado").ToList();
 
 
+                var stackPanel = this.FindName("PanelEventos") as StackPanel;
 
+                if (stackPanel != null)
+                {
+                    stackPanel.Children.Clear();
 
+                    var random = new Random();
+                    int offset = random.Next(colores.Count);
+
+                    for (int i = 0; i < tareas.Count; i++)
+                    {
+                        var tarea = tareas[i];
+                        string colorHex = colores[(i + offset) % colores.Count];
+
+                        var border = new Border
+                        {
+                            Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(colorHex)),
+                            CornerRadius = new CornerRadius(10),
+                            Padding = new Thickness(10),
+                            Margin = new Thickness(0, 5, 0, 5)
+                        };
+
+                        var innerGrid = new Grid();
+                        innerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+                        innerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+                        var fechaBorder = new Border
+                        {
+                            Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#30FFFFFF")),
+                            CornerRadius = new CornerRadius(5),
+                            Padding = new Thickness(8, 5, 8, 5),
+                            Margin = new Thickness(0, 0, 10, 0)
+                        };
+                        var fechaText = new TextBlock
+                        {
+                            Text = tarea.FechaFin.Day.ToString(),
+                            FontWeight = FontWeights.Bold,
+                            Foreground = Brushes.White
+                        };
+                        fechaBorder.Child = fechaText;
+
+                        var detallesStack = new StackPanel();
+                        var tituloText = new TextBlock
+                        {
+                            Text = tarea.Titulo,
+                            FontWeight = FontWeights.SemiBold,
+                            Foreground = Brushes.White
+                        };
+                        var descripcionText = new TextBlock
+                        {
+                            Text = tarea.Descripcion,
+                            Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#CCFFFFFF")),
+                            FontSize = 12
+                        };
+
+                        detallesStack.Children.Add(tituloText);
+                        detallesStack.Children.Add(descripcionText);
+
+                        Grid.SetColumn(fechaBorder, 0);
+                        Grid.SetColumn(detallesStack, 1);
+                        innerGrid.Children.Add(fechaBorder);
+                        innerGrid.Children.Add(detallesStack);
+
+                        border.Child = innerGrid;
+                        stackPanel.Children.Add(border);
+                    }
+                }
+            }
+        }
         #endregion
 
+        #region Tareas Pendientes proximos 4 dias
+        private void cargarTareasPendientes()
+        {
+            using (var context = new TfgContext())
+            {
+                DateOnly hoy = DateOnly.FromDateTime(DateTime.Today);
+                DateOnly limite = hoy.AddDays(3);
+
+                var tareas = context.Tareas
+                    .Where(t => t.FechaFin >= hoy && t.FechaFin <= limite && t.Estado != "finalizado")
+                    .OrderBy(t => t.FechaFin)
+                    .ToList();
+
+                tareasPanel.Children.Clear(); // Limpia tareas anteriores
+
+                foreach (var tarea in tareas)
+                {
+                    Border border = new Border
+                    {
+                        Background = new SolidColorBrush(Color.FromArgb(0x30, 0xFF, 0xFF, 0xFF)),
+                        CornerRadius = new CornerRadius(10),
+                        Padding = new Thickness(10),
+                        Margin = new Thickness(0, 0, 0, 10)
+                    };
+
+                    Grid grid = new Grid();
+                    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+                    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+                    CheckBox checkBox = new CheckBox
+                    {
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(0, 0, 10, 0),
+                        IsChecked = tarea.Estado == "finalizado"
+                    };
+                    checkBox.Checked += (s, e) =>
+                    {
+                        MostrarPopupConfirmacion(tarea.Id, checkBox);
+                    };
+                    Grid.SetColumn(checkBox, 0);
+
+                    StackPanel stack = new StackPanel();
+                    Grid.SetColumn(stack, 1);
+
+                    TextBlock titulo = new TextBlock
+                    {
+                        Text = tarea.Titulo,
+                        Foreground = Brushes.White,
+                        TextWrapping = TextWrapping.Wrap
+                    };
+
+                    int diasRestantes = (tarea.FechaFin.ToDateTime(TimeOnly.MinValue) - DateTime.Today).Days;
+                    string vencimientoTexto = diasRestantes == 0 ? "Vence hoy" : $"Vence en {diasRestantes} días";
+
+                    Brush color;
+                    if (diasRestantes == 0)
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5252")); // Rojo
+                    else if (diasRestantes <= 2)
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFC107")); // Amarillo
+                    else
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#8BC34A")); // Verde
+
+                    TextBlock fecha = new TextBlock
+                    {
+                        Text = vencimientoTexto,
+                        Foreground = color,
+                        FontSize = 12,
+                        Margin = new Thickness(0, 5, 0, 0)
+                    };
+
+                    stack.Children.Add(titulo);
+                    stack.Children.Add(fecha);
+
+                    grid.Children.Add(checkBox);
+                    grid.Children.Add(stack);
+
+                    border.Child = grid;
+
+                    tareasPanel.Children.Add(border);
+                }
+            }
+        }
+
+        private void MostrarPopupConfirmacion(int tareaId, CheckBox checkBox)
+        {
+            Popup popup = new Popup
+            {
+                Placement = PlacementMode.Center,
+                StaysOpen = false,
+                AllowsTransparency = true,
+                IsOpen = true
+
+            };
+
+            Border border = new Border
+            {
+                Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x33, 0x33, 0x33)),
+                CornerRadius = new CornerRadius(10),
+                Padding = new Thickness(20),
+                Width = 300,
+                Height = 150
+            };
+
+            StackPanel stackPanel = new StackPanel
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+
+            TextBlock textBlock = new TextBlock
+            {
+                Text = "¿Desea marcar esta tarea como finalizada?",
+                Foreground = Brushes.White,
+                TextAlignment = TextAlignment.Center,
+                Margin = new Thickness(0, 0, 0, 20)
+            };
+
+            Button btnSi = new Button
+            {
+                Content = "Sí",
+                Width = 100,
+                Margin = new Thickness(5),
+                Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x4C, 0xAF, 0x50)), 
+                Foreground = Brushes.White
+            };
+
+            Button btnNo = new Button
+            {
+                Content = "No",
+                Width = 100,
+                Margin = new Thickness(5),
+                Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xF4, 0x43, 0x36)),
+                Foreground = Brushes.White
+            };
+
+            btnSi.Click += (s, e) =>
+            {
+                checkTarea(tareaId); 
+                popup.IsOpen = false; 
+            };
+
+            btnNo.Click += (s, e) =>
+            {
+                checkBox.IsChecked = false; 
+                popup.IsOpen = false; 
+            };
+
+            stackPanel.Children.Add(textBlock);
+            stackPanel.Children.Add(new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Children = { btnSi, btnNo }
+            });
+
+            border.Child = stackPanel;
+            popup.Child = border;
+
+            DoubleAnimation fadeIn = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(0.3)
+            };
+
+            border.BeginAnimation(UIElement.OpacityProperty, fadeIn);
+        }
+
+        private void checkTarea(int tareaId)
+        {
+            using (var context = new TfgContext())
+            {
+                var tarea = context.Tareas.FirstOrDefault(t => t.Id == tareaId);
+                if (tarea != null)
+                {
+                    tarea.Estado = "finalizado";
+                    context.SaveChanges();
+                }
+            }
+
+            cargarTareasPendientes(); // Refresca la lista
+        }
+
+        private void nuevaTarea (object sender, RoutedEventArgs e)
+        {
+            NuevaTarea nuevaTarea = new NuevaTarea();
+            nuevaTarea.Show();
+        }
+        #endregion
     }
 }
