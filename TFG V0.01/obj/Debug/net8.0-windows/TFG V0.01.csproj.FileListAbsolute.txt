@@ -336,3 +336,13 @@ C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\refint\TFG V0
 C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.pdb
 C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\TFG V0.01.genruntimeconfig.cache
 C:\Users\franc\source\repos\TFG\TFG V0.01\obj\Debug\net8.0-windows\ref\TFG V0.01.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\Microsoft.Extensions.Options.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\Polly.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\Polly.Core.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\TFG V0.01\bin\Debug\net8.0-windows\System.Diagnostics.DiagnosticSource.dll

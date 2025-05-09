@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +36,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRazorPages();
 builder.Services.AddMemoryCache();
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient("PoderJudicial", client =>
+{
+    // Puedes configurar encabezados por defecto aquí si algunos son siempre iguales
+    // client.BaseAddress = new Uri("https://www.poderjudicial.es/"); // Opcional
+})
+.ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+{
+    AllowAutoRedirect = true, // Generalmente bueno tenerlo
+    UseCookies = true,        // CRUCIAL
+    CookieContainer = new CookieContainer() // CRUCIAL para almacenar y enviar cookies como JSESSIONID
+});
 
 var app = builder.Build();
 

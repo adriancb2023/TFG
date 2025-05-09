@@ -99,3 +99,14 @@ C:\Users\franc\source\repos\TFG\JurisprudenciaAPI\obj\Debug\net8.0\refint\Jurisp
 C:\Users\franc\source\repos\TFG\JurisprudenciaAPI\obj\Debug\net8.0\JurisprudenciaAPI.pdb
 C:\Users\franc\source\repos\TFG\JurisprudenciaAPI\obj\Debug\net8.0\JurisprudenciaAPI.genruntimeconfig.cache
 C:\Users\franc\source\repos\TFG\JurisprudenciaAPI\obj\Debug\net8.0\ref\JurisprudenciaAPI.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\JurisprudenciaAPI\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\JurisprudenciaAPI\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\JurisprudenciaAPI\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\JurisprudenciaAPI\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\JurisprudenciaAPI\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\JurisprudenciaAPI\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\JurisprudenciaAPI\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\JurisprudenciaAPI\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\JurisprudenciaAPI\bin\Debug\net8.0\Polly.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\JurisprudenciaAPI\bin\Debug\net8.0\Polly.Core.dll
+C:\Users\Francisco_Navarro\Documents\GitHub\TFG\JurisprudenciaAPI\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll

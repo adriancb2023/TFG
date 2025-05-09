@@ -258,6 +258,14 @@
           "ponente": {
             "type": "string",
             "nullable": true
+          },
+          "paginaActual": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "registrosPorPagina": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

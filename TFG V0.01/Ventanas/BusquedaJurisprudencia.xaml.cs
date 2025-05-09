@@ -18,6 +18,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using JurisprudenciaApi.Models;
 using JurisprudenciaApi.Controllers;
+using System.Collections.ObjectModel; // Para ObservableCollection
 
 namespace TFG_V0._01.Ventanas
 {
@@ -77,9 +78,22 @@ namespace TFG_V0._01.Ventanas
             { "Consejo Supremo de Justicia Militar", "75" },
             { "Audiencia Territorial", "36" }
         };
+        public ObservableCollection<JurisprudenciaResult> ResultadosBusqueda { get; set; }
+        #endregion
+
+        #region Nuevas variables para paginación
+        private int _paginaActual = 1;
+        private const int RegistrosPorPaginaConst = 10; // Cuántos cargar por página
+        private bool _isLoading = false; // Para evitar múltiples llamadas simultáneas
+        private JurisprudenciaSearchParameters _lastSearchParameters; // Para recordar los filtros al cargar más
+        #endregion
+
         public BusquedaJurisprudencia()
         {
             InitializeComponent();
+            ResultadosBusqueda = new ObservableCollection<JurisprudenciaResult>(); // Inicializa la colección
+            this.DataContext = this; // Establece el DataContext para que los bindings del XAML funcionen
+            
             InitializeAnimations();
             AplicarModoSistema();
 
@@ -93,7 +107,6 @@ namespace TFG_V0._01.Ventanas
             // Cargar datos iniciales
             _ = CargarDatosInicialesAsync();
         }
-        #endregion
 
         #region Aplicar modo oscuro/claro cargado por sistema
         private void AplicarModoSistema()
@@ -407,9 +420,43 @@ namespace TFG_V0._01.Ventanas
         #region API Interaction
         private async void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
+            _paginaActual = 1; // Resetear a la primera página para una nueva búsqueda
+            ResultadosBusqueda.Clear(); // Limpiar resultados anteriores
+            CargarMasButton.Visibility = Visibility.Collapsed; // Ocultar botón al iniciar nueva búsqueda
+
+            _lastSearchParameters = GetSearchParametersFromUI(); // Guardar los parámetros actuales
+            _lastSearchParameters.PaginaActual = _paginaActual;
+            _lastSearchParameters.RegistrosPorPagina = RegistrosPorPaginaConst;
+            
+            await RealizarBusquedaAsync(_lastSearchParameters);
+        }
+
+        private async void CargarMasButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_isLoading || _lastSearchParameters == null) return; // No cargar si ya está cargando o no hay búsqueda previa
+
+            _paginaActual++;
+            _lastSearchParameters.PaginaActual = _paginaActual; 
+            // _lastSearchParameters.RegistrosPorPagina ya está establecido
+            
+            await RealizarBusquedaAsync(_lastSearchParameters, esCargaAdicional: true);
+        }
+
+        private async Task RealizarBusquedaAsync(JurisprudenciaSearchParameters parameters, bool esCargaAdicional = false)
+        {
+            if (_isLoading) return;
+
+            _isLoading = true;
+            // Opcional: Deshabilitar botones para evitar clics múltiples
+            BuscarButton.IsEnabled = false;
+            CargarMasButton.IsEnabled = false; 
+            // Opcional: Mostrar un indicador de carga
+            // ResultadosTextBlock.Text = "Cargando..."; 
+            // ResultadosTextBlock.Visibility = Visibility.Visible;
+
+
             try
             {
-                JurisprudenciaSearchParameters parameters = GetSearchParametersFromUI();
                 string jsonParameters = JsonSerializer.Serialize(parameters, new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
                 var content = new StringContent(jsonParameters, Encoding.UTF8, "application/json");
 
@@ -418,60 +465,83 @@ namespace TFG_V0._01.Ventanas
                 if (response.IsSuccessStatusCode)
                 {
                     string jsonResponse = await response.Content.ReadAsStringAsync();
-                    List<JurisprudenciaResult>? results = JsonSerializer.Deserialize<List<JurisprudenciaResult>>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    List<JurisprudenciaResult>? nuevosResultados = JsonSerializer.Deserialize<List<JurisprudenciaResult>>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-                    DisplayResults(results);
+                    if (nuevosResultados != null && nuevosResultados.Any())
+                    {
+                        foreach (var result in nuevosResultados)
+                        {
+                            ResultadosBusqueda.Add(result);
+                        }
+                        // Mostrar el botón "Cargar Más" si la API devolvió el número completo de registros esperados
+                        CargarMasButton.Visibility = nuevosResultados.Count == RegistrosPorPaginaConst ? Visibility.Visible : Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        CargarMasButton.Visibility = Visibility.Collapsed; // No hay más resultados
+                        if (esCargaAdicional)
+                        {
+                            MessageBox.Show("No hay más resultados para cargar.", "Fin de los resultados", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        // Si no es carga adicional y no hay resultados, el DataTrigger del ResultadosTextBlock se encargará.
+                    }
                 }
                 else
                 {
                     string errorContent = await response.Content.ReadAsStringAsync();
                     string errorMsg = $"Error al buscar: {response.StatusCode}\n{errorContent}";
                     MessageBox.Show(errorMsg, "Error API", MessageBoxButton.OK, MessageBoxImage.Error);
-                    DisplayResults(null);
+                    CargarMasButton.Visibility = Visibility.Collapsed;
                 }
             }
             catch (HttpRequestException httpEx)
             {
-                string errorMsg = "Error de conexión: Verifique que la API (" + ApiBaseUrl + ") esté ejecutándose.\n" + httpEx.Message;
+                string errorMsg = $"Error de conexión: Verifique que la API ({ApiBaseUrl}) esté ejecutándose.\n{httpEx.Message}";
                 MessageBox.Show(errorMsg, "Error Conexión", MessageBoxButton.OK, MessageBoxImage.Error);
-                DisplayResults(null);
+                CargarMasButton.Visibility = Visibility.Collapsed;
             }
             catch (JsonException jsonEx)
             {
                 string errorMsg = "Error al procesar la respuesta de la API:\n" + jsonEx.Message;
                 MessageBox.Show(errorMsg, "Error Deserialización", MessageBoxButton.OK, MessageBoxImage.Error);
-                DisplayResults(null);
+                CargarMasButton.Visibility = Visibility.Collapsed;
             }
             catch (Exception ex)
             {
                 string errorMsg = "Ocurrió un error inesperado:\n" + ex.Message;
                 MessageBox.Show(errorMsg, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                DisplayResults(null);
+                CargarMasButton.Visibility = Visibility.Collapsed;
             }
             finally
             {
+                _isLoading = false;
+                BuscarButton.IsEnabled = true;
+                CargarMasButton.IsEnabled = true;
+                // Opcional: Ocultar indicador de carga
+                // if (ResultadosBusqueda.Any()) ResultadosTextBlock.Visibility = Visibility.Collapsed;
             }
         }
 
         private JurisprudenciaSearchParameters GetSearchParametersFromUI()
         {
-            var parameters = new JurisprudenciaSearchParameters();
-
-            parameters.Jurisdiccion = JurisdiccionComboBox.Text;
-            parameters.Roj = NumeroRojTextBox.Text;
-            parameters.Ecli = EcliTextBox.Text;
-            parameters.NumeroResolucion = NumeroResolucionTextBox.Text;
-            parameters.NumeroRecurso = NumeroRecursoTextBox.Text;
-            parameters.Ponente = PonenteTextBox.Text;
-            parameters.Seccion = SeccionTextBox.Text;
-            parameters.Legislacion = LegislacionTextBox.Text;
-            parameters.FechaDesde = FechaDesdeDatePicker.SelectedDate;
-            parameters.FechaHasta = FechaHastaDatePicker.SelectedDate;
-
-            if (JurisdiccionComboBox.SelectedItem is ComboBoxItem jItem && jItem.Content != null)
+            var parameters = new JurisprudenciaSearchParameters
             {
-                string? jurisdiccionValue = jItem.Content.ToString();
-                parameters.Jurisdiccion = (jurisdiccionValue == "Todos" || string.IsNullOrEmpty(jurisdiccionValue)) ? null : jurisdiccionValue;
+                // NO PONGAS PaginaActual NI RegistrosPorPagina AQUÍ
+                // Se asignarán en RealizarBusquedaAsync o BuscarButton_Click
+            };
+
+            parameters.Jurisdiccion = (JurisdiccionComboBox.SelectedItem as string == "Todos" || JurisdiccionComboBox.SelectedItem == null) ? null : JurisdiccionComboBox.SelectedItem as string;
+            if (TipoResolucionComboBox.SelectedItem is string tipoResValue && !string.IsNullOrEmpty(tipoResValue) && tipoResValue != "Todos")
+            {
+                parameters.TiposResolucion = new List<string> { tipoResValue };
+            }
+            if (OrganoJudicialComboBox.SelectedItem is string orgValue && !string.IsNullOrEmpty(orgValue) && orgValue != "Todos")
+            {
+                parameters.OrganosJudiciales = new List<string> { orgValue }; // Enviar el nombre, la API lo mapea
+            }
+            if (LocalizacionComboBox.SelectedItem is string locValue && !string.IsNullOrEmpty(locValue) && locValue != "Todos")
+            {
+                parameters.Localizaciones = new List<string> { locValue };
             }
             if (IdiomaComboBox.SelectedItem is ComboBoxItem iItem && iItem.Content != null)
             {
@@ -479,115 +549,20 @@ namespace TFG_V0._01.Ventanas
                 parameters.Idioma = (idiomaValue == "Todos" || string.IsNullOrEmpty(idiomaValue)) ? null : idiomaValue;
             }
 
-            parameters.TiposResolucion = GetSelectedCheckboxContent(TipoResolucionComboBox);
-            parameters.Localizaciones = GetSelectedCheckboxContent(LocalizacionComboBox);
+            parameters.Roj = string.IsNullOrWhiteSpace(NumeroRojTextBox.Text) ? null : NumeroRojTextBox.Text;
+            parameters.Ecli = string.IsNullOrWhiteSpace(EcliTextBox.Text) ? null : EcliTextBox.Text;
+            parameters.NumeroResolucion = string.IsNullOrWhiteSpace(NumeroResolucionTextBox.Text) ? null : NumeroResolucionTextBox.Text;
+            parameters.NumeroRecurso = string.IsNullOrWhiteSpace(NumeroRecursoTextBox.Text) ? null : NumeroRecursoTextBox.Text;
+            parameters.Ponente = string.IsNullOrWhiteSpace(PonenteTextBox.Text) ? null : PonenteTextBox.Text;
+            parameters.Seccion = string.IsNullOrWhiteSpace(SeccionTextBox.Text) ? null : SeccionTextBox.Text;
+            parameters.Legislacion = string.IsNullOrWhiteSpace(LegislacionTextBox.Text) ? null : LegislacionTextBox.Text; // Asumiendo que es un TextBox
+            parameters.FechaDesde = FechaDesdeDatePicker.SelectedDate;
+            parameters.FechaHasta = FechaHastaDatePicker.SelectedDate;
 
-            List<string> selectedOrganoNames = GetSelectedCheckboxContent(OrganoJudicialComboBox);
-            var organoCodes = new List<string>();
-            if (selectedOrganoNames != null)
-            {
-                foreach (string name in selectedOrganoNames)
-                {
-                    if (TipoOrganoMap.TryGetValue(name, out string? code))
-                    {
-                        organoCodes.AddRange(code.Split('|', StringSplitOptions.RemoveEmptyEntries));
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Warning: Organo Judicial '{name}' not found in map.");
-                    }
-                }
-                parameters.OrganosJudiciales = organoCodes.Distinct().ToList();
-            }
 
             return parameters;
         }
 
-        private List<string> GetSelectedCheckboxContent(ItemsControl itemsControl)
-        {
-            var selectedContent = new List<string>();
-            if (itemsControl == null) return selectedContent;
-            FindSelectedCheckboxesRecursive(itemsControl, selectedContent);
-            return selectedContent;
-        }
-
-        private void FindSelectedCheckboxesRecursive(DependencyObject parent, List<string> selectedContent)
-        {
-            if (parent == null) return;
-
-            int childrenCount = VisualTreeHelper.GetChildrenCount(parent);
-            for (int i = 0; i < childrenCount; i++)
-            {
-                var child = VisualTreeHelper.GetChild(parent, i);
-
-                if (child is CheckBox checkBox && checkBox.IsChecked == true && checkBox.Content != null)
-                {
-                    if(checkBox.Content is string contentString)
-                    {
-                        selectedContent.Add(contentString);
-                    } else {
-                         selectedContent.Add(checkBox.Content.ToString() ?? string.Empty);
-                    }
-                }
-
-                FindSelectedCheckboxesRecursive(child, selectedContent);
-
-                if (child is ItemsPresenter itemsPresenter && VisualTreeHelper.GetChildrenCount(itemsPresenter) > 0)
-                {
-                    DependencyObject? itemsHostPanel = VisualTreeHelper.GetChild(itemsPresenter, 0);
-                    FindSelectedCheckboxesRecursive(itemsHostPanel, selectedContent);
-                }
-                else if (child is ContentPresenter contentPresenter && VisualTreeHelper.GetChildrenCount(contentPresenter) > 0)
-                {
-                    DependencyObject? contentChild = VisualTreeHelper.GetChild(contentPresenter, 0);
-                    FindSelectedCheckboxesRecursive(contentChild, selectedContent);
-                }
-            }
-        }
-
-        private void DisplayResults(List<JurisprudenciaResult>? results)
-        {
-            var resultadosTextBlock = this.FindName("ResultadosTextBlock") as TextBlock;
-            if (resultadosTextBlock == null)
-            {
-                var resultsBorder = this.FindName("ResultadosBorder") as Border;
-                if (resultsBorder?.Child is StackPanel sp && sp.Children.Count > 1 && sp.Children[1] is TextBlock tb)
-                {
-                    resultadosTextBlock = tb;
-                }
-            }
-
-            if (resultadosTextBlock == null)
-            {
-                MessageBox.Show("No se encontró el área de resultados.", "Error UI");
-                return;
-            }
-
-            if (results == null || !results.Any())
-            {
-                resultadosTextBlock.Text = "(No se encontraron resultados o hubo un error.)";
-                resultadosTextBlock.FontStyle = FontStyles.Italic;
-            }
-            else
-            {
-                var sb = new StringBuilder();
-                sb.AppendLine($"Resultados encontrados: {results.Count}");
-                sb.AppendLine("--------------------");
-                foreach (var result in results.Take(20))
-                {
-                    sb.AppendLine($"ROJ: {result.Roj ?? "N/A"}");
-                    sb.AppendLine($"ECLI: {result.Ecli ?? "N/A"}");
-                    sb.AppendLine($"Fecha: {result.FechaResolucion ?? "N/A"}");
-                    sb.AppendLine($"Órgano: {result.OrganoJudicial ?? "N/A"}");
-                    sb.AppendLine($"Tipo: {result.TipoResolucion ?? "N/A"}");
-                    sb.AppendLine($"Resumen: {result.Resumen?.Substring(0, Math.Min(result.Resumen.Length, 150)) ?? "N/A"}...");
-                    sb.AppendLine($"URL: {result.UrlDocumento ?? "N/A"}");
-                    sb.AppendLine("---");
-                }
-                resultadosTextBlock.Text = sb.ToString();
-                resultadosTextBlock.FontStyle = FontStyles.Normal;
-            }
-        }
         private async Task CargarDatosInicialesAsync()
         {
             try
@@ -599,11 +574,23 @@ namespace TFG_V0._01.Ventanas
                 string jsonResponse = await response.Content.ReadAsStringAsync();
                 var initialData = JsonSerializer.Deserialize<InitialDataResponse>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
+                // Añadir "Todos" si no viene de la API y es necesario
+                initialData.Jurisdicciones.Insert(0, "Todos");
+                initialData.TiposResolucion.Insert(0, "Todos");
+                initialData.OrganosJudiciales.Insert(0, "Todos");
+                initialData.Localizaciones.Insert(0, "Todos");
+
                 // Asignar los datos a los ComboBox
                 JurisdiccionComboBox.ItemsSource = initialData.Jurisdicciones;
                 TipoResolucionComboBox.ItemsSource = initialData.TiposResolucion;
                 OrganoJudicialComboBox.ItemsSource = initialData.OrganosJudiciales;
                 LocalizacionComboBox.ItemsSource = initialData.Localizaciones;
+
+                // Seleccionar "Todos" por defecto
+                JurisdiccionComboBox.SelectedItem = "Todos";
+                TipoResolucionComboBox.SelectedItem = "Todos";
+                OrganoJudicialComboBox.SelectedItem = "Todos";
+                LocalizacionComboBox.SelectedItem = "Todos";
             }
             catch (Exception ex)
             {
@@ -611,5 +598,28 @@ namespace TFG_V0._01.Ventanas
             }
         }
         #endregion
+
+        private void VerDocumentoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.CommandParameter is string url)
+            {
+                if (!string.IsNullOrWhiteSpace(url))
+                {
+                    try
+                    {
+                        // Abrir la URL en el navegador por defecto
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(url) { UseShellExecute = true });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"No se pudo abrir el documento: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La URL del documento no está disponible.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
     }
 }

@@ -2783,23 +2783,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\franc\\.nuget\\packages\\": {},
+    "C:\\Users\\Francisco_Navarro\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\franc\\source\\repos\\TFG\\TFG V0.01\\TFG V0.01.csproj",
+      "projectUniqueName": "C:\\Users\\Francisco_Navarro\\Documents\\GitHub\\TFG\\TFG V0.01\\TFG V0.01.csproj",
       "projectName": "TFG V0.01",
-      "projectPath": "C:\\Users\\franc\\source\\repos\\TFG\\TFG V0.01\\TFG V0.01.csproj",
-      "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\franc\\source\\repos\\TFG\\TFG V0.01\\obj\\",
+      "projectPath": "C:\\Users\\Francisco_Navarro\\Documents\\GitHub\\TFG\\TFG V0.01\\TFG V0.01.csproj",
+      "packagesPath": "C:\\Users\\Francisco_Navarro\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Francisco_Navarro\\Documents\\GitHub\\TFG\\TFG V0.01\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\franc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Francisco_Navarro\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2814,8 +2814,8 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\franc\\source\\repos\\TFG\\JurisprudenciaAPI\\JurisprudenciaAPI.csproj": {
-              "projectPath": "C:\\Users\\franc\\source\\repos\\TFG\\JurisprudenciaAPI\\JurisprudenciaAPI.csproj"
+            "C:\\Users\\Francisco_Navarro\\Documents\\GitHub\\TFG\\JurisprudenciaAPI\\JurisprudenciaAPI.csproj": {
+              "projectPath": "C:\\Users\\Francisco_Navarro\\Documents\\GitHub\\TFG\\JurisprudenciaAPI\\JurisprudenciaAPI.csproj"
             }
           }
         }
@@ -2904,7 +2904,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
